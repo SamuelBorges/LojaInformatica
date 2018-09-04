@@ -1,13 +1,15 @@
-﻿using System;
+﻿using LojaInformatica.BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace LojaInformatica.Controllers
+namespace LojaDeInformatica.Controllers
 {
     public class HomeController : Controller
     {
+        [AutorizarLogin]
         public ActionResult Index()
         {
             return View();
