@@ -1,11 +1,11 @@
-﻿using LojaDeInformatica.DAO.Enum;
+﻿using LojaInformatica.DAO.Enum;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace LojaDeInformatica.DAO.DataBase
+namespace LojaInformatica.DAO.DataBase
 {
 
     public class LojaInformaticaContext : DbContext

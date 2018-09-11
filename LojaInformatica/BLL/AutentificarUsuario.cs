@@ -1,11 +1,11 @@
-﻿using LojaDeInformatica.DAO;
-using LojaDeInformatica.DAO.DataBase;
+﻿using LojaInformatica.DAO;
+using LojaInformatica.DAO.DataBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace LojaDeInformatica.BLL
+namespace LojaDInformatica.BLL
 {
     public class AutentificarUsuario
     {

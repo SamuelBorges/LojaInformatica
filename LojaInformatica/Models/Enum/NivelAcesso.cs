@@ -1,9 +1,9 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace LojaDeInformatica.DAO.Enum
+namespace LojaInformatica.DAO.Enum
 {
     public enum NivelAcesso
     {

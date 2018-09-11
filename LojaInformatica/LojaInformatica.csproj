@@ -186,11 +186,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809030201437_Inicio.cs" />
-    <Compile Include="Migrations\201809030201437_Inicio.Designer.cs">
+    <Compile Include="Migrations\201809111355100_Deltando campo de senha.cs" />
+    <Compile Include="Migrations\201809111355100_Deltando campo de senha.Designer.cs">
+      <DependentUpon>201809111355100_Deltando campo de senha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Migrations\201809030201437_Inicio.cs" />
+    <Compile Include="Models\Migrations\201809030201437_Inicio.Designer.cs">
       <DependentUpon>201809030201437_Inicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Migrations\Configuration.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\DataBase\LojaInformaticaContext.cs" />
     <Compile Include="Models\Endereco.cs" />
@@ -4836,9 +4840,12 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Cadastrar.cshtml" />
-    <Content Include="Views\Login\CadastrarLogin.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\VerificarLogin.cshtml" />
+    <Content Include="Views\Login\VisualizarLogin.cshtml" />
+    <Content Include="Views\Login\PreencherCadastroLogin.cshtml" />
+    <Content Include="Views\Login\CadastrarLogin.cshtml" />
+    <Content Include="Views\Login\ContarNumeroLogins.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4858,7 +4865,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201809030201437_Inicio.resx">
+    <EmbeddedResource Include="Migrations\201809111355100_Deltando campo de senha.resx">
+      <DependentUpon>201809111355100_Deltando campo de senha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Migrations\201809030201437_Inicio.resx">
       <DependentUpon>201809030201437_Inicio.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

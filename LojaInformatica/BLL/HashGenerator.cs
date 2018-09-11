@@ -1,29 +1,48 @@
-﻿using LojaDeInformatica.DAO;
-using LojaDeInformatica.DAO.DataBase;
+﻿using LojaInformatica.DAO;
+using LojaInformatica.DAO.DataBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace LojaDeInformatica.BLL
+namespace LojaInformatica.BLL
 {
 
     public class HashGenerator
     {
-        public bool Verificar(Usuario usuario)
+        public bool VerificarEmail(Usuario usuario)
         {
             using (LojaInformaticaContext entity = new LojaInformaticaContext())
             {
-                Usuario searched = entity.Usuarios.FirstOrDefault(u => u.Email == usuario.Email);
-                if (searched == null)
+                Usuario searchedEmail = entity.Usuarios.FirstOrDefault(u => u.Email == usuario.Email);
+                if (searchedEmail == null)
                 {
                     return false;
                 }
-                string passwordToHash = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
-
-                return BCrypt.Net.BCrypt.Verify(usuario.Senha, passwordToHash);
+                return true;
             }
         }
+
+        public bool VerificarSenha(Usuario usuario)
+        {
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+
+                if (usuario.Senha == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    string passwordToHash = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
+                    Usuario searchedPassword = entity.Usuarios.FirstOrDefault(u => u.Hash == usuario.Hash);
+                    return BCrypt.Net.BCrypt.Verify(usuario.Senha, passwordToHash);
+
+                }
+
+            }
+        }
+
         public bool Cadastrar(Usuario usuario)
         {
 

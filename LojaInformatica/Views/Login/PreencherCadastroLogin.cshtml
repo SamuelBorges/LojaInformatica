@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "PreencherCadastroLogin";
+}
+@model LojaInformatica.DAO.Usuario
+
+<div class="portlet box red">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i> Cadastrar novo acesso:
+        </div>
+
+    </div>
+    <div class="portlet-body form">
+        <form action="@Url.Action("CadastrarLogin")" method="post" role="form">
+            <div class="form-body">
+                <div class="form-group">
+                    <label>Nome: </label>
+                    <input type="text" class="form-control input-lg" placeholder="Nome" name="usuario.Nome">
+
+                    <label>Email: </label>
+                    <input type="text" class="form-control input-lg" placeholder="exemplo@endereço.com" name="usuario.Email">
+
+                    <label>Senha: </label>
+                    <input type="password" class="form-control input-lg" placeholder="**********" name="usuario.Senha">
+                </div>
+                <div class="form-group">
+                    <label>Cargo/Nível de Acesso:</label>
+                    @*<select class="form-control input-lg">
+                            <option>Administrador</option>
+                            <option>Funcionario</option>
+                        </select>*@
+                    <select class="form-control input-lg" name="usuario.NivelAcesso">
+                        @foreach (LojaInformatica.DAO.Enum.NivelAcesso item in (LojaInformatica.DAO.Enum.NivelAcesso[])Enum.GetValues(typeof(LojaInformatica.DAO.Enum.NivelAcesso)))
+                        {
+
+                            int value = (int)item;
+                            string selec = (int)Model.NivelAcesso == value ? "selected=\"selected\"" : null;
+                            <option @selec value="@value" name="NivelAcesso">@Enum.GetName(item.GetType(), item)</option>
+                        }
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="form-actions right">
+                <button type="button" class="btn default">Cancel</button>
+                <button type="submit" class="btn green">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,12 +1,12 @@
-﻿using LojaDeInformatica.DAO;
-using LojaDeInformatica.DAO.DataBase;
-using LojaDeInformatica.DAO.Enum;
+﻿using LojaInformatica.DAO;
+using LojaInformatica.DAO.DataBase;
+using LojaInformatica.DAO.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace LojaDeInformatica.BLL
+namespace LojaInformatica.BLL
 {
     public class UsuarioBLL
     {

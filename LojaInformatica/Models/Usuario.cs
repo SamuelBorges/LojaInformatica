@@ -1,10 +1,11 @@
-﻿using LojaDeInformatica.DAO.Enum;
+﻿using LojaInformatica.DAO.Enum;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace LojaDeInformatica.DAO
+namespace LojaInformatica.DAO
 {
     public class Usuario
     {
@@ -14,6 +15,7 @@ namespace LojaDeInformatica.DAO
 
         public string Email { get; set; }
 
+        [NotMapped]
         public string Senha { get; set; }
 
         public string Hash { get; set; }
