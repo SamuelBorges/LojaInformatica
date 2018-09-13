@@ -63,7 +63,7 @@ namespace LojaInformatica.BLL
             using (LojaInformaticaContext entity = new LojaInformaticaContext())
             {
                 Usuario searchedEmail = entity.Usuarios.FirstOrDefault(u => u.Email == usuario.Email);
-               searchedEmail.NumeroAcessos +=1;
+                searchedEmail.NumeroAcessos += 1;
                 entity.SaveChanges();
             }
             return true;
@@ -82,8 +82,14 @@ namespace LojaInformatica.BLL
             }
         }
 
+        public IList<Usuario> ListarUsuarios()
+        {
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                return entity.Usuarios.ToList();
 
+            }
+        }
 
     }
-
 }

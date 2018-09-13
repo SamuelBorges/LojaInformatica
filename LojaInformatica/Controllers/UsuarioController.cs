@@ -28,8 +28,17 @@ namespace LojaInformatica.Controllers
         [AutorizarLogin]
         public ActionResult VisualizarUsuarios()
         {
-            IList<Usuario> usuarios = new List<Usuario>();
-            ViewBag.Usuario = usuarios;
+            HashGenerator dao = new HashGenerator();
+            IList<Usuario> usuarios = dao.ListarUsuarios();
+            ViewBag.Usuarios = usuarios;
+            return View();
+            
+        }
+
+        [AutorizarLogin]
+        public ActionResult AlterarSenha()
+        {
+           
             return View();
         }
     }

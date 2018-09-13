@@ -19,7 +19,6 @@ namespace LojaInformatica.Controllers
         [AutorizarLogin]
         public ActionResult PreencherCadastroLogin()
         {
-
             return View(new Usuario());
         }
 

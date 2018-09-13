@@ -4844,7 +4844,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Login\Cadastrar.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\VerificarLogin.cshtml" />
     <Content Include="Views\Usuario\VisualizarUsuarios.cshtml" />

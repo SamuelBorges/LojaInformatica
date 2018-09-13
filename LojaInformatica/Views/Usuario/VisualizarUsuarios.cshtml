@@ -2,13 +2,6 @@
 @{
     ViewBag.Title = "VisualizarUsuarios";
 }
-@foreach (var usuario in ViewBag.Usuario)
-{
-
-    <tr>
-        <td>@usuario.Nome</td>
-    </tr>
-}
 
 <div class="row">
     <div class="col-md-12 col-sm-12">
@@ -38,155 +31,42 @@
                                     Email
                                 </th>
                                 <th>
-                                    Price
+                                    Situação
                                 </th>
                                 <th>
-                                    Quantity
-                                </th>
-                                <th>
-                                    Tax Amount
-                                </th>
-                                <th>
-                                    Tax Percent
-                                </th>
-                                <th>
-                                    Discount Amount
-                                </th>
-                                <th>
-                                    Total
+                                    Cargo
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <a href="javascript:;">
-                                        Product 1
-                                    </a>
-                                </td>
-                                <td>
-                                    <span class="label label-sm label-success">
-                                        Available
-                                </td>
-                                <td>
-                                    345.50$
-                                </td>
-                                <td>
-                                    345.50$
-                                </td>
-                                <td>
-                                    2
-                                </td>
-                                <td>
-                                    2.00$
-                                </td>
-                                <td>
-                                    4%
-                                </td>
-                                <td>
-                                    0.00$
-                                </td>
-                                <td>
-                                    691.00$
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="javascript:;">
-                                        Product 1
-                                    </a>
-                                </td>
-                                <td>
-                                    <span class="label label-sm label-success">
-                                        Available
-                                </td>
-                                <td>
-                                    345.50$
-                                </td>
-                                <td>
-                                    345.50$
-                                </td>
-                                <td>
-                                    2
-                                </td>
-                                <td>
-                                    2.00$
-                                </td>
-                                <td>
-                                    4%
-                                </td>
-                                <td>
-                                    0.00$
-                                </td>
-                                <td>
-                                    691.00$
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="javascript:;">
-                                        Product 1
-                                    </a>
-                                </td>
-                                <td>
-                                    <span class="label label-sm label-success">
-                                        Available
-                                </td>
-                                <td>
-                                    345.50$
-                                </td>
-                                <td>
-                                    345.50$
-                                </td>
-                                <td>
-                                    2
-                                </td>
-                                <td>
-                                    2.00$
-                                </td>
-                                <td>
-                                    4%
-                                </td>
-                                <td>
-                                    0.00$
-                                </td>
-                                <td>
-                                    691.00$
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="javascript:;">
-                                        Product 1
-                                    </a>
-                                </td>
-                                <td>
-                                    <span class="label label-sm label-success">
-                                        Available
-                                </td>
-                                <td>
-                                    345.50$
-                                </td>
-                                <td>
-                                    345.50$
-                                </td>
-                                <td>
-                                    2
-                                </td>
-                                <td>
-                                    2.00$
-                                </td>
-                                <td>
-                                    4%
-                                </td>
-                                <td>
-                                    0.00$
-                                </td>
-                                <td>
-                                    691.00$
-                                </td>
-                            </tr>
-                        </tbody>
+                            @foreach (var usuario in ViewBag.usuarios)
+                            {
+                                <tr>
+                                    <td>
+                                        @usuario.Id
+                                    </td>
+                                    <td>
+                                        @usuario.Nome
+                                    </td>
+                                    <td>
+                                        @usuario.Email
+                                    </td>
+                                    <td>
+                                        @if (usuario.Ativo)
+                                        {
+                                        <span>Ativo</span>
+                                        }
+                                        else
+                                        {
+                                        <span>Inativo</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @usuario.NivelAcesso
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
                     </table>
                 </div>
             </div>
