@@ -190,6 +190,10 @@
     <Compile Include="Migrations\201809111355100_Deltando campo de senha.Designer.cs">
       <DependentUpon>201809111355100_Deltando campo de senha.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809130114436_Campo NumeroAcessos Added.cs" />
+    <Compile Include="Migrations\201809130114436_Campo NumeroAcessos Added.Designer.cs">
+      <DependentUpon>201809130114436_Campo NumeroAcessos Added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Migrations\201809030201437_Inicio.cs" />
     <Compile Include="Models\Migrations\201809030201437_Inicio.Designer.cs">
       <DependentUpon>201809030201437_Inicio.cs</DependentUpon>
@@ -4867,6 +4871,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201809111355100_Deltando campo de senha.resx">
       <DependentUpon>201809111355100_Deltando campo de senha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809130114436_Campo NumeroAcessos Added.resx">
+      <DependentUpon>201809130114436_Campo NumeroAcessos Added.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Models\Migrations\201809030201437_Inicio.resx">
       <DependentUpon>201809030201437_Inicio.cs</DependentUpon>

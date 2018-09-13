@@ -25,6 +25,8 @@ namespace LojaInformatica.DAO
         public NivelAcesso NivelAcesso { get; set; }
 
         public bool Ativo { get; set; }
+
+        public int NumeroAcessos { get; set; }
     }
     
 }

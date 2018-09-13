@@ -40,13 +40,17 @@ namespace LojaInformatica.Controllers
 
             if (EmailSucesso && SenhaSucesso)
             {
+
                 Session["usuarioLogado"] = usuario;
                 
                 //Contar número de acessos
                 object NumDaSession = Session["contador"];
                 int NumAcessos = Convert.ToInt32(NumDaSession);
-
                 NumAcessos++;
+                
+                //Guardar novo acesso no banco
+                bool novoAcesso = new HashGenerator().RegistrarAcesso(usuario);
+
                 Session["contador"] = NumAcessos;
                 //Ir para o Index
 
@@ -61,7 +65,7 @@ namespace LojaInformatica.Controllers
         public ActionResult CadastrarLogin(Usuario usuario)
             {
             bool sucesso = new UsuarioBLL().VerificarInformacoesUsuario(usuario);
-            bool cadastrado = new HashGenerator().Cadastrar(usuario);
+            bool cadastrado = new HashGenerator().CadastrarUsuario(usuario);
 
             return View();
         }

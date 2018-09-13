@@ -43,11 +43,12 @@ namespace LojaInformatica.BLL
             }
         }
 
-        public bool Cadastrar(Usuario usuario)
+        public bool CadastrarUsuario(Usuario usuario)
         {
 
             usuario.Hash = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
             usuario.Salt = BCrypt.Net.BCrypt.GenerateSalt();
+            usuario.Ativo = true;
 
             using (LojaInformaticaContext context = new LojaInformaticaContext())
             {
@@ -57,6 +58,16 @@ namespace LojaInformatica.BLL
             return true;
         }
 
+        public bool RegistrarAcesso(Usuario usuario)
+        {
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                Usuario searchedEmail = entity.Usuarios.FirstOrDefault(u => u.Email == usuario.Email);
+               searchedEmail.NumeroAcessos +=1;
+                entity.SaveChanges();
+            }
+            return true;
+        }
 
 
 
