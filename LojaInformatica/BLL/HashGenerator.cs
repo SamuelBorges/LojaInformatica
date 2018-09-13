@@ -43,7 +43,7 @@ namespace LojaInformatica.BLL
             }
         }
 
-        public bool CadastrarUsuario(Usuario usuario)
+        public bool RegistrarUsuario(Usuario usuario)
         {
 
             usuario.Hash = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
@@ -69,6 +69,18 @@ namespace LojaInformatica.BLL
             return true;
         }
 
+        public bool EhPrimeiroAcesso(Usuario usuario)
+        {
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                Usuario searchedEmail = entity.Usuarios.FirstOrDefault(u => u.Email == usuario.Email);
+                if (searchedEmail.NumeroAcessos == 1)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
 
 
 

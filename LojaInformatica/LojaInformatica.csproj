@@ -183,6 +183,7 @@
     <Compile Include="BLL\AutorizarLogin.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -4846,10 +4847,10 @@
     <Content Include="Views\Login\Cadastrar.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\VerificarLogin.cshtml" />
-    <Content Include="Views\Login\VisualizarLogin.cshtml" />
+    <Content Include="Views\Usuario\VisualizarUsuarios.cshtml" />
     <Content Include="Views\Login\PreencherCadastroLogin.cshtml" />
-    <Content Include="Views\Login\CadastrarLogin.cshtml" />
     <Content Include="Views\Login\ContarNumeroLogins.cshtml" />
+    <Content Include="Views\Usuario\CadastrarUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
