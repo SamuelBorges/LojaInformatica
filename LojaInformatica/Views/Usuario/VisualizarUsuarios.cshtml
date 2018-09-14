@@ -8,12 +8,9 @@
         <div class="portlet grey-cascade box">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-cogs"></i>Shopping Cart
+                    <i class="fa fa-cogs"></i>Acessos:
                 </div>
-                <div class="actions">
-                    <a href="javascript:;" class="btn btn-default btn-sm">
-                        <i class="fa fa-pencil"></i> Edit
-                    </a>
+                
                 </div>
             </div>
             <div class="portlet-body">
@@ -36,35 +33,47 @@
                                 <th>
                                     Cargo
                                 </th>
+                                <th>
+                                    Ação
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var usuario in ViewBag.usuarios)
                             {
-                                <tr>
-                                    <td>
-                                        @usuario.Id
-                                    </td>
-                                    <td>
-                                        @usuario.Nome
-                                    </td>
-                                    <td>
-                                        @usuario.Email
-                                    </td>
-                                    <td>
-                                        @if (usuario.Ativo)
-                                        {
+                            <tr>
+                                <td>
+                                    @usuario.Id
+                                </td>
+                                <td>
+                                    @usuario.Nome
+                                </td>
+                                <td>
+                                    @usuario.Email
+                                </td>
+                                <td>
+                                    @if (usuario.Ativo)
+                                    {
                                         <span>Ativo</span>
-                                        }
-                                        else
-                                        {
+                                    }
+                                    else
+                                    {
                                         <span>Inativo</span>
-                                        }
-                                    </td>
-                                    <td>
-                                        @usuario.NivelAcesso
-                                    </td>
-                                </tr>
+                                    }
+                                </td>
+                                <td>
+                                    @usuario.NivelAcesso
+                                </td>
+                                <td>
+                                    <div class="actions">
+                                        <a href="#" class="btn btn-default btn-sm">
+                                            @*<a href="@Url.Action("AlterarDadosUsuario", "Usuario")" class="btn btn-default btn-sm">*@
+
+                                                <i class="fa fa-pencil"></i> Editar
+                                            </a>
+</div>
+                                </td>
+                            </tr>
                             }
                             </tbody>
                     </table>

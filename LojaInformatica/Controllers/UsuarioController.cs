@@ -36,7 +36,7 @@ namespace LojaInformatica.Controllers
         }
 
         [AutorizarLogin]
-        public ActionResult AlterarSenha()
+        public ActionResult AlterarDadosUsuario()
         {
            
             return View();

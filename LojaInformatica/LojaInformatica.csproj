@@ -4850,6 +4850,7 @@
     <Content Include="Views\Login\PreencherCadastroLogin.cshtml" />
     <Content Include="Views\Login\ContarNumeroLogins.cshtml" />
     <Content Include="Views\Usuario\CadastrarUsuario.cshtml" />
+    <Content Include="Views\Usuario\AlterarDadosUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
