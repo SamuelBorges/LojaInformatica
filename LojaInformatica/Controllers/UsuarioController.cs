@@ -22,7 +22,7 @@ namespace LojaInformatica.Controllers
             bool sucesso = new UsuarioBLL().VerificarInformacoesUsuario(usuario);
             bool cadastrado = new HashGenerator().RegistrarUsuario(usuario);
 
-            return View();
+            return RedirectToAction("VisualizarUsuarios","Usuario");
         }
 
         [AutorizarLogin]
@@ -36,10 +36,10 @@ namespace LojaInformatica.Controllers
         }
 
         [AutorizarLogin]
-        public ActionResult AlterarDadosUsuario()
+        public ActionResult AlterarDadosUsuario(Usuario usuario)
         {
-           
-            return View();
+            bool Foiatualizado = new HashGenerator().AtualizarUsuario(usuario);
+            return RedirectToAction("VisualizarUsuario", "Usuario");
         }
     }
 }

@@ -2,85 +2,151 @@
 @{
     ViewBag.Title = "VisualizarUsuarios";
 }
-
-<div class="row">
-    <div class="col-md-12 col-sm-12">
-        <div class="portlet grey-cascade box">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="fa fa-cogs"></i>Acessos:
-                </div>
-                
-                </div>
+@model LojaInformatica.DAO.Usuario
+<div class="col-md-8 col-sm-12">
+    <div class="portlet grey-cascade box">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs"></i>Acessos:
             </div>
-            <div class="portlet-body">
-                <div class="table-responsive">
-                    <table class="table table-hover table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>
-                                    ID
-                                </th>
-                                <th>
-                                    Nome
-                                </th>
-                                <th>
-                                    Email
-                                </th>
-                                <th>
-                                    Situação
-                                </th>
-                                <th>
-                                    Cargo
-                                </th>
-                                <th>
-                                    Ação
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var usuario in ViewBag.usuarios)
-                            {
-                            <tr>
-                                <td>
-                                    @usuario.Id
-                                </td>
-                                <td>
-                                    @usuario.Nome
-                                </td>
-                                <td>
-                                    @usuario.Email
-                                </td>
-                                <td>
-                                    @if (usuario.Ativo)
-                                    {
-                                        <span>Ativo</span>
-                                    }
-                                    else
-                                    {
-                                        <span>Inativo</span>
-                                    }
-                                </td>
-                                <td>
-                                    @usuario.NivelAcesso
-                                </td>
-                                <td>
-                                    <div class="actions">
-                                        <a href="#" class="btn btn-default btn-sm">
-                                            @*<a href="@Url.Action("AlterarDadosUsuario", "Usuario")" class="btn btn-default btn-sm">*@
 
-                                                <i class="fa fa-pencil"></i> Editar
-                                            </a>
-</div>
-                                </td>
-                            </tr>
-                            }
-                            </tbody>
-                    </table>
-                </div>
-            </div>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Nome
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Situação
+                        </th>
+                        <th>
+                            Cargo
+                        </th>
+                        <th>
+                            Ação
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var usuario in ViewBag.usuarios)
+                    {
+                        <tr>
+                            <td>
+                                @usuario.Id
+                            </td>
+                            <td>
+                                @usuario.Nome
+                            </td>
+                            <td>
+                                @usuario.Email
+                            </td>
+                            <td>
+                                @if (usuario.Ativo)
+                                {
+                                    <span>Ativo</span>
+                                }
+                                else
+                                {
+                                    <span>Inativo</span>
+                                }
+                            </td>
+                            <td>
+                                @usuario.NivelAcesso
+                            </td>
+                            <td>
+                                <div class="actions">
+                                    <a href="#" class="btn btn-default btn-sm">
+                                        @*<a href="@Url.Action("AlterarDadosUsuario", "Usuario")" class="btn btn-default btn-sm">*@
+
+                                        <i class="fa fa-pencil"></i> Editar
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
+
+
+@*Alterar dados do usuário*@
+@{
+    ViewBag.Title = "AlterarDadosUsuario";
+}
+@model LojaInformatica.DAO.Usuario
+
+<form action="@Url.Action("CadastrarUsuario", "Usuario")" method="post" role="form" class="col-md-4 pull-right">
+
+    <div class="portlet box purple">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs"></i>Cadastrar:
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-body">
+        <div class="form-group">
+            <label>Nome: </label>
+            <input type="text" class="form-control input-lg" placeholder="Nome" name="usuario.Nome">
+
+            <label>Email: </label>
+            <input type="text" class="form-control input-lg" placeholder="exemplo@endereço.com" name="usuario.Email">
+
+            <label>Senha: </label>
+            <input type="password" class="form-control input-lg" placeholder="**********" name="usuario.Senha">
+        </div>
+        <div class="form-group">
+            <label>Cargo/Nível de Acesso:</label>
+            @*<select class="form-control input-lg">
+                    <option>Administrador</option>
+                    <option>Funcionario</option>
+                </select>*@
+            <select class="form-control input-lg" name="usuario.NivelAcesso">
+                @foreach (LojaInformatica.DAO.Enum.NivelAcesso item in (LojaInformatica.DAO.Enum.NivelAcesso[])Enum.GetValues(typeof(LojaInformatica.DAO.Enum.NivelAcesso)))
+                {
+
+                    int value = (int)item;
+                    //    [AutorizarLogin]
+                    //public ActionResult VisualizarUsuarios()
+                    //{
+                    //    HashGenerator dao = new HashGenerator();
+                    //    IList<Usuario> usuarios = dao.ListarUsuarios();
+                    //    ViewBag.Usuarios = usuarios;
+                    //    return View();
+
+                    //}
+                    <option value="@value" name="usuario.NivelAcesso">@Enum.GetName(item.GetType(), item)</option>
+                }
+            </select>
+
+        </div>
+
+    </div>
+
+    <div class="form-actions right">
+        <button type="button" class="btn default">Cancel</button>
+        <button type="submit" class="btn green">Submit</button>
+    </div>
+</form>
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+@*<script type="text/javascript">
+    function decrementa(usuario.Nome)
+
+</script>*@
+
 
 

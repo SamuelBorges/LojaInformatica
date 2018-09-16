@@ -50,10 +50,10 @@ namespace LojaInformatica.BLL
             usuario.Salt = BCrypt.Net.BCrypt.GenerateSalt();
             usuario.Ativo = true;
 
-            using (LojaInformaticaContext context = new LojaInformaticaContext())
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
             {
-                context.Usuarios.Add(usuario);
-                context.SaveChanges();
+                entity.Usuarios.Add(usuario);
+                entity.SaveChanges();
             }
             return true;
         }
@@ -89,6 +89,17 @@ namespace LojaInformatica.BLL
                 return entity.Usuarios.ToList();
 
             }
+        }
+
+        public bool AtualizarUsuario(Usuario usuario)
+        {
+
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                entity.Entry(usuario).State = System.Data.Entity.EntityState.Modified;
+                entity.SaveChanges();
+            }
+            return true;
         }
 
     }

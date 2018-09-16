@@ -1,5 +1,6 @@
 ﻿using LojaInformatica.BLL;
 using LojaInformatica.DAO;
+using System.Web.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,15 +17,18 @@ namespace LojaInformatica.Controllers
         {
             return View();
         }
+
         [AutorizarLogin]
         public ActionResult PreencherCadastroLogin()
         {
             return View(new Usuario());
         }
 
-
-
-
+        public ActionResult LogOut()
+        {
+            Session.Abandon();
+            return RedirectToAction("Index","Login");
+        }
         public ActionResult VerificarLogin(Usuario usuario)
         {
             bool EmailSucesso = new HashGenerator().VerificarEmail(usuario);
