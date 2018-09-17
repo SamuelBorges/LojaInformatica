@@ -16,13 +16,17 @@ namespace LojaInformatica.Controllers
             return View();
         }
 
-        [AutorizarLogin]
+        [AutorizarLogin, HttpPost]
         public ActionResult CadastrarUsuario(Usuario usuario)
         {
-            bool sucesso = new UsuarioBLL().VerificarInformacoesUsuario(usuario);
+            object user = new { sucesso= false };
+            bool valid = new UsuarioBLL().VerificarInformacoesUsuario(usuario);
             bool cadastrado = new HashGenerator().RegistrarUsuario(usuario);
-
-            return RedirectToAction("VisualizarUsuarios","Usuario");
+            if (cadastrado)
+            {
+                user = new { sucesso = true, id = usuario.Id, nome = usuario.Nome, email = usuario.Email, nivel = usuario.NivelAcesso, ativo = usuario.Ativo };
+            }
+            return Json(user);
         }
 
         [AutorizarLogin]
@@ -39,7 +43,8 @@ namespace LojaInformatica.Controllers
         public ActionResult AlterarDadosUsuario(Usuario usuario)
         {
             bool Foiatualizado = new HashGenerator().AtualizarUsuario(usuario);
-            return RedirectToAction("VisualizarUsuario", "Usuario");
+            return Json(usuario);
         }
+
     }
 }

@@ -2,7 +2,6 @@
 @{
     ViewBag.Title = "VisualizarUsuarios";
 }
-@model LojaInformatica.DAO.Usuario
 <div class="col-md-8 col-sm-12">
     <div class="portlet grey-cascade box">
         <div class="portlet-title">
@@ -14,7 +13,7 @@
     </div>
     <div class="portlet-body">
         <div class="table-responsive">
-            <table class="table table-hover table-bordered table-striped">
+            <table id="tabela-usuarios" class="table table-hover table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>
@@ -41,16 +40,16 @@
                     @foreach (var usuario in ViewBag.usuarios)
                     {
                         <tr>
-                            <td>
+                            <td id="id@(usuario.Id)">
                                 @usuario.Id
                             </td>
-                            <td>
+                            <td id="nome@(usuario.Id)">
                                 @usuario.Nome
                             </td>
-                            <td>
+                            <td id="email@(usuario.Id)">
                                 @usuario.Email
                             </td>
-                            <td>
+                            <td id="estado@(usuario.Id)">
                                 @if (usuario.Ativo)
                                 {
                                     <span>Ativo</span>
@@ -60,7 +59,7 @@
                                     <span>Inativo</span>
                                 }
                             </td>
-                            <td>
+                            <td id="nivelAcesso@(usuario.Id)">
                                 @usuario.NivelAcesso
                             </td>
                             <td>
@@ -79,7 +78,9 @@
         </div>
     </div>
 </div>
-
+<a href="javascript:;" class="btn red">
+    Cadastrar <i class="fa fa-plus"></i>
+</a>
 
 @*Alterar dados do usuário*@
 @{
@@ -87,7 +88,7 @@
 }
 @model LojaInformatica.DAO.Usuario
 
-<form action="@Url.Action("CadastrarUsuario", "Usuario")" method="post" role="form" class="col-md-4 pull-right">
+<form action="@Url.Action("CadastrarUsuario", "Usuario")" method="post" role="form" class="col-md-4 pull-right" @*style="display:none;"*@ id="cadastrar">
 
     <div class="portlet box purple">
         <div class="portlet-title">
@@ -101,13 +102,13 @@
     <div class="form-body">
         <div class="form-group">
             <label>Nome: </label>
-            <input type="text" class="form-control input-lg" placeholder="Nome" name="usuario.Nome">
+            <input type="text" class="form-control input-lg" placeholder="Nome" name="usuario.Nome" id="nome-usuario" @*class="cadastrar"*@>
 
             <label>Email: </label>
-            <input type="text" class="form-control input-lg" placeholder="exemplo@endereço.com" name="usuario.Email">
+            <input type="text" class="form-control input-lg" placeholder="exemplo@endereço.com" name="usuario.Email" id="endereco-email">
 
             <label>Senha: </label>
-            <input type="password" class="form-control input-lg" placeholder="**********" name="usuario.Senha">
+            <input type="password" class="form-control input-lg" placeholder="**********" name="usuario.Senha" id="senha">
         </div>
         <div class="form-group">
             <label>Cargo/Nível de Acesso:</label>
@@ -115,7 +116,7 @@
                     <option>Administrador</option>
                     <option>Funcionario</option>
                 </select>*@
-            <select class="form-control input-lg" name="usuario.NivelAcesso">
+            <select class="form-control input-lg" name="usuario.NivelAcesso" id="nivel-acesso">
                 @foreach (LojaInformatica.DAO.Enum.NivelAcesso item in (LojaInformatica.DAO.Enum.NivelAcesso[])Enum.GetValues(typeof(LojaInformatica.DAO.Enum.NivelAcesso)))
                 {
 
@@ -138,15 +139,31 @@
     </div>
 
     <div class="form-actions right">
-        <button type="button" class="btn default">Cancel</button>
-        <button type="submit" class="btn green">Submit</button>
+        <button type="button" class="btn default">Cancelar</button>
+        <button type="button" class="btn green" id="cadastrar-usuario">Cadastrar</button>
+
+        @*onclick="atualizarInfo(usuario.Id)*@
+        @*acrescentar isso quando for para atualizar*@
     </div>
 </form>
 <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
-@*<script type="text/javascript">
-    function decrementa(usuario.Nome)
+<script src="~/Scripts/cadastrarUsuario.js"></script>
+<script type="text/javascript">
+    @*function atualizarInfo(usuarioId) {
+        var url = "@Url.Action("AlterarDadosUsuario", "Usuario")";
+        $.post(url, { id: usuarioId }, atualizarPagina);
+    }
+    function atualizarCampos(campo) {
+        $("#nome" + campo.Id).html(campo.Nome);
+    }
+    var campo = $(".cadastrar");
+    $("#enviarCadastro").click(function {
+       $("#cadastrar").slideToggle(170);
+    })*@
 
-</script>*@
+
+
+</script>
 
 
 
