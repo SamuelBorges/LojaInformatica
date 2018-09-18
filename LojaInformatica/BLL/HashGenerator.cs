@@ -82,25 +82,7 @@ namespace LojaInformatica.BLL
             }
         }
 
-        public IList<Usuario> ListarUsuarios()
-        {
-            using (LojaInformaticaContext entity = new LojaInformaticaContext())
-            {
-                return entity.Usuarios.ToList();
 
-            }
-        }
-
-        public bool AtualizarUsuario(Usuario usuario)
-        {
-
-            using (LojaInformaticaContext entity = new LojaInformaticaContext())
-            {
-                entity.Entry(usuario).State = System.Data.Entity.EntityState.Modified;
-                entity.SaveChanges();
-            }
-            return true;
-        }
 
     }
 }

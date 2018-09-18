@@ -1,5 +1,6 @@
 ﻿using LojaInformatica.BLL;
 using LojaInformatica.DAO;
+using LojaInformatica.DAO.DataBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,8 +33,7 @@ namespace LojaInformatica.Controllers
         [AutorizarLogin]
         public ActionResult VisualizarUsuarios()
         {
-            HashGenerator dao = new HashGenerator();
-            IList<Usuario> usuarios = dao.ListarUsuarios();
+            IList<Usuario> usuarios = ListarUsuarios();
             ViewBag.Usuarios = usuarios;
             return View();
             
@@ -42,8 +42,32 @@ namespace LojaInformatica.Controllers
         [AutorizarLogin]
         public ActionResult AlterarDadosUsuario(Usuario usuario)
         {
-            bool Foiatualizado = new HashGenerator().AtualizarUsuario(usuario);
+            bool Foiatualizado = AtualizarUsuario(usuario);
             return Json(usuario);
+        }
+
+        public IList<Usuario> ListarUsuarios()
+        {
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                var lista = entity.Usuarios.ToList();
+                var OrderById = lista.OrderByDescending(u => u.Id).ToList();
+                var MostrarElementos = OrderById.Take(10).ToList();
+
+                return MostrarElementos;
+
+            }
+        }
+
+        public bool AtualizarUsuario(Usuario usuario)
+        {
+
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                entity.Entry(usuario).State = System.Data.Entity.EntityState.Modified;
+                entity.SaveChanges();
+            }
+            return true;
         }
 
     }
