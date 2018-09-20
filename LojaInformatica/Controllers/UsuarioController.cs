@@ -1,6 +1,7 @@
 ﻿using LojaInformatica.BLL;
 using LojaInformatica.DAO;
 using LojaInformatica.DAO.DataBase;
+using LojaInformatica.DAO.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace LojaInformatica.Controllers
         [AutorizarLogin, HttpPost]
         public ActionResult CadastrarUsuario(Usuario usuario)
         {
-            object user = new { sucesso= false };
+            object user = new { sucesso = false };
             bool valid = new UsuarioBLL().VerificarInformacoesUsuario(usuario);
             bool cadastrado = new HashGenerator().RegistrarUsuario(usuario);
             if (cadastrado)
@@ -30,13 +31,28 @@ namespace LojaInformatica.Controllers
             return Json(user);
         }
 
+        public ActionResult VerMais(Usuario usuario)
+        {
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                var lista = entity.Usuarios.ToList();
+                var OrderById = lista.OrderByDescending(u => u.Id).ToList();
+                var MostrarElementos = OrderById.Take(10).ToList();
+
+                return Json(MostrarElementos);
+            }
+        }
+
+
+
+
         [AutorizarLogin]
         public ActionResult VisualizarUsuarios()
         {
             IList<Usuario> usuarios = ListarUsuarios();
             ViewBag.Usuarios = usuarios;
             return View();
-            
+
         }
 
         [AutorizarLogin]
@@ -54,10 +70,26 @@ namespace LojaInformatica.Controllers
                 var OrderById = lista.OrderByDescending(u => u.Id).ToList();
                 var MostrarElementos = OrderById.Take(10).ToList();
 
+
+
                 return MostrarElementos;
 
             }
         }
+        //continuar
+        //public JsonResult VerMais()
+        //{
+        //    using (LojaInformaticaContext entity = new LojaInformaticaContext())
+        //    {
+        //        var lista = entity.Usuarios.ToList();
+        //        var OrderById = lista.OrderByDescending(u => u.Id).ToList();
+        //        var MostrarElementos = OrderById.Take(10).ToList();
+                
+        //        return Json(ListaJSon);
+
+        //    }
+        //}
+
 
         public bool AtualizarUsuario(Usuario usuario)
         {

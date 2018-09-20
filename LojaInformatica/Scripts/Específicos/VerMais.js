@@ -1,23 +1,17 @@
-﻿function ShowForm(cadastrarUser) {
-    var display = document.getElementById(cadastrarUser).style.display;
-    if (display == "none")
-        document.getElementById('cadastrar').style.display = 'block';
-    else
-        document.getElementById(cadastrarUser).style.display = 'none';
-}
-function VerMais() {
-    
+﻿/// <reference path="typings/jquery/jquery.d.ts" />
+$('#ver-mais').click(function () {
+  
     $.ajax({
         type: 'POST',
         dataType: 'json',
         url: '/Usuario/ListarUsuarios',
         contentType: 'application/json; charset=utf-8',
-        data: JSON.stringify(text),
+       
         success: function (resultado) {
             if (resultado.sucesso) {
-                //all right
+                //foi cadastrado e precisa inserir na tabela
 
-               
+                var ativo = resultado.ativo === true ? 'Ativo' : 'Inativo';
 
                 var nivelAc = resultado.nivel == 0 ? 'Administrador' : 'Funcionário';
                 var tr = '<tr>' +
@@ -39,4 +33,4 @@ function VerMais() {
 
 
     })
-}
+});

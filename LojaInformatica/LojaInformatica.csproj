@@ -4810,6 +4810,8 @@
     <Content Include="global\_variables.scss" />
     <Content Include="Scripts\Específicos\Animacoes.js" />
     <Content Include="Scripts\Específicos\cadastrarUsuario.js" />
+    <Content Include="Scripts\Específicos\EditarLogin.js" />
+    <Content Include="Scripts\Específicos\VerMais.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
