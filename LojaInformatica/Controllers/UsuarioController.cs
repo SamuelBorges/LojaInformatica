@@ -55,11 +55,23 @@ namespace LojaInformatica.Controllers
 
         }
 
-        [AutorizarLogin]
-        public ActionResult AlterarDadosUsuario(Usuario usuario)
+        [AutorizarLogin, HttpPost]
+        public ActionResult AlterarDadosUsuario(int id)
         {
-            bool Foiatualizado = AtualizarUsuario(usuario);
-            return Json(usuario);
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                object user = new { sucesso = false };
+
+
+                var usuario = entity.Usuarios.FirstOrDefault(p => p.Id == id);
+
+                if (usuario!=null)
+                {
+                    user = new { sucesso = true, id = usuario.Id, nome = usuario.Nome, email = usuario.Email, nivel = usuario.NivelAcesso, ativo = usuario.Ativo };
+                }
+                return Json(usuario, JsonRequestBehavior.AllowGet);
+            }
+
         }
 
         public IList<Usuario> ListarUsuarios()

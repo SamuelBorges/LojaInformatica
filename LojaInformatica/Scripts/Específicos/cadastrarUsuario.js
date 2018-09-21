@@ -1,4 +1,5 @@
-﻿/// <reference path="typings/jquery/jquery.d.ts" />
+﻿/// <reference path="../typings/jquery/jquery.d.ts" />
+
 $('#cadastrar-usuario').click(function () {
     var nomeUser = $('#nome-usuario').val();
     var enderecoEmail = $('#endereco-email').val();
@@ -16,7 +17,6 @@ $('#cadastrar-usuario').click(function () {
         success: function (resultado) {
             if (resultado.sucesso) {
                 //foi cadastrado e precisa inserir na tabela
-
                 var ativo = resultado.ativo === true ? 'Ativo' : 'Inativo';
 
                 var nivelAc = resultado.nivel == 0 ? 'Administrador' : 'Funcionário';
@@ -26,6 +26,8 @@ $('#cadastrar-usuario').click(function () {
                     '<td id="email' + resultado.id + '">' + resultado.email + '</td>' +
                     '<td id="estado' + resultado.id + '">' + ativo + '</td>' +
                     '<td id="nivelAcesso' + resultado.id + '">' + nivelAc + '</td>' +
+                    '<td>' + '<div class="actions">' + '<a class="btn btn-default btn-sm botao-editar-usuario " id="btn-editar"' + resultado.id + '>' +
+                    '<i class="fa fa-pencil"></i> Editar' + '</td>' + '</a> </div >'+ '</td>'+
                     '</tr >';
 
                 $('#tabela-usuarios').prepend(tr);

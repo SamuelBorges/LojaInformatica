@@ -64,7 +64,7 @@
                             </td>
                             <td>
                                 <div class="actions">
-                                    <a class="btn btn-default btn-sm botao-editar-usuario" id="btn-editar@(usuario.Id)">
+                                    <a class="btn btn-default btn-sm botao-editar-usuario " id="btn-editar@(usuario.Id)" >
                                         @*<a href="@Url.Action("AlterarDadosUsuario", "Usuario")" class="btn btn-default btn-sm">*@
 
                                         <i class="fa fa-pencil"></i> Editar
@@ -93,7 +93,7 @@
         <div class="portlet-title">
             <div class="caption">
                 <i class="fa fa-cogs"></i>
-                <label >Cadastrar:</label>
+                <label>Cadastrar:</label>
             </div>
 
         </div>
@@ -112,24 +112,12 @@
             </div>
             <div class="form-group">
                 <label>Cargo/Nível de Acesso:</label>
-                @*<select class="form-control input-lg">
-                        <option>Administrador</option>
-                        <option>Funcionario</option>
-                    </select>*@
                 <select class="form-control input-lg" name="usuario.NivelAcesso" id="nivel-acesso">
                     @foreach (LojaInformatica.DAO.Enum.NivelAcesso item in (LojaInformatica.DAO.Enum.NivelAcesso[])Enum.GetValues(typeof(LojaInformatica.DAO.Enum.NivelAcesso)))
                     {
 
                         int value = (int)item;
-                        //    [AutorizarLogin]
-                        //public ActionResult VisualizarUsuarios()
-                        //{
-                        //    HashGenerator dao = new HashGenerator();
-                        //    IList<Usuario> usuarios = dao.ListarUsuarios();
-                        //    ViewBag.Usuarios = usuarios;
-                        //    return View();
 
-                        //}
                         <option value="@value" name="usuario.NivelAcesso">@Enum.GetName(item.GetType(), item)</option>
                     }
                 </select>
@@ -139,7 +127,7 @@
         </div>
 
         <div class="form-actions right">
-            <button type="button" class="btn default">Cancelar</button>
+
             <button type="button" class="btn green" id="cadastrar-usuario">Cadastrar</button>
         </div>
     </div>
@@ -147,9 +135,65 @@
     @*acrescentar isso quando for para atualizar*@
 
 </form>
-<script src="~/Scripts/Específicos/cadastrarUsuario.js"></script>
+
+
+
+
+
+<form method="post" action="@Url.Action("AtualizarUsuario", "Usuario")"role="form" class="col-md-4 pull-right">
+
+    <div class="portlet box purple" >
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs"></i>
+                <label>Editar:</label>
+            </div>
+
+        </div>
+    </div>
+    <div  id="editar">
+        <div class="form-body">
+            <div class="form-group">
+                
+                <input type="text" class="form-control input-lg" placeholder="id" name="usuario.Id" id="id-editar" >
+
+                <input type="text" class="form-control input-lg" placeholder="Nome" name="usuario.Nome" id="nome-editar" >
+
+                <label>Email: </label>
+                <input type="text" class="form-control input-lg" placeholder="exemplo@endereço.com" name="usuario.Email" id="email-editar">
+
+                <label>Nova senha: </label>
+                <input type="password" class="form-control input-lg" placeholder="**********" name="usuario.Senha" id="senha">
+            </div>
+            <div class="form-group">
+                <label>Cargo/Nível de Acesso:</label>
+                <select class="form-control input-lg" name="usuario.NivelAcesso" id="nivel-editar">
+                    @foreach (LojaInformatica.DAO.Enum.NivelAcesso item in (LojaInformatica.DAO.Enum.NivelAcesso[])Enum.GetValues(typeof(LojaInformatica.DAO.Enum.NivelAcesso)))
+                    {
+
+                        int value = (int)item;
+
+                        <option value="@value" name="usuario.NivelAcesso">@Enum.GetName(item.GetType(), item)</option>
+                    }
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="form-actions right">
+                
+            <button type="submit"  class="btn green" id="edit">Editar</button>
+        </div>
+    </div>
+    @*onclick="atualizarInfo(usuario.Id)*@
+    @*acrescentar isso quando for para atualizar*@
+
+</form>
 <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/Específicos/cadastrarUsuario.js"></script>
 <script src="~/Scripts/Específicos/Animacoes.js"></script>
 <script src="~/Scripts/Específicos/EditarLogin.js"></script>
+
 
 
