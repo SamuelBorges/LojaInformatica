@@ -108,8 +108,10 @@ namespace LojaInformatica.Controllers
 
             using (LojaInformaticaContext entity = new LojaInformaticaContext())
             {
-                usuario = entity.Usuarios.Find(id);
-                entity.Entry(usuario).State = System.Data.Entity.EntityState.Modified;
+                Usuario usuarioAntigo = new Usuario();
+                usuarioAntigo = entity.Usuarios.Find(id);
+                usuarioAntigo.Nome = usuario.Nome;
+               
                 entity.SaveChanges();
             }
             return true;
