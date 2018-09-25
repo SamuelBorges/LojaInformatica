@@ -35,15 +35,15 @@ function editarItemPorId() {
 /// <reference path="../typings/jquery/jquery.d.ts" />
 
 
-    //var pacientes = document.querySelectorAll(".user-table");
+    var pacientes = document.querySelectorAll(".user-table");
 
-    //var tabela = document.querySelector("#tabela-completa");
+    var tabela = document.querySelector("#tabela-completa");
 
-    //tabela.addEventListener("dblclick", function (event) {
-    //    event.target.parentNode.classList.add("fadeOut");
+    tabela.addEventListener("dblclick", function (event) {
+        event.target.parentNode.classList.add("fadeOut");
 
-    //    setTimeout(function () {
-    //        event.target.parentNode.remove();
-    //    }, 500);
+        setTimeout(function () {
+            event.target.parentNode.remove();
+        }, 500);
 
-    //});
+    });

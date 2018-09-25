@@ -103,11 +103,12 @@ namespace LojaInformatica.Controllers
         //}
 
 
-        public bool AtualizarUsuario(Usuario usuario)
+        public bool AtualizarUsuario(Usuario usuario, int id)
         {
 
             using (LojaInformaticaContext entity = new LojaInformaticaContext())
             {
+                usuario = entity.Usuarios.Find(id);
                 entity.Entry(usuario).State = System.Data.Entity.EntityState.Modified;
                 entity.SaveChanges();
             }

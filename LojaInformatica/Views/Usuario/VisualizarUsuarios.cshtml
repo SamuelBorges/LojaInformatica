@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "VisualizarUsuarios";
 }
+
 <div class="col-md-8 col-sm-12">
     <div class="portlet grey-cascade box">
         <div class="portlet-title">
@@ -64,7 +65,7 @@
                             </td>
                             <td>
                                 <div class="actions">
-                                    <a class="btn btn-default btn-sm botao-editar-usuario " id="btn-editar@(usuario.Id)" >
+                                    <a class="btn btn-default btn-sm botao-editar-usuario " id="btn-editar@(usuario.Id)" onclick="editarItemPorId()">
                                         @*<a href="@Url.Action("AlterarDadosUsuario", "Usuario")" class="btn btn-default btn-sm">*@
 
                                         <i class="fa fa-pencil"></i> Editar
@@ -81,11 +82,7 @@
 </div>
 
 
-@*Alterar dados do usuário*@
-@{
-    ViewBag.Title = "AlterarDadosUsuario";
-}
-@model LojaInformatica.DAO.Usuario
+
 
 <form action="@Url.Action("CadastrarUsuario", "Usuario")" method="post" role="form" class="col-md-4 pull-right">
 
@@ -140,9 +137,9 @@
 
 
 
-<form method="post" action="@Url.Action("AtualizarUsuario", "Usuario")"role="form" class="col-md-4 pull-right">
+<form method="post" action="@Url.Action("AtualizarUsuario", "Usuario")" role="form" class="col-md-4 pull-right">
 
-    <div class="portlet box purple" >
+    <div class="portlet box purple">
         <div class="portlet-title">
             <div class="caption">
                 <i class="fa fa-cogs"></i>
@@ -151,19 +148,19 @@
 
         </div>
     </div>
-    <div  id="editar">
+    <div id="editar">
         <div class="form-body">
             <div class="form-group">
-                
-                <input type="text" class="form-control input-lg" placeholder="id" name="usuario.Id" id="id-editar" >
 
-                <input type="text" class="form-control input-lg" placeholder="Nome" name="usuario.Nome" id="nome-editar" >
+                <input type="text" class="form-control input-lg" placeholder="id" name="id" id="id-editar">
+
+                <input type="text" class="form-control input-lg" placeholder="Nome" name="usuario.Nome" id="nome-editar">
 
                 <label>Email: </label>
                 <input type="text" class="form-control input-lg" placeholder="exemplo@endereço.com" name="usuario.Email" id="email-editar">
 
                 <label>Nova senha: </label>
-                <input type="password" class="form-control input-lg" placeholder="**********" name="usuario.Senha" id="senha">
+                <input type="password" class="form-control input-lg" placeholder="**********" name="usuario.Senha" id="editar-senha">
             </div>
             <div class="form-group">
                 <label>Cargo/Nível de Acesso:</label>
@@ -182,16 +179,16 @@
         </div>
 
         <div class="form-actions right">
-                
-            <button type="submit"  class="btn green" id="edit">Editar</button>
+
+            <button type="submit" class="btn green" id="edit">Editar</button>
         </div>
     </div>
     @*onclick="atualizarInfo(usuario.Id)*@
     @*acrescentar isso quando for para atualizar*@
 
 </form>
-<script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
 <script src="~/Scripts/Específicos/cadastrarUsuario.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
 <script src="~/Scripts/Específicos/Animacoes.js"></script>
 <script src="~/Scripts/Específicos/EditarLogin.js"></script>
 
