@@ -47,7 +47,7 @@ namespace LojaInformatica.Controllers
 
 
         [AutorizarLogin]
-        public ActionResult VisualizarUsuarios()
+        public ActionResult GerenciarUsuarios()
         {
             IList<Usuario> usuarios = ListarUsuarios();
             ViewBag.Usuarios = usuarios;
@@ -102,19 +102,29 @@ namespace LojaInformatica.Controllers
         //    }
         //}
 
-
-        public bool AtualizarUsuario(Usuario usuario, int id)
+            [AutorizarLogin, HttpPost]
+        public ActionResult AtualizarUsuario(Usuario usuario, int id)
         {
 
             using (LojaInformaticaContext entity = new LojaInformaticaContext())
             {
-                Usuario usuarioAntigo = new Usuario();
-                usuarioAntigo = entity.Usuarios.Find(id);
-                usuarioAntigo.Nome = usuario.Nome;
-               
-                entity.SaveChanges();
+                object user = new { sucesso = false };
+                bool Isvalid = new UsuarioBLL().VerificarInformacoesUsuario(usuario);
+
+                if (Isvalid)
+                {
+                    Usuario usuarioAntigo = new Usuario();
+                    usuarioAntigo = entity.Usuarios.Find(id);
+                    usuarioAntigo.Nome = usuario.Nome;
+
+                    entity.SaveChanges();
+                    user = new { sucesso = true, id = usuario.Id, nome = usuario.Nome, email = usuario.Email, nivel = usuario.NivelAcesso, ativo = usuario.Ativo };
+
+                }
+                return Json(user);
+                
             }
-            return true;
+            
         }
 
     }
