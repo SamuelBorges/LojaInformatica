@@ -180,7 +180,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BLL\AutentificarUsuario.cs" />
     <Compile Include="BLL\HashGenerator.cs" />
-    <Compile Include="BLL\Teste.cs" />
+    <Compile Include="BLL\Email.cs" />
     <Compile Include="BLL\UsuarioBLL.cs" />
     <Compile Include="BLL\AutorizarLogin.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -197,6 +197,7 @@
     <Compile Include="Migrations\201809130114436_Campo NumeroAcessos Added.Designer.cs">
       <DependentUpon>201809130114436_Campo NumeroAcessos Added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\ErroMsg.cs" />
     <Compile Include="Models\Migrations\201809030201437_Inicio.cs" />
     <Compile Include="Models\Migrations\201809030201437_Inicio.Designer.cs">
       <DependentUpon>201809030201437_Inicio.cs</DependentUpon>
@@ -4844,7 +4845,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Login\VerificarLogin.cshtml" />
     <Content Include="Views\Usuario\VisualizarUsuarios.cshtml" />
     <Content Include="Views\Login\PreencherCadastroLogin.cshtml" />
     <Content Include="Views\Login\ContarNumeroLogins.cshtml" />

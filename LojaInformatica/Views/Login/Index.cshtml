@@ -3,7 +3,9 @@
     Layout = null;
     ViewBag.Title = "Login";
     ViewBag.Usuario = new LojaInformatica.DAO.Usuario();
+
 }
+
 
 
 
@@ -36,9 +38,12 @@
     <!--===============================================================================================-->
 </head>
 <body>
+
+
+
     <div class="limiter">
         <div class="container-login100 ">
-            <div class="wrap-login100 p-t-50 p-b-90">
+            <div class="wrap-login100 p-t-50 p-b-20">
                 <form action="@Url.Action("VerificarLogin")" method="post" class="login100-form validate-form flex-sb flex-w ">
                     <span class="login100-form-title p-b-51">
                         Login
@@ -66,7 +71,17 @@
                             </a>
                         </div>
                     </div>
+                    @{
+                        if (ViewBag.Message != null)
+                        {
+                            <table class="table">
+                            <tbody><tr><td class="text-center">
+                            <div class="alert alert-danger">@ViewBag.Message</div>
+                            </td></tr></table>   
+                        }
 
+
+                    }
                     <div class="container-login100-form-btn m-t-17">
                         <button type="submit" value="Login" class="login100-form-btn">Entrar</button>
 

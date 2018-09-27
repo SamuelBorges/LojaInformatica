@@ -10,18 +10,7 @@ namespace LojaInformatica.BLL
 
     public class HashGenerator
     {
-        public bool VerificarEmail(Usuario usuario)
-        {
-            using (LojaInformaticaContext entity = new LojaInformaticaContext())
-            {
-                Usuario searchedEmail = entity.Usuarios.FirstOrDefault(u => u.Email == usuario.Email);
-                if (searchedEmail == null)
-                {
-                    return false;
-                }
-                return true;
-            }
-        }
+
 
         public bool VerificarSenha(Usuario usuario)
         {
@@ -32,7 +21,7 @@ namespace LojaInformatica.BLL
                 {
                     return false;
                 }
-                else
+                else 
                 {
                     string passwordToHash = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
                     Usuario searchedPassword = entity.Usuarios.FirstOrDefault(u => u.Hash == usuario.Hash);

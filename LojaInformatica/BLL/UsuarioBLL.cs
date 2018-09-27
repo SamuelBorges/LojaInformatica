@@ -14,7 +14,7 @@ namespace LojaInformatica.BLL
         public bool VerificarInformacoesUsuario(Usuario usuario)
         {
 
-            if (usuario.Nome.Length < 3 || usuario.Nome.Length>45)
+             if (usuario.Nome.Length < 3 || usuario.Nome.Length>45)
             {
                 return false;
             }

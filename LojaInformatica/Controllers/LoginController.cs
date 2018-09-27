@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using LojaInformatica.Models;
 
 namespace LojaInformatica.Controllers
 {
@@ -27,11 +28,11 @@ namespace LojaInformatica.Controllers
         public ActionResult LogOut()
         {
             Session.Abandon();
-            return RedirectToAction("Index","Login");
+            return RedirectToAction("Index", "Login");
         }
         public ActionResult VerificarLogin(Usuario usuario)
         {
-            bool EmailSucesso = new HashGenerator().VerificarEmail(usuario);
+            bool EmailSucesso = new Email().emailExiste(usuario);
             bool SenhaSucesso = new HashGenerator().VerificarSenha(usuario);
 
             if (EmailSucesso && SenhaSucesso)
@@ -45,10 +46,14 @@ namespace LojaInformatica.Controllers
                 {
                     return RedirectToAction("Index", "Home");
                 }
-                    return RedirectToAction("AlterarSenha", "Usuario");
+                return RedirectToAction("AlterarSenha", "Usuario");
             }
-                
-                return RedirectToAction("Index", "Login");
+            else
+            {
+                ViewBag.Message = "Credenciais inválidas, tente novamente.";
+                return View("Index", ViewBag);
+
+            }
         }
 
 
