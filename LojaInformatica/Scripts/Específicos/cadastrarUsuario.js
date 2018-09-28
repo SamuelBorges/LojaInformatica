@@ -8,7 +8,9 @@ $('#cadastrar-usuario').click(function () {
     var dados = {
         Nome: nomeUser, Email: enderecoEmail, Senha: senhaUser, NivelAcesso: nivelAcesso
     };
+
     $.ajax({
+
         type: 'POST',
         dataType: 'json',
         url: '/Usuario/CadastrarUsuario',
@@ -26,13 +28,20 @@ $('#cadastrar-usuario').click(function () {
                     '<td id="email' + resultado.id + '">' + resultado.email + '</td>' +
                     '<td id="estado' + resultado.id + '">' + ativo + '</td>' +
                     '<td id="nivelAcesso' + resultado.id + '">' + nivelAc + '</td>' +
-                    '<td>' + '<div class="actions">' + '<a class="btn btn-default btn-sm botao-editar-usuario " id="btn-editar"' + resultado.id + '>' +
-                    '<i class="fa fa-pencil"></i> Editar' + '</td>' + '</a> </div >'+ '</td>'+
+                    '<td>' + ' <div class="actions"> ' + ' <a class="btn btn-default btn-sm botao-editar-usuario "' +
+                    'id="btn-editar' + resultado.id + '" onclick = "editarItemPorId()" > ' +
+                    '<i class="fa fa-pencil"></i> Editar' + '</a>' + '</div >' + '</td >'+
                     '</tr >';
 
                 $('#tabela-usuarios').prepend(tr);
+                alert('Usuário adicionado com sucesso.');
+
+                $("purple-box").hide();
+
+
             } else {
-                //nao foi validado corretamente
+                alert('ERRO INESPERADO! Tente novamente.');
+
             }
         },
         error: function (xml, status, error) {

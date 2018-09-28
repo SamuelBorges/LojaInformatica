@@ -8,10 +8,12 @@ $('#edit-user').click(function () {
     var dados = {
         Nome: nomeUser, Email: enderecoEmail, Senha: senhaUser, NivelAcesso: nivelAcesso
     };
+    alert('chegou na função inicial');
     $.ajax({
+
         type: 'POST',
         dataType: 'json',
-        url: '/Usuario/CadastrarUsuario',
+        url: '/Usuario/AtualizarUsuario',
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(dados),
         success: function (resultado) {

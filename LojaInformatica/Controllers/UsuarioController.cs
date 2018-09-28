@@ -21,6 +21,7 @@ namespace LojaInformatica.Controllers
         [AutorizarLogin, HttpPost]
         public ActionResult CadastrarUsuario(Usuario usuario)
         {
+           
             object user = new { sucesso = false };
             bool valid = new UsuarioBLL().VerificarInformacoesUsuario(usuario);
             bool cadastrado = new HashGenerator().RegistrarUsuario(usuario);

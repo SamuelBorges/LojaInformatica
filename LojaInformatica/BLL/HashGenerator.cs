@@ -41,10 +41,16 @@ namespace LojaInformatica.BLL
 
             using (LojaInformaticaContext entity = new LojaInformaticaContext())
             {
-                entity.Usuarios.Add(usuario);
-                entity.SaveChanges();
+              
+
+                if (usuario.Email != null)
+                {
+                    entity.Usuarios.Add(usuario);
+                    entity.SaveChanges();
+                    return true;
+                }
+                return false;
             }
-            return true;
         }
 
         public bool RegistrarAcesso(Usuario usuario)

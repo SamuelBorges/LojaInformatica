@@ -1,4 +1,4 @@
-﻿    using LojaInformatica.DAO;
+﻿using LojaInformatica.DAO;
 using LojaInformatica.DAO.DataBase;
 using LojaInformatica.DAO.Enum;
 using System;
@@ -13,24 +13,29 @@ namespace LojaInformatica.BLL
 
         public bool VerificarInformacoesUsuario(Usuario usuario)
         {
-
-             if (usuario.Nome.Length < 3 || usuario.Nome.Length>45)
+            if (usuario.Senha == null || usuario.Nome == null || usuario.Email == null)
             {
                 return false;
             }
+            
 
-            //Chamar método de validação de email
+                if (usuario.Nome.Length < 3 || usuario.Nome.Length > 45)
+                {
+                    return false;
+                }
 
-            if (usuario.Senha.Length<8)
-            {
-                return false;
-            }
-            if (usuario.Senha.Length > 45)
-            {
-                return false;
-            }
-            return true;
+                //Chamar método de validação de email
 
+                if (usuario.Senha.Length < 8)
+                {
+                    return false;
+                }
+                if (usuario.Senha.Length > 45)
+                {
+                    return false;
+                }
+                return true;
+            
 
         }
     }

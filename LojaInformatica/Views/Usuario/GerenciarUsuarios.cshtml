@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "VisualizarUsuarios";
+    ViewBag.Title = "GerenciarUsuarios";
 }
 
 <div class="col-md-8 col-sm-12">
@@ -84,7 +84,7 @@
 
 
 
-<form action="@Url.Action("CadastrarUsuario", "Usuario")" method="post" role="form" class="col-md-4 pull-right">
+<form class="col-md-4 pull-right">
 
     <div class="portlet box purple" onclick="ShowForm('cadastrar')">
         <div class="portlet-title">
@@ -131,7 +131,7 @@
     @*onclick="atualizarInfo(usuario.Id)*@
     @*acrescentar isso quando for para atualizar*@
 
-</form>
+@**@</form>
 
 
 
@@ -187,8 +187,9 @@
     @*acrescentar isso quando for para atualizar*@
 
 </form>
-<script src="~/Scripts/Específicos/cadastrarUsuario.js"></script>
 <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+
+<script src="~/Scripts/Específicos/cadastrarUsuario.js"></script>
 <script src="~/Scripts/Específicos/Animacoes.js"></script>
 <script src="~/Scripts/Específicos/EditarLogin.js"></script>
 
