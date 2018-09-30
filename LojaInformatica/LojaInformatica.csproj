@@ -198,6 +198,7 @@
       <DependentUpon>201809130114436_Campo NumeroAcessos Added.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\ErroMsg.cs" />
+    <Compile Include="Models\Messages.cs" />
     <Compile Include="Models\Migrations\201809030201437_Inicio.cs" />
     <Compile Include="Models\Migrations\201809030201437_Inicio.Designer.cs">
       <DependentUpon>201809030201437_Inicio.cs</DependentUpon>

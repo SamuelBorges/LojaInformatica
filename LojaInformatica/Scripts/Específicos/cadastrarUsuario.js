@@ -40,7 +40,8 @@ $('#cadastrar-usuario').click(function () {
 
 
             } else {
-                alert('ERRO INESPERADO! Tente novamente.');
+                var mensagem = resultado.message
+                alert(mensagem);
 
             }
         },
@@ -51,3 +52,4 @@ $('#cadastrar-usuario').click(function () {
 
     })
 });
+

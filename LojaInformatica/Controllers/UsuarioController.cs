@@ -23,13 +23,28 @@ namespace LojaInformatica.Controllers
         {
            
             object user = new { sucesso = false };
-            bool valid = new UsuarioBLL().VerificarInformacoesUsuario(usuario);
-            bool cadastrado = new HashGenerator().RegistrarUsuario(usuario);
-            if (cadastrado)
+            string validMessage = new UsuarioBLL().EhUserValido(usuario);
+            if (validMessage=="")
             {
-                user = new { sucesso = true, id = usuario.Id, nome = usuario.Nome, email = usuario.Email, nivel = usuario.NivelAcesso, ativo = usuario.Ativo };
+                bool cadastrado = new HashGenerator().RegistrarUsuario(usuario);
+                if (!cadastrado)
+                {
+                    user = new { sucesso = false, message = "Erro inesperado, tente novemente." };
+                    return Json(user);
+
+                }
+                    user = new { sucesso = true, id = usuario.Id, nome = usuario.Nome, email = usuario.Email, nivel = usuario.NivelAcesso, ativo = usuario.Ativo, message = validMessage };
+                return Json(user);
+
             }
-            return Json(user);
+            else
+            {
+                user = new { sucesso = false, message = validMessage };
+                return Json(user);
+            }
+
+
+           
         }
 
         public ActionResult VerMais(Usuario usuario)
@@ -104,22 +119,22 @@ namespace LojaInformatica.Controllers
         //}
 
             [AutorizarLogin, HttpPost]
-        public ActionResult AtualizarUsuario(Usuario usuario, int id)
+        public ActionResult AtualizarUsuario(Usuario usuarioedit)
         {
 
             using (LojaInformaticaContext entity = new LojaInformaticaContext())
             {
                 object user = new { sucesso = false };
-                bool Isvalid = new UsuarioBLL().VerificarInformacoesUsuario(usuario);
+                string validMessage = new UsuarioBLL().EhUserValido(usuarioedit);
 
-                if (Isvalid)
+                if (validMessage=="")
                 {
-                    Usuario usuarioAntigo = new Usuario();
-                    usuarioAntigo = entity.Usuarios.Find(id);
-                    usuarioAntigo.Nome = usuario.Nome;
+                    Usuario editDoUser = new Usuario();
+                    editDoUser = entity.Usuarios.Find(usuarioedit.Id);
+                    editDoUser.Nome = usuarioedit.Nome;
 
                     entity.SaveChanges();
-                    user = new { sucesso = true, id = usuario.Id, nome = usuario.Nome, email = usuario.Email, nivel = usuario.NivelAcesso, ativo = usuario.Ativo };
+                    user = new { sucesso = true, id = usuarioedit.Id, nome = usuarioedit.Nome, email = usuarioedit.Email, nivel = usuarioedit.NivelAcesso, ativo = usuarioedit.Ativo };
 
                 }
                 return Json(user);

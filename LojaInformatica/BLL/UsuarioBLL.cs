@@ -4,6 +4,7 @@ using LojaInformatica.DAO.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace LojaInformatica.BLL
@@ -11,32 +12,46 @@ namespace LojaInformatica.BLL
     public class UsuarioBLL
     {
 
-        public bool VerificarInformacoesUsuario(Usuario usuario)
+        public string EhUserValido(Usuario usuario)
         {
+            //campos nulos
             if (usuario.Senha == null || usuario.Nome == null || usuario.Email == null)
             {
-                return false;
+                return "Todos os campos devem ser informados.";
             }
-            
+            //nome
+            String patterns = @"[a-zA-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\s]+";
+            if (Regex.IsMatch(usuario.Nome, patterns))
+            {
+                usuario.Nome = Regex.Match(usuario.Nome, patterns).ToString();
+            }
+            else
+            {
+                return "Nome inválido!";
+            }
+            if (usuario.Nome.Length < 3 || usuario.Nome.Length > 45)
+            {
+                return "O tamanho do nome é inválido!";
+            }
+            //senha
+            if (usuario.Senha.Length < 8)
+            {
+                return "Senha muito fraca!";
+            }
+            if (usuario.Senha.Length > 45)
+            {
+                return "Senha muito longa! Informe no máximo 45 caracteres.";
+            }
+            //email
 
-                if (usuario.Nome.Length < 3 || usuario.Nome.Length > 45)
-                {
-                    return false;
-                }
+            Regex pattern = new Regex(@"^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$");
 
-                //Chamar método de validação de email
-
-                if (usuario.Senha.Length < 8)
-                {
-                    return false;
-                }
-                if (usuario.Senha.Length > 45)
-                {
-                    return false;
-                }
-                return true;
-            
-
+            if (!pattern.IsMatch(usuario.Email))
+            {
+                return "Endereço de email inválido!";
+            }
+            return "";
         }
+
     }
 }

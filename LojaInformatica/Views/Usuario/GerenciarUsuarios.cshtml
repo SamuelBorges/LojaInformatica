@@ -2,7 +2,21 @@
 @{
     ViewBag.Title = "GerenciarUsuarios";
 }
+@{
+    if (ViewBag.Message != null)
+    {
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td class="text-center">
+                        <div class="alert alert-danger">@ViewBag.Message</div>
+                    </td>
+                </tr>
+        </table>
+    }
 
+
+}
 <div class="col-md-8 col-sm-12">
     <div class="portlet grey-cascade box">
         <div class="portlet-title">
@@ -131,13 +145,14 @@
     @*onclick="atualizarInfo(usuario.Id)*@
     @*acrescentar isso quando for para atualizar*@
 
-@**@</form>
+    @**@
+</form>
 
 
 
 
 
-<form method="post" action="@Url.Action("AtualizarUsuario", "Usuario")" role="form" class="col-md-4 pull-right">
+<form class="col-md-4 pull-right">
 
     <div class="portlet box purple">
         <div class="portlet-title">
@@ -152,15 +167,15 @@
         <div class="form-body">
             <div class="form-group">
 
-                <input type="text" class="form-control input-lg" placeholder="id" name="id" id="id-editar">
+                <input type="text" class="form-control input-lg" placeholder="id" name="usuarioedit.Id" id="id-editar">
 
-                <input type="text" class="form-control input-lg" placeholder="Nome" name="usuario.Nome" id="nome-editar">
+                <input type="text" class="form-control input-lg" placeholder="Nome" name="usuarioedit.Nome" id="nome-editar">
 
                 <label>Email: </label>
-                <input type="text" class="form-control input-lg" placeholder="exemplo@endereço.com" name="usuario.Email" id="email-editar">
+                <input type="text" class="form-control input-lg" placeholder="exemplo@endereço.com" name="usuarioedit.Email" id="email-editar">
 
                 <label>Nova senha: </label>
-                <input type="password" class="form-control input-lg" placeholder="**********" name="usuario.Senha" id="editar-senha">
+                <input type="password" class="form-control input-lg" placeholder="**********" name="usuarioedit.Senha" id="senha-editar">
             </div>
             <div class="form-group">
                 <label>Cargo/Nível de Acesso:</label>
@@ -170,7 +185,7 @@
 
                         int value = (int)item;
 
-                        <option value="@value" name="usuario.NivelAcesso">@Enum.GetName(item.GetType(), item)</option>
+                        <option value="@value" name="usuarioedit.NivelAcesso">@Enum.GetName(item.GetType(), item)</option>
                     }
                 </select>
 
@@ -180,7 +195,7 @@
 
         <div class="form-actions right">
 
-            <button type="submit" class="btn green" id="edit-user">Editar</button>
+            <button type="button" class="btn green" id="edit-user">Editar</button>
         </div>
     </div>
     @*onclick="atualizarInfo(usuario.Id)*@
@@ -192,6 +207,8 @@
 <script src="~/Scripts/Específicos/cadastrarUsuario.js"></script>
 <script src="~/Scripts/Específicos/Animacoes.js"></script>
 <script src="~/Scripts/Específicos/EditarLogin.js"></script>
+<script src="~/Scripts/Específicos/EditarUsuario.js"></script>
+
 
 
 
