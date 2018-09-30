@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "AlterarDadosCliente";
+}
+
+
+
+<form class="col-md-4 pull-right">
+
+    <div class="portlet box purple" @*onclick="ShowForm('cadastrar')"*@>
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs"></i>
+                <label>Editar informações do cliente:</label>
+            </div>
+
+        </div>
+    </div>
+    <div @*style="display:none;"*@ id="editar">
+        <div class="form-body">
+            <div class="form-group">
+                <label>Nome: </label>
+                <input type="text" class="form-control input-lg" placeholder="Nome" name="cliente.Nome" id="nome-cliente">
+
+                <label>Email: </label>
+                <input type="text" class="form-control input-lg" placeholder="exemplo@endereço.com" name="cliente.Sobrenome" id="sobrenome-cliente">
+
+                <label>Senha: </label>
+                <input type="password" class="form-control input-lg" placeholder="**********" name="cliente.Pessoa" id="senha">
+            </div>
+
+            <div class="form-group">
+
+                <label>Pessoa</label>
+                <select class="form-control input-lg" name="cliente.Pessoa" id="pessoa">
+                    @foreach (LojaInformatica.DAO.Enum.TipoPessoa item in (LojaInformatica.DAO.Enum.TipoPessoa[])Enum.GetValues(typeof(LojaInformatica.DAO.Enum.TipoPessoa)))
+                    {
+
+                        int value = (int)item;
+
+                        <option value="@value" name="cliente.TipoPessoa">@Enum.GetName(item.GetType(), item)</option>
+                    }
+                </select>
+
+
+                <label>Sexo</label>
+                <select class="form-control input-lg" name="cliente.Sexo" id="sexo">
+                    @foreach (LojaInformatica.DAO.Enum.Sexo item in (LojaInformatica.DAO.Enum.Sexo[])Enum.GetValues(typeof(LojaInformatica.DAO.Enum.Sexo)))
+                    {
+
+                        int value = (int)item;
+
+                        <option value="@value" name="cliente.Sexo">@Enum.GetName(item.GetType(), item)</option>
+                    }
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="form-actions right">
+
+            <button type="submit" class="btn green" id="cadastrar-usuario" action="@Url.Action("")">Cadastrar</button>
+        </div>
+    </div>
+    @*onclick="atualizarInfo(usuario.Id)*@
+    @*acrescentar isso quando for para atualizar*@
+
+    @**@
+</form>

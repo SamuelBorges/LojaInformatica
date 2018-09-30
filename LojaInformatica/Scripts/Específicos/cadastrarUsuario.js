@@ -13,7 +13,7 @@ $('#cadastrar-usuario').click(function () {
 
         type: 'POST',
         dataType: 'json',
-        url: '/Usuario/CadastrarUsuario',
+        url: '/Usuario/CadastrarUsuario',//
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(dados),
         success: function (resultado) {
@@ -35,8 +35,7 @@ $('#cadastrar-usuario').click(function () {
 
                 $('#tabela-usuarios').prepend(tr);
                 alert('Usuário adicionado com sucesso.');
-
-                $("purple-box").hide();
+//esconder tem   fazer
 
 
             } else {

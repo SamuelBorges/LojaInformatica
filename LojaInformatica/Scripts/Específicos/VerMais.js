@@ -1,36 +1,52 @@
 ﻿/// <reference path="typings/jquery/jquery.d.ts" />
-$('#ver-mais').click(function () {
-  
-    $.ajax({
-        type: 'POST',
-        dataType: 'json',
-        url: '/Usuario/ListarUsuarios',
-        contentType: 'application/json; charset=utf-8',
-       
-        success: function (resultado) {
-            if (resultado.sucesso) {
-                //foi cadastrado e precisa inserir na tabela
 
-                var ativo = resultado.ativo === true ? 'Ativo' : 'Inativo';
 
-                var nivelAc = resultado.nivel == 0 ? 'Administrador' : 'Funcionário';
-                var tr = '<tr>' +
-                    '<td id="id' + resultado.id + '">' + resultado.id + '</td>' +
-                    '<td id="nome' + resultado.id + '">' + resultado.nome + '</td>' +
-                    '<td id="email' + resultado.id + '">' + resultado.email + '</td>' +
-                    '<td id="estado' + resultado.id + '">' + ativo + '</td>' +
-                    '<td id="nivelAcesso' + resultado.id + '">' + nivelAc + '</td>' +
-                    '</tr >';
+$('ver-mais').click(function () {
+    
+    $.getJSON("/Home/MostrarMais", function (data) {
+            employees = data;
 
-                $('#tabela-usuarios').prepend(tr);
-            } else {
-                //nao foi validado corretamente
+            for (var i = 0; i < employees.length; i++) {
+                if (i < 100) {
+                    var ativo = resultado.ativo === true ? 'Ativo' : 'Inativo';
+
+                    var nivelAc = resultado.nivel == 0 ? 'Administrador' : 'Funcionário';
+                    var tr = '<tr>' +
+                        '<td id="id' + resultado.id + '">' + resultado.id + '</td>' +
+                        '<td id="nome' + resultado.id + '">' + resultado.nome + '</td>' +
+                        '<td id="email' + resultado.id + '">' + resultado.email + '</td>' +
+                        '<td id="estado' + resultado.id + '">' + ativo + '</td>' +
+                        '<td id="nivelAcesso' + resultado.id + '">' + nivelAc + '</td>' +
+                        '<td>' + ' <div class="actions"> ' + ' <a class="btn btn-default btn-sm botao-editar-usuario "' +
+                        'id="btn-editar' + resultado.id + '" onclick = "editarItemPorId()" > ' +
+                        '<i class="fa fa-pencil"></i> Editar' + '</a>' + '</div >' + '</td >' +
+                        '</tr >';
+
+                    $('#tabela-usuarios').prepend(tr);
+}
+                else
+                    break;
             }
-        },
-        error: function (xml, status, error) {
+        });
+    });
 
-        }
+})
+//var nivelAc = resultado.nivel == 0 ? 'Administrador' : 'Funcionário';
+//var tr = '<tr>' +
+//    '<td id="id' + resultado.id + '">' + resultado.id + '</td>' +
+//    '<td id="nome' + resultado.id + '">' + resultado.nome + '</td>' +
+//    '<td id="email' + resultado.id + '">' + resultado.email + '</td>' +
+//    '<td id="estado' + resultado.id + '">' + ativo + '</td>' +
+//    '<td id="nivelAcesso' + resultado.id + '">' + nivelAc + '</td>' +
+//    '</tr >';
+
+//$('#tabela-usuarios').prepend(tr);
+            
+//        },
+//error: function (xml, status, error) {
+
+//}
 
 
-    })
-});
+//    })
+//});

@@ -9,6 +9,9 @@ $('#edit-user').click(function () {
     var dados = {
         Id:id,  Nome: nomeUser, Email: enderecoEmail, Senha: senhaUser, NivelAcesso: nivelAcesso
     };
+    $(".botao-editar-usuario").click(editarItemPorId);
+
+  
 
     $.ajax({
 
@@ -20,10 +23,10 @@ $('#edit-user').click(function () {
         success: function (resultado) {
             if (resultado.sucesso) {
                 //foi atualizado
-                
+              
                 var texto = $('nome'+resultado.id).text(resultado.Nome);
 
-               
+             
             } else {
                 //nao foi validado corretamente
             }
@@ -35,3 +38,39 @@ $('#edit-user').click(function () {
 
     })
 });
+
+
+
+
+
+
+
+
+//function atualizarItemPorId() {
+//    var t = $(this).parent().parent().parent();
+//    var idUser = $(t.children()[0]).text();
+//    var idUsuario = $('#id-editar').val();
+//    console.log(idUsuario);
+//    //  $.post("/Usuario/AlterarDadosUsuario", { id: id });
+//    var dados = { id: idUser };
+//    $.ajax({
+//        type: 'POST',
+//        dataType: 'json',
+//        url: '/Usuario/AlterarDadosUsuario',
+//        contentType: 'application/json; charset=utf-8',
+//        data: JSON.stringify(dados),
+//        success: function (resultado) {
+//            $('#id-editar').val(resultado.Id);
+//            $('#nome-editar').val(resultado.Nome);
+//            $('#email-editar').val(resultado.Email);
+//            $('#nivel-editar > option:select').val(resultado.NivelAcesso);
+//            $('#nome-editar').val(resultado.Nome);
+
+//        },
+//        error: function (xml, status, error) {
+
+//        }
+
+
+//    })
+//};

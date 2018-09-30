@@ -13,18 +13,15 @@ namespace LojaInformatica.Controllers
     public class UsuarioController : Controller
     {
         // GET: Usuario
-        public ActionResult Index()
-        {
-            return View();
-        }
+
 
         [AutorizarLogin, HttpPost]
         public ActionResult CadastrarUsuario(Usuario usuario)
         {
-           
+
             object user = new { sucesso = false };
             string validMessage = new UsuarioBLL().EhUserValido(usuario);
-            if (validMessage=="")
+            if (validMessage == "")
             {
                 bool cadastrado = new HashGenerator().RegistrarUsuario(usuario);
                 if (!cadastrado)
@@ -33,18 +30,18 @@ namespace LojaInformatica.Controllers
                     return Json(user);
 
                 }
-                    user = new { sucesso = true, id = usuario.Id, nome = usuario.Nome, email = usuario.Email, nivel = usuario.NivelAcesso, ativo = usuario.Ativo, message = validMessage };
+                user = new { sucesso = true, id = usuario.Id, nome = usuario.Nome, email = usuario.Email, nivel = usuario.NivelAcesso, ativo = usuario.Ativo, message = validMessage };
                 return Json(user);
 
             }
             else
             {
-                user = new { sucesso = false, message = validMessage };
+                user = new { sucesso = false, message = validMessage }; 
                 return Json(user);
             }
 
 
-           
+
         }
 
         public ActionResult VerMais(Usuario usuario)
@@ -54,8 +51,8 @@ namespace LojaInformatica.Controllers
                 var lista = entity.Usuarios.ToList();
                 var OrderById = lista.OrderByDescending(u => u.Id).ToList();
                 var MostrarElementos = OrderById.Take(10).ToList();
-
-                return Json(MostrarElementos);
+                
+                return Json(MostrarElementos, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -65,7 +62,7 @@ namespace LojaInformatica.Controllers
         [AutorizarLogin]
         public ActionResult GerenciarUsuarios()
         {
-            IList<Usuario> usuarios = ListarUsuarios();
+                IList<Usuario> usuarios = ListarUsuarios();
             ViewBag.Usuarios = usuarios;
             return View();
 
@@ -81,7 +78,7 @@ namespace LojaInformatica.Controllers
 
                 var usuario = entity.Usuarios.FirstOrDefault(p => p.Id == id);
 
-                if (usuario!=null)
+                if (usuario != null)
                 {
                     user = new { sucesso = true, id = usuario.Id, nome = usuario.Nome, email = usuario.Email, nivel = usuario.NivelAcesso, ativo = usuario.Ativo };
                 }
@@ -112,13 +109,13 @@ namespace LojaInformatica.Controllers
         //        var lista = entity.Usuarios.ToList();
         //        var OrderById = lista.OrderByDescending(u => u.Id).ToList();
         //        var MostrarElementos = OrderById.Take(10).ToList();
-                
+
         //        return Json(ListaJSon);
 
         //    }
         //}
 
-            [AutorizarLogin, HttpPost]
+        [AutorizarLogin, HttpPost]
         public ActionResult AtualizarUsuario(Usuario usuarioedit)
         {
 
@@ -127,7 +124,7 @@ namespace LojaInformatica.Controllers
                 object user = new { sucesso = false };
                 string validMessage = new UsuarioBLL().EhUserValido(usuarioedit);
 
-                if (validMessage=="")
+                if (validMessage == "")
                 {
                     Usuario editDoUser = new Usuario();
                     editDoUser = entity.Usuarios.Find(usuarioedit.Id);
@@ -138,9 +135,9 @@ namespace LojaInformatica.Controllers
 
                 }
                 return Json(user);
-                
+
             }
-            
+
         }
 
     }

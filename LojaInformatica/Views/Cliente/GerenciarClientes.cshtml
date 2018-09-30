@@ -1,0 +1,173 @@
+﻿
+@{
+    ViewBag.Title = "GerenciarClientes";
+}
+
+@{
+    if (ViewBag.Message != null)
+    {
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td class="text-center">
+                        <div class="alert alert-danger">@ViewBag.Message</div>
+                    </td>
+                </tr>
+        </table>
+    }
+
+
+}
+<div class="col-md-7 col-sm-12">
+    <div class="portlet grey-cascade box">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs"></i>Acessos:
+            </div>
+
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-responsive">
+            <table id="tabela-usuarios" class="table table-hover table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Nome
+                        </th>
+                        <th>
+                            Sobrenome
+                        </th>
+                        <th>
+                            Pessoa
+                        </th>
+                        <th>
+                            Sexo
+                        </th>
+                        <th>
+                            Ações
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="tabela-completa">
+                    @foreach (var cliente in ViewBag.clientes)
+                    {
+                        <tr class="user-table">
+                            <td id="id@(cliente.Id)">
+                                @cliente.Id
+                            </td>
+                            <td id="nome@(cliente.Id)">
+                                @cliente.Nome
+                            </td>
+                            <td id="email@(cliente.Id)">
+                                @cliente.Sobrenome
+                            </td>
+
+                            <td id="pessoa@(cliente.Id)">
+                                @if (cliente.Pessoa == 0)
+                                {
+                                    <span>Física</span>
+                                }
+                                else
+                                {
+                                    <span>Jurídica</span>
+                                }
+                            </td>
+                            <td id="sexo@(cliente.Id)">
+                                @if (cliente.Sexo == 0)
+                                {
+                                    <span>Masculino</span>
+                                }
+
+                                else
+                                {
+                                    <span>Indeterminado</span>
+                                }
+                            </td>
+                            <td id="Endereco@(cliente.Id)">
+                                <div class="actions">
+                                    <a class="btn btn-default btn-sm botao-visualizar-cliente " id="btn-ver-endereco@(cliente.Id)" action="@Url.Action("AlterarDadosCliente", "Cliente")">
+                                       
+
+                                        <i class="fa fa-pencil"></i> Visualizar informações
+                                    </a>
+                                </div>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div href="" class="ver-mais" onclick="VerMais()" id="Show">Ver mais</div>
+</div>
+
+
+
+
+
+
+
+
+<form class="col-md-4 pull-right">
+
+    <div class="portlet box purple">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs"></i>
+                <label>Editar:</label>
+            </div>
+
+        </div>
+    </div>
+    <div id="editar">
+        <div class="form-body">
+            <div class="form-group">
+
+                <input type="text" class="form-control input-lg" placeholder="id" name="usuarioedit.Id" id="id-editar">
+
+                <input type="text" class="form-control input-lg" placeholder="Nome" name="usuarioedit.Nome" id="nome-editar">
+
+                <label>Email: </label>
+                <input type="text" class="form-control input-lg" placeholder="exemplo@endereço.com" name="usuarioedit.Email" id="email-editar">
+
+                <label>Nova senha: </label>
+                <input type="password" class="form-control input-lg" placeholder="**********" name="usuarioedit.Senha" id="senha-editar">
+            </div>
+            <div class="form-group">
+                <label>Cargo/Nível de Acesso:</label>
+                <select class="form-control input-lg" name="usuario.NivelAcesso" id="nivel-editar">
+                    @foreach (LojaInformatica.DAO.Enum.NivelAcesso item in (LojaInformatica.DAO.Enum.NivelAcesso[])Enum.GetValues(typeof(LojaInformatica.DAO.Enum.NivelAcesso)))
+                    {
+
+                        int value = (int)item;
+
+                        <option value="@value" name="usuarioedit.NivelAcesso">@Enum.GetName(item.GetType(), item)</option>
+                    }
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="form-actions right">
+
+            <button type="button" class="btn green" id="edit-user" onclick="atualizarItemPorId()">Editar</button>
+        </div>
+    </div>
+    @*onclick="atualizarInfo(usuario.Id)*@
+    @*acrescentar isso quando for para atualizar*@
+
+</form>
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+
+<script src="~/Scripts/Específicos/cadastrarUsuario.js"></script>
+<script src="~/Scripts/Específicos/Animacoes.js"></script>
+<script src="~/Scripts/Específicos/EditarLogin.js"></script>
+<script src="~/Scripts/Específicos/EditarUsuario.js"></script>
+
+

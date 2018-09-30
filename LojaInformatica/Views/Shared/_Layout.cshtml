@@ -559,50 +559,25 @@ License: You must have a valid license purchased only from themeforest(the above
                     </li>
 
 
-                    <li>
-                        <a href="javascript:;">
-                            <i class="icon-puzzle"></i>
-                            <span class="title">Clientes</span>
-                            <span class="arrow "></span>
+                    <li class="tooltips" data-container="body" data-placement="right" data-html="true" data-original-title="Gerenciar clientes">
+                        <a href="@Url.Action("GerenciarClientes","Cliente")" target="_blank">
+                            <i class="icon-user"></i>
+                            <span class="title">
+                                Clientes
+                            </span>
                         </a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="components_pickers.html">
-                                    Gerenciar
-                                </a>
-                            </li>
-                            <li>
-                                <a href="components_context_menu.html">
-                                    Cadastrar
-                                </a>
-                            </li>
-
-                        </ul>
+                    </li>
+                    <li class="tooltips" data-container="body" data-placement="right" data-html="true" data-original-title="Gerenciar usuarios">
+                        <a href="@Url.Action("GerenciarUsuarios","Usuario")" target="_blank">
+                            <i class="icon-user"></i>
+                            <span class="title">
+                                Usuarios
+                            </span>
+                        </a>
                     </li>
 
-                    <li>
-                        <a href="javascript:;">
-                            <i class="icon-diamond"></i>
-                            <span class="title">Usuarios</span>
-                            <span class="arrow "></span>
-                        </a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="@Url.Action("GerenciarUsuarios","Usuario")">
-                                    Gerenciar
-                                </a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("PreencherCadastroLogin","Login")">
-                                    Cadastrar
-                                </a>
-                            </li>
-                            
-
-                        </ul>
-                    </li>
                     <!-- BEGIN ANGULARJS LINK -->
-                    <li class="tooltips" data-container="body" data-placement="right" data-html="true" data-original-title="AngularJS version demo">
+                    <li class="tooltips" data-container="body" data-placement="right" data-html="true" data-original-title="Ordenar serviços">
                         <a href="angularjs" target="_blank">
                             <i class="icon-paper-plane"></i>
                             <span class="title">
@@ -612,7 +587,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </li>
                     <!-- END ANGULARJS LINK -->
                     <!-- END SIDEBAR MENU -->
-            </div>
+</div>
         </div>
         <!-- END SIDEBAR -->
         <!-- BEGIN CONTENT -->
