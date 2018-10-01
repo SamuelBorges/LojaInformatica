@@ -89,14 +89,11 @@
                             </td>
                             <td>
                                 <div class="actions">
-                                    <a class="btn btn-default btn-sm botao-visualizar-cliente " id="btn-editar@(cliente.Id)" onclick="editarClientePorId()">
-
-
-                                        <i class="fa fa-pencil"></i> Visualizar informações
+                                    <a class="btn btn-default btn-sm botao-editar-cliente" id="btn-editar@(cliente.Id)">
+                                        <i class="fa fa-pencil"></i> Editar/Visualizar
                                     </a>
                                 </div>
                             </td>
-
                         </tr>
                     }
                 </tbody>
@@ -158,9 +155,9 @@
             </div>
         </div>
 
-        </div>
+    </div>
 
-        
+
     @*onclick="atualizarInfo(usuario.Id)*@
     @*acrescentar isso quando for para atualizar*@
 
@@ -225,7 +222,7 @@
 
         <div class="form-actions right">
 
-            <button type="button" class="btn green" id="edit-client" >Editar</button>
+            <button type="button" class="btn green" id="edit-client">Editar</button>
         </div>
     </div>
     @*onclick="atualizarInfo(cliente.Id)*@
@@ -236,8 +233,7 @@
 
 <script src="~/Scripts/Específicos/cadastrarCliente.js"></script>
 <script src="~/Scripts/Específicos/Animacoes.js"></script>
-<script src="~/Scripts/Específicos/EditarLogin.js"></script>
 
-<script src="~/Scripts/Específicos/AlterarDadosCliente.js"></script>
+<script src="~/Scripts/Específicos/PreencherEditCliente.js"></script>
 
 

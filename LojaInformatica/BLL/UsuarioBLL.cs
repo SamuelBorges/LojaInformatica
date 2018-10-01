@@ -44,6 +44,7 @@ namespace LojaInformatica.BLL
             }
             //email
 
+
             Regex pattern = new Regex(@"^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$");
 
             if (!pattern.IsMatch(usuario.Email))
@@ -51,6 +52,7 @@ namespace LojaInformatica.BLL
                 return "Endereço de email inválido!";
             }
             return "";
+            
         }
 
     }

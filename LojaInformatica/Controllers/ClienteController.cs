@@ -64,30 +64,20 @@ namespace LojaInformatica.Controllers
         }
 
         [AutorizarLogin, HttpPost]
-        public ActionResult AlterarDadosCliente(Cliente clienteEdit, int Id)
+        public ActionResult AlterarDadosCliente(int id)
         {
             using (LojaInformaticaContext entity = new LojaInformaticaContext())
             {
-                object user = new { sucesso = false };
-                string validMessage = "";//validações cliente
+                object client = new { sucesso = false };
 
-                if (validMessage == "")
+
+                var cliente = entity.Clientes.FirstOrDefault(p => p.Id == id);
+
+                if (cliente != null)
                 {
-                    Cliente editDoClient = new Cliente();
-                    editDoClient = entity.Clientes.Find(Id);
-                    editDoClient.Nome = clienteEdit.Nome;
-                    editDoClient.Sobrenome = clienteEdit.Sobrenome;
-                    editDoClient.Pessoa = clienteEdit.Pessoa;
-                    editDoClient.Sexo = clienteEdit.Sexo;
-
-                    entity.SaveChanges();
-                    user = new { sucesso = true, id = editDoClient.Id, nome = editDoClient.Nome, sobrenome = editDoClient.Sobrenome, pessoa = editDoClient.Pessoa, sexo = editDoClient.Sexo, message = "Cliente atualizado com sucesso." };
-                    return Json(user);
-
+                    client = new { sucesso = true, id = cliente.Id, nome = cliente.Nome, sobrenome = cliente.Sobrenome , pessoa = cliente.Pessoa, sexo = cliente.Sexo };
                 }
-                user = new { sucesso = false, message = validMessage };
-                return Json(user);
-
+                return Json(cliente, JsonRequestBehavior.AllowGet);
             }
         }
 

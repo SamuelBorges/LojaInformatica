@@ -6,7 +6,7 @@ $('#cadastrar-cliente').click(function () {
     var pessoa = $('#pessoa > option:selected').val();
     var sexo = $('#sexo > option:selected').val();
     var dados = {
-        Nome: nomeUser, Sobrenome: sobrenome, Pessoa = pessoa, Sexo: sexo
+        Nome: nomeUser, Sobrenome: sobrenome, Pessoa : pessoa, Sexo: sexo
     };
 
     $.ajax({

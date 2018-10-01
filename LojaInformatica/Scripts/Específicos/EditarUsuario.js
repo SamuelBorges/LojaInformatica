@@ -33,8 +33,10 @@ $('#edit-user').click(function () {
                 if (resultado.nivel==0) {
                     $('#nivelAcesso' + resultado.id).text('Administrador');
                 } else {
-                    $('#nivelAcesso' + resultado.id).text('Funcionário');
+                    $('#nivelAcesso' + resultado.id).text('Funcionario');
                 }
+                $('#senha-editar').val('');
+                alert('Login atualizado com sucesso.');
                 
              
 

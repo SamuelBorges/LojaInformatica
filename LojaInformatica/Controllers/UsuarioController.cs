@@ -21,6 +21,17 @@ namespace LojaInformatica.Controllers
 
             object user = new { sucesso = false };
             string validMessage = new UsuarioBLL().EhUserValido(usuario);
+
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                var userDB = entity.Usuarios.FirstOrDefault(p => p.Email == usuario.Email);
+                if (userDB != null)
+                {
+                    user = new { sucesso = false, message = "Email já existe." };
+                    return Json(user);
+                }
+            }
+
             if (validMessage == "")
             {
                 bool cadastrado = new HashGenerator().RegistrarUsuario(usuario);
@@ -127,7 +138,16 @@ namespace LojaInformatica.Controllers
                 if (validMessage == "")
                 {
                     Usuario editDoUser = new Usuario();
-                    editDoUser = entity.Usuarios.Find(Id);
+                    try
+                    {
+                        editDoUser = entity.Usuarios.Find(Id);
+
+                    }
+                    catch (Exception)
+                    {
+                        user = new { sucesso = false, message = "O usuário que você tenta editar não existe." };
+                        return Json(user);
+                    }
                     editDoUser.Nome = usuarioedit.Nome;
                     editDoUser.Email = usuarioedit.Email;
                     editDoUser.NivelAcesso = usuarioedit.NivelAcesso;
