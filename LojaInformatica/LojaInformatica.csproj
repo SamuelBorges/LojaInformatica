@@ -4813,6 +4813,7 @@
     <Content Include="global\_variables.scss" />
     <Content Include="Scripts\Específicos\AlterarDadosCliente.js" />
     <Content Include="Scripts\Específicos\Animacoes.js" />
+    <Content Include="Scripts\Específicos\cadastrarCliente.js" />
     <Content Include="Scripts\Específicos\cadastrarUsuario.js" />
     <Content Include="Scripts\Específicos\EditarLogin.js" />
     <Content Include="Scripts\Específicos\EditarUsuario.js" />

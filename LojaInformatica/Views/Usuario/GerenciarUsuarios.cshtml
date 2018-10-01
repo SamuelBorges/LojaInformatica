@@ -17,87 +17,87 @@
 
 
 }
-        <div class="col-md-8 col-sm-12">
-            <div class="portlet grey-cascade box">
-                <div class="portlet-title">
-                    <div class="caption">
-                        <i class="fa fa-group"></i>Acessos:
-                    </div>
-
-                </div>
+<div class="col-md-8 col-sm-12">
+    <div class="portlet grey-cascade box">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-group"></i>Acessos:
             </div>
-            <div class="portlet-body">
-                <div class="table-responsive">
-                    <table id="tabela-usuarios" class="table table-hover table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>
-                                    ID
-                                </th>
-                                <th>
-                                    Nome
-                                </th>
-                                <th>
-                                    Email
-                                </th>
-                                <th>
-                                    Situação
-                                </th>
-                                <th>
-                                    Cargo
-                                </th>
-                                <th>
-                                    Ação
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="tabela-completa">
-                            @foreach (var usuario in ViewBag.usuarios)
-                            {
-                                <tr class="user-table">
-                                    <td id="id@(usuario.Id)">
-                                        @usuario.Id
-                                    </td>
-                                    <td id="nome@(usuario.Id)">
-                                        @usuario.Nome
-                                    </td>
-                                    <td id="email@(usuario.Id)">
-                                        @usuario.Email
-                                    </td>
-                                    <td id="estado@(usuario.Id)">
-                                        @if (usuario.Ativo)
-                                        {
-                                            <span>Ativo</span>
-                                        }
-                                        else
-                                        {
-                                            <span>Inativo</span>
-                                        }
-                                    </td>
-                                    <td id="nivelAcesso@(usuario.Id)">
-                                        @usuario.NivelAcesso
-                                    </td>
-                                    <td>
-                                        <div class="actions">
-                                            <a class="btn btn-default btn-sm botao-editar-usuario " id="btn-editar@(usuario.Id)" onclick="editarItemPorId()">
-                                                @*<a href="@Url.Action("AlterarDadosUsuario", "Usuario")" class="btn btn-default btn-sm">*@
 
-                                                <i class="fa fa-pencil"></i> Editar
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div id="ver-mais">>Ver mais</div>
-
-            <div id="results">
-
-            </div>
         </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-responsive">
+            <table id="tabela-usuarios" class="table table-hover table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Nome
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Situação
+                        </th>
+                        <th>
+                            Cargo
+                        </th>
+                        <th>
+                            Ação
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="tabela-completa">
+                    @foreach (var usuario in ViewBag.usuarios)
+                    {
+                        <tr class="user-table">
+                            <td id="id@(usuario.Id)">
+                                @usuario.Id
+                            </td>
+                            <td id="nome@(usuario.Id)">
+                                @usuario.Nome
+                            </td>
+                            <td id="email@(usuario.Id)">
+                                @usuario.Email
+                            </td>
+                            <td id="estado@(usuario.Id)">
+                                @if (usuario.Ativo)
+                                {
+                                    <span>Ativo</span>
+                                }
+                                else
+                                {
+                                    <span>Inativo</span>
+                                }
+                            </td>
+                            <td id="nivelAcesso@(usuario.Id)">
+                                @usuario.NivelAcesso
+                            </td>
+                            <td>
+                                <div class="actions">
+                                    <a class="btn btn-default btn-sm botao-editar-usuario " id="btn-editar@(usuario.Id)">
+                                        @*<a href="@Url.Action("AlterarDadosUsuario", "Usuario")" class="btn btn-default btn-sm">*@
+
+                                        <i class="fa fa-pencil"></i> Editar
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="ver-mais">>Ver mais</div>
+
+    <div id="results">
+
+    </div>
+</div>
 
 
 
@@ -167,10 +167,10 @@
 
         </div>
     </div>
-    <div id="editar"">
+    <div id="editar" ">
         <div class="form-body">
             <div class="form-group">
-
+                <label>Nome: </label>
                 <input type="text" class="form-control input-lg" placeholder="id" name="usuarioedit.Id" id="id-editar" style="display:none;">
 
                 <input type="text" class="form-control input-lg" placeholder="Nome" name="usuarioedit.Nome" id="nome-editar">
@@ -207,6 +207,7 @@
 
 </form>
 <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+
 
 <script src="~/Scripts/Específicos/cadastrarUsuario.js"></script>
 <script src="~/Scripts/Específicos/Animacoes.js"></script>

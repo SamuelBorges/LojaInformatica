@@ -47,6 +47,22 @@ namespace LojaInformatica.BLL
             }
         }
 
+        public bool RegistrarCliente(Cliente cliente)
+        {
+
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                entity.Clientes.Add(cliente);
+                entity.SaveChanges();
+                return true;
+            }
+        }
+
+
+
+
+
+
         public bool RegistrarAcesso(Usuario usuario)
         {
             using (LojaInformaticaContext entity = new LojaInformaticaContext())

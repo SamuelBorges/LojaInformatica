@@ -19,13 +19,24 @@ $('#edit-user').click(function () {
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(dados),
         success: function (resultado) {
+            console.log(resultado);
             if (resultado.sucesso) {
 
-                var nomeUser = $('#nome-editar').val();
-                nomeUser = resultado.Nome;
+                $('#nome' + resultado.id).text(resultado.nome);
 
-                var email = $('#email' + resultado.id).text(resultado.Email);
-                alert(resultado.message);
+                $('#email' + resultado.id).text(resultado.email);
+                if (resultado.ativo) {
+                    $('#estado' + resultado.id).text('Ativo');
+                } else {
+                    $('#estado' + resultado.id).text('Inativo');
+                }
+                if (resultado.nivel==0) {
+                    $('#nivelAcesso' + resultado.id).text('Administrador');
+                } else {
+                    $('#nivelAcesso' + resultado.id).text('Funcionário');
+                }
+                
+             
 
              
             } else {

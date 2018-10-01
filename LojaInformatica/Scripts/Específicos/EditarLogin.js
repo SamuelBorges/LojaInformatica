@@ -1,13 +1,8 @@
-﻿
-
-function editarItemPorId() {
-
-    //$("editar").show();
-
-    var t = $(this).parent().parent().parent();
+﻿$('.botao-editar-usuario').click(function () {
+    var t = $(this).parents('.user-table');
     var idUser = $(t.children()[0]).text();
     console.log(idUser);
-      //$.post("/Usuario/AlterarDadosUsuario", { id: id });
+    //$.post("/Usuario/AlterarDadosUsuario", { id: id });
     var dados = { id: idUser };
     $.ajax({
         type: 'POST',
@@ -21,15 +16,13 @@ function editarItemPorId() {
             $('#email-editar').val(resultado.Email);
             $('#nivel-editar > option:select').val(resultado.NivelAcesso);
             $('#nome-editar').val(resultado.Nome);
-            
+
         },
         error: function (xml, status, error) {
 
         }
-
-
     })
-};
+});
 
 
 
