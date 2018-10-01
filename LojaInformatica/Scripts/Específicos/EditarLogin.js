@@ -1,10 +1,13 @@
 ﻿$(".botao-editar-usuario").click(editarItemPorId);
 
 function editarItemPorId() {
+
+    $("editar").show();
+
     var t = $(this).parent().parent().parent();
     var idUser = $(t.children()[0]).text();
     console.log(idUser);
-    //  $.post("/Usuario/AlterarDadosUsuario", { id: id });
+      //$.post("/Usuario/AlterarDadosUsuario", { id: id });
     var dados = { id: idUser };
     $.ajax({
         type: 'POST',
@@ -32,18 +35,18 @@ function editarItemPorId() {
 
 
 
-/// <reference path="../typings/jquery/jquery.d.ts" />
+///// <reference path="../typings/jquery/jquery.d.ts" />
 
 
-    var pacientes = document.querySelectorAll(".user-table");
+//    var pacientes = document.querySelectorAll(".user-table");
 
-    var tabela = document.querySelector("#tabela-completa");
+//    var tabela = document.querySelector("#tabela-completa");
 
-    tabela.addEventListener("dblclick", function (event) {
-        event.target.parentNode.classList.add("fadeOut");
+//    tabela.addEventListener("dblclick", function (event) {
+//        event.target.parentNode.classList.add("fadeOut");
 
-        setTimeout(function () {
-            event.target.parentNode.remove();
-        }, 500);
+//        setTimeout(function () {
+//            event.target.parentNode.remove();
+//        }, 500);
 
-    });
+//    });

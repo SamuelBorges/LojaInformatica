@@ -116,7 +116,7 @@ namespace LojaInformatica.Controllers
         //}
 
         [AutorizarLogin, HttpPost]
-        public ActionResult AtualizarUsuario(Usuario usuarioedit)
+        public ActionResult AtualizarUsuario(Usuario usuarioedit, int Id)
         {
 
             using (LojaInformaticaContext entity = new LojaInformaticaContext())
@@ -127,13 +127,18 @@ namespace LojaInformatica.Controllers
                 if (validMessage == "")
                 {
                     Usuario editDoUser = new Usuario();
-                    editDoUser = entity.Usuarios.Find(usuarioedit.Id);
+                    editDoUser = entity.Usuarios.Find(Id);
                     editDoUser.Nome = usuarioedit.Nome;
-
+                    editDoUser.Email = usuarioedit.Email;
+                    editDoUser.NivelAcesso = usuarioedit.NivelAcesso;
+                    editDoUser.Senha = usuarioedit.Senha;
+                   
                     entity.SaveChanges();
-                    user = new { sucesso = true, id = usuarioedit.Id, nome = usuarioedit.Nome, email = usuarioedit.Email, nivel = usuarioedit.NivelAcesso, ativo = usuarioedit.Ativo };
+                    user = new { sucesso = true, id = editDoUser.Id, nome = editDoUser.Nome, email = editDoUser.Email, nivel = editDoUser.NivelAcesso, ativo = editDoUser.Ativo, message ="Usuário atualizado com sucesso." };
+                    return Json(user);
 
                 }
+                user = new { sucesso = false, message = validMessage };
                 return Json(user);
 
             }
