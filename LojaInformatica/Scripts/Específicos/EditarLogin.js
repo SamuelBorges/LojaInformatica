@@ -1,8 +1,8 @@
-﻿$(".botao-editar-usuario").click(editarItemPorId);
+﻿
 
 function editarItemPorId() {
 
-    $("editar").show();
+    //$("editar").show();
 
     var t = $(this).parent().parent().parent();
     var idUser = $(t.children()[0]).text();
@@ -30,6 +30,48 @@ function editarItemPorId() {
 
     })
 };
+
+
+
+
+
+
+//cliente
+
+
+
+function editarClientePorId() {
+
+    var t = $(this).parent().parent().parent();
+    var idClient = $(t.children()[0]).text();
+    var dados = { id: 2 };
+
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: '/Cliente/AlterarDadosCliente',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(dados),
+        success: function (resultado) {
+
+            $('#id-editar').val(resultado.id);
+            $('#nome-editar').val(resultado.nome);
+            $('sobrenome-editar').val(resultado.sobrenome);
+            $('#pessoa-editar > option:select').val(resultado.pessoa);
+            $('#sexo-editar > option:select').val(resultado.sexo);
+
+        },
+        error: function (xml, status, error) {
+
+        }
+
+
+    })
+};
+
+
+
+
 
 
 

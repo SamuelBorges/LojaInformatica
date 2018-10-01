@@ -4811,6 +4811,7 @@
     <Content Include="global\plugins\_uniform.scss" />
     <Content Include="global\_variables-md.scss" />
     <Content Include="global\_variables.scss" />
+    <Content Include="Scripts\Específicos\AlterarDadosCliente.js" />
     <Content Include="Scripts\Específicos\Animacoes.js" />
     <Content Include="Scripts\Específicos\cadastrarUsuario.js" />
     <Content Include="Scripts\Específicos\EditarLogin.js" />

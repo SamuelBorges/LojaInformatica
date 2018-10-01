@@ -33,20 +33,36 @@ namespace LojaInformatica.Controllers
             }
         }
 
-        [AutorizarLogin]
-        public ActionResult AlterarDadosCliente(int id)
+        [AutorizarLogin, HttpPost]
+        public ActionResult AlterarDadosCliente(Cliente clienteEdit, int Id)
         {
             using (LojaInformaticaContext entity = new LojaInformaticaContext())
             {
+                object user = new { sucesso = false };
+                string validMessage = "";//validações cliente
 
-                var usuario = entity.Usuarios.FirstOrDefault(p => p.Id == id);
-                ViewBag.usuario = usuario;
+                if (validMessage == "")
+                {
+                    Cliente editDoClient = new Cliente();
+                    editDoClient = entity.Clientes.Find(Id);
+                    editDoClient.Nome = clienteEdit.Nome;
+                    editDoClient.Sobrenome = clienteEdit.Sobrenome;
+                    editDoClient.Pessoa = clienteEdit.Pessoa;
+                    editDoClient.Sexo = clienteEdit.Sexo;
 
-                return View(usuario);
+                    entity.SaveChanges();
+                    user = new { sucesso = true, id = editDoClient.Id, nome = editDoClient.Nome, sobrenome = editDoClient.Sobrenome, pessoa = editDoClient.Pessoa, sexo = editDoClient.Sexo, message = "Cliente atualizado com sucesso." };
+                    return Json(user);
+
+                }
+                user = new { sucesso = false, message = validMessage };
+                return Json(user);
+
             }
-
         }
 
-
     }
+
+
+
 }

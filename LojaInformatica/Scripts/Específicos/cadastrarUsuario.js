@@ -35,7 +35,17 @@ $('#cadastrar-usuario').click(function () {
 
                 $('#tabela-usuarios').prepend(tr);
                 alert('Usuário adicionado com sucesso.');
-//esconder tem   fazer
+
+                $('#nome-usuario').val('');
+                $('#endereco-email').val('');
+                $('#senha').val('');
+                $('#nivel-acesso > option:selected').val('');
+                //esconder tem   fazer
+                var display = document.getElementById(cadastrarUser).style.display;
+                if (display == "none")
+                    document.getElementById('cadastrar').style.display = 'block';
+                else
+                    document.getElementById(cadastrarUser).style.display = 'none';
 
 
             } else {

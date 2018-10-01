@@ -22,14 +22,14 @@
     <div class="portlet grey-cascade box">
         <div class="portlet-title">
             <div class="caption">
-                <i class="fa fa-cogs"></i>Acessos:
+                Clientes:
             </div>
 
         </div>
     </div>
     <div class="portlet-body">
         <div class="table-responsive">
-            <table id="tabela-usuarios" class="table table-hover table-bordered table-striped">
+            <table id="tabela-clientes" class="table table-hover table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>
@@ -55,7 +55,7 @@
                 <tbody class="tabela-completa">
                     @foreach (var cliente in ViewBag.clientes)
                     {
-                        <tr class="user-table">
+                        <tr class="client-table">
                             <td id="id@(cliente.Id)">
                                 @cliente.Id
                             </td>
@@ -87,10 +87,10 @@
                                     <span>Indeterminado</span>
                                 }
                             </td>
-                            <td id="Endereco@(cliente.Id)">
+                            <td>
                                 <div class="actions">
-                                    <a class="btn btn-default btn-sm botao-visualizar-cliente " id="btn-ver-endereco@(cliente.Id)" >
-                                       
+                                    <a class="btn btn-default btn-sm botao-visualizar-cliente " id="btn-editar@(cliente.Id)" onclick="editarClientePorId()">
+
 
                                         <i class="fa fa-pencil"></i> Visualizar informações
                                     </a>
@@ -105,6 +105,67 @@
     </div>
     <div href="" class="ver-mais" onclick="VerMais()" id="Show">Ver mais</div>
 </div>
+
+
+
+<form class="col-md-4 pull-right">
+
+    <div class="portlet box purple" onclick="ShowForm('cadastrar')">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs"></i>
+                <label>Cadastrar:</label>
+            </div>
+
+        </div>
+    </div>
+    <div style="display:none;" id="cadastrar">
+        <div class="form-body">
+            <div class="form-group">
+                <label>Nome: </label>
+                <input type="text" class="form-control input-lg" placeholder="Nome" name="cliente.Nome" id="nome-cliente" @*class="cadastrar"*@>
+
+                <label>Sobrenome: </label>
+                <input type="text" class="form-control input-lg" placeholder="sobrenome" name="cliente.Sobrenome" id="endereco-cliente">
+
+            </div>
+            <label>Pessoa:</label>
+            <select class="form-control input-lg" name="cliente.TipoPessoa" id="pessoa">
+                @foreach (LojaInformatica.DAO.Enum.TipoPessoa item in (LojaInformatica.DAO.Enum.TipoPessoa[])Enum.GetValues(typeof(LojaInformatica.DAO.Enum.TipoPessoa)))
+                {
+
+                    int value = (int)item;
+
+                    <option value="@value" name="cliente.TipoPessoa">@Enum.GetName(item.GetType(), item)</option>
+                }
+            </select>
+
+            <label>Sexo:</label>
+            <select class="form-control input-lg" name="cliente.Sexo" id="sexo">
+                @foreach (LojaInformatica.DAO.Enum.Sexo item in (LojaInformatica.DAO.Enum.Sexo[])Enum.GetValues(typeof(LojaInformatica.DAO.Enum.Sexo)))
+                {
+
+                    int value = (int)item;
+
+                    <option value="@value" name="cliente.TipoPessoa">@Enum.GetName(item.GetType(), item)</option>
+                }
+            </select>
+
+
+            <div class="form-actions right">
+
+                <button type="button" class="btn green" id="cadastrar-usuario">Cadastrar</button>
+            </div>
+        </div>
+
+        </div>
+
+        
+    @*onclick="atualizarInfo(usuario.Id)*@
+    @*acrescentar isso quando for para atualizar*@
+
+    @**@
+</form>
 
 
 
@@ -128,25 +189,33 @@
         <div class="form-body">
             <div class="form-group">
 
-                <input type="text" class="form-control input-lg" placeholder="id" name="usuarioedit.Id" id="id-editar">
+                <input type="text" class="form-control input-lg" placeholder="id" name="clienteedit.Id" id="id-editar">
 
-                <input type="text" class="form-control input-lg" placeholder="Nome" name="usuarioedit.Nome" id="nome-editar">
+                <input type="text" class="form-control input-lg" placeholder="Nome" name="clienteedit.Nome" id="nome-editar">
 
-                <label>Email: </label>
-                <input type="text" class="form-control input-lg" placeholder="exemplo@endereço.com" name="usuarioedit.Email" id="email-editar">
 
-                <label>Nova senha: </label>
-                <input type="password" class="form-control input-lg" placeholder="**********" name="usuarioedit.Senha" id="senha-editar">
-            </div>
-            <div class="form-group">
-                <label>Cargo/Nível de Acesso:</label>
-                <select class="form-control input-lg" name="usuario.NivelAcesso" id="nivel-editar">
-                    @foreach (LojaInformatica.DAO.Enum.NivelAcesso item in (LojaInformatica.DAO.Enum.NivelAcesso[])Enum.GetValues(typeof(LojaInformatica.DAO.Enum.NivelAcesso)))
+                <input type="text" class="form-control input-lg" placeholder="Sobrenome" name="clienteedit.Sobrenome" id="sobrenome-editar">
+
+                <label>Pessoa: </label>
+                <select class="form-control input-lg" name="clienteedit.TipoPessoa" id="pessoa-editar">
+                    @foreach (LojaInformatica.DAO.Enum.TipoPessoa item in (LojaInformatica.DAO.Enum.TipoPessoa[])Enum.GetValues(typeof(LojaInformatica.DAO.Enum.TipoPessoa)))
                     {
 
                         int value = (int)item;
 
-                        <option value="@value" name="usuarioedit.NivelAcesso">@Enum.GetName(item.GetType(), item)</option>
+                        <option value="@value" name="clienteedit.NivelAcesso">@Enum.GetName(item.GetType(), item)</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Sexo:</label>
+                <select class="form-control input-lg" name="clienteedit.Sexo" id="sexo-editar">
+                    @foreach (LojaInformatica.DAO.Enum.Sexo item in (LojaInformatica.DAO.Enum.Sexo[])Enum.GetValues(typeof(LojaInformatica.DAO.Enum.Sexo)))
+                    {
+
+                        int value = (int)item;
+
+                        <option value="@value" name="clienteedit.Sexo">@Enum.GetName(item.GetType(), item)</option>
                     }
                 </select>
 
@@ -156,10 +225,10 @@
 
         <div class="form-actions right">
 
-            <button type="button" class="btn green" id="edit-user" onclick="atualizarItemPorId()">Editar</button>
+            <button type="button" class="btn green" id="edit-client" >Editar</button>
         </div>
     </div>
-    @*onclick="atualizarInfo(usuario.Id)*@
+    @*onclick="atualizarInfo(cliente.Id)*@
     @*acrescentar isso quando for para atualizar*@
 
 </form>
@@ -168,6 +237,7 @@
 <script src="~/Scripts/Específicos/cadastrarUsuario.js"></script>
 <script src="~/Scripts/Específicos/Animacoes.js"></script>
 <script src="~/Scripts/Específicos/EditarLogin.js"></script>
-<script src="~/Scripts/Específicos/EditarUsuario.js"></script>
+
+<script src="~/Scripts/Específicos/AlterarDadosCliente.js"></script>
 
 
