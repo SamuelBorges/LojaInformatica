@@ -14,9 +14,11 @@
             $('#id-editar').val(resultado.Id);
             $('#nome-editar').val(resultado.Nome);
             $('#email-editar').val(resultado.Email);
-            $('#nivel-editar > option:select').val(resultado.NivelAcesso);
-            $('#nome-editar').val(resultado.Nome);
+            console.log(resultado.NivelAcesso);
 
+            $('#nivel-editar').val(resultado.NivelAcesso);
+
+            
         },
         error: function (xml, status, error) {
 

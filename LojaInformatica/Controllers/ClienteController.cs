@@ -77,7 +77,7 @@ namespace LojaInformatica.Controllers
                 {
                     client = new { sucesso = true, id = cliente.Id, nome = cliente.Nome, sobrenome = cliente.Sobrenome , pessoa = cliente.Pessoa, sexo = cliente.Sexo };
                 }
-                return Json(cliente, JsonRequestBehavior.AllowGet);
+                return Json(client, JsonRequestBehavior.AllowGet);
             }
         }
 
