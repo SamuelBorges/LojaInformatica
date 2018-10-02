@@ -77,11 +77,15 @@
                                 }
                             </td>
                             <td id="sexo@(cliente.Id)">
-                                @if (cliente.Sexo == 0)
+                                @if (cliente.Sexo == LojaInformatica.DAO.Enum.Sexo.Masculino)
                                 {
                                     <span>Masculino</span>
                                 }
 
+                                else if (cliente.Sexo == LojaInformatica.DAO.Enum.Sexo.Feminino)
+                                {
+                                    <span>Feminino</span>
+                                }
                                 else
                                 {
                                     <span>Indeterminado</span>

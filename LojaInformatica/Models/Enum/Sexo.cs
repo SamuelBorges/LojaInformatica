@@ -7,6 +7,6 @@ namespace LojaInformatica.DAO.Enum
 {
     public enum Sexo
     {
-        Masculino, Feminino, Indefinido
+        Masculino, Feminino, Indeterminado
     }
 }
