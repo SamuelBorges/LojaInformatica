@@ -36,6 +36,7 @@ $('.botao-editar-cliente').click(function () {
         },
         error: function (xml, status, error) {
             alert('Erro inesperado, tente novamente.');
+
         }
     })
 });

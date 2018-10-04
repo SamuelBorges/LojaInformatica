@@ -1,4 +1,5 @@
 ﻿using LojaInformatica.BLL;
+using LojaInformatica.DAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,12 @@ namespace LojaInformatica.Controllers
     public class HomeController : Controller
     {
         [AutorizarLogin]
-        public ActionResult Index()
+        public ActionResult Index(/*Usuario usuario*/)
         {
-            return View();
+
+            //bool EhAdministrador = new HashGenerator().ProcurarUsuario(usuario);
+            //ViewBag.temNivel = EhAdministrador;
+            return View(ViewBag);
         }
 
         public ActionResult About()

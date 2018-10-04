@@ -198,8 +198,10 @@
     <Compile Include="Migrations\201809130114436_Campo NumeroAcessos Added.Designer.cs">
       <DependentUpon>201809130114436_Campo NumeroAcessos Added.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\ErroMsg.cs" />
-    <Compile Include="Models\Messages.cs" />
+    <Compile Include="Migrations\201810021328083_RemocaoTabelas.cs" />
+    <Compile Include="Migrations\201810021328083_RemocaoTabelas.Designer.cs">
+      <DependentUpon>201810021328083_RemocaoTabelas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Migrations\201809030201437_Inicio.cs" />
     <Compile Include="Models\Migrations\201809030201437_Inicio.Designer.cs">
       <DependentUpon>201809030201437_Inicio.cs</DependentUpon>
@@ -216,7 +218,6 @@
     <Compile Include="Models\OrdemServico.cs" />
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Produto.cs" />
-    <Compile Include="Models\RegistroAcao.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -4880,6 +4881,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809130114436_Campo NumeroAcessos Added.resx">
       <DependentUpon>201809130114436_Campo NumeroAcessos Added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810021328083_RemocaoTabelas.resx">
+      <DependentUpon>201810021328083_RemocaoTabelas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Models\Migrations\201809030201437_Inicio.resx">
       <DependentUpon>201809030201437_Inicio.cs</DependentUpon>

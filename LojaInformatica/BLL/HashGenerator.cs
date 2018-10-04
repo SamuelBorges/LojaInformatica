@@ -58,6 +58,28 @@ namespace LojaInformatica.BLL
             }
         }
 
+        public bool ProcurarUsuario (Usuario usuario)
+        {
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                Usuario searchedEmail = entity.Usuarios.FirstOrDefault(u => u.Email == usuario.Email);
+                try
+                {
+                    if (searchedEmail.NivelAcesso == LojaInformatica.DAO.Enum.NivelAcesso.Administrador)
+                    {
+                        return true;
+                    }
+                    return false;
+
+                }
+                catch (Exception)
+                {
+
+                    return false;
+                }
+            }
+        }
+
 
 
 
@@ -80,6 +102,19 @@ namespace LojaInformatica.BLL
             {
                 Usuario searchedEmail = entity.Usuarios.FirstOrDefault(u => u.Email == usuario.Email);
                 if (searchedEmail.NumeroAcessos == 1)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        public bool EhAtivo(Usuario usuario)
+        {
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                Usuario UserId = entity.Usuarios.FirstOrDefault(u => u.Email == usuario.Email);
+                if (UserId.Ativo)
                 {
                     return true;
                 }

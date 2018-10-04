@@ -81,6 +81,48 @@ namespace LojaInformatica.Controllers
             }
         }
 
+
+
+        public ActionResult AtualizarCliente(Cliente clienteEdit, int Id)
+        {
+
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                object user = new { sucesso = false };
+                string validMessage = "";
+
+                if (validMessage == "")
+                {
+                    Cliente editDoClient = new Cliente();
+                    try
+                    {
+                        editDoClient = entity.Clientes.Find(Id);
+
+                    }
+                    catch (Exception)
+                    {
+                        user = new { sucesso = false, message = "O usuário que você tenta editar não existe." };
+                        return Json(user);
+                    }
+
+
+                    editDoClient.Nome = clienteEdit.Nome;
+                    editDoClient.Sobrenome = clienteEdit.Sobrenome;
+                    editDoClient.Pessoa = clienteEdit.Pessoa;
+                    editDoClient.Sexo = clienteEdit.Sexo;
+
+                    entity.SaveChanges();
+                    user = new { sucesso = true, id = editDoClient.Id, nome = editDoClient.Nome, sobrenome = editDoClient.Sobrenome, pessoa = editDoClient.Pessoa, sexo = editDoClient.Sexo, message = "Cliente atualizado com sucesso." };
+                    return Json(user);
+
+                }
+                user = new { sucesso = false, message = validMessage };
+                return Json(user);
+
+            }
+
+        }
+
     }
 
 

@@ -26,7 +26,6 @@ namespace LojaInformatica.DAO.DataBase
 
         public DbSet<Produto> Produtos { get; set; }
 
-        public DbSet<RegistroAcao> Acoes { get; set; }
 
 
 

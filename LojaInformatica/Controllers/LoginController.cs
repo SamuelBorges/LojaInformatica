@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using LojaInformatica.Models;
+using System.Web.Routing;
 
 namespace LojaInformatica.Controllers
 {
@@ -30,6 +30,7 @@ namespace LojaInformatica.Controllers
             Session.Abandon();
             return RedirectToAction("Index", "Login");
         }
+        
         public ActionResult VerificarLogin(Usuario usuario)
         {
             bool EmailSucesso = new Email().emailExiste(usuario);
@@ -41,17 +42,29 @@ namespace LojaInformatica.Controllers
 
                 bool novoAcesso = new HashGenerator().RegistrarAcesso(usuario);
                 bool PrimeiraVez = new HashGenerator().EhPrimeiroAcesso(usuario);
+                bool EhAtivo = new HashGenerator().EhAtivo(usuario);
+                
+                if (!EhAtivo)
+                {
+                    ViewBag.Message = "O usuário não tem acesso pois está inativo.";
+                    return View("Index", ViewBag);
 
+                }
                 if (!PrimeiraVez)
                 {
-                    return RedirectToAction("Index", "Home");
+                    
+                    return RedirectToAction("Index", "Home"/*, new RouteValueDictionary(usuario.Email)*/);
                 }
+               
                 return RedirectToAction("AlterarSenha", "Usuario");
             }
             else
             {
                 ViewBag.Message = "Credenciais inválidas, tente novamente.";
-                return View("Index", ViewBag);
+
+
+
+                return View("Index");
 
             }
         }

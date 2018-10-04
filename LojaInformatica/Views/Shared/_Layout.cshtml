@@ -1,6 +1,8 @@
 ﻿@{
+    ViewBag.Title = "Login";
+
     //MembershipUser membershipUser = Membership.GetUser();
-    
+
 }
 <!DOCTYPE html>
 <!--
@@ -539,11 +541,10 @@ License: You must have a valid license purchased only from themeforest(the above
                         <a href="@Url.Action("GerenciarClientes","Cliente")">
                             <i class="icon-folder"></i>
                             <span class="title">
-                               Produtos
+                                Produtos
                             </span>
                         </a>
                     </li>
-
 
                     <li class="tooltips" data-container="body" data-placement="right" data-html="true" data-original-title="Gerenciar clientes">
                         <a href="@Url.Action("GerenciarClientes","Cliente")">
@@ -553,14 +554,36 @@ License: You must have a valid license purchased only from themeforest(the above
                             </span>
                         </a>
                     </li>
-                    <li class="tooltips" data-container="body" data-placement="right" data-html="true" data-original-title="Gerenciar usuarios">
-                        <a href="@Url.Action("GerenciarUsuarios","Usuario")">
-                            <i class="icon-user"></i>
-                            <span class="title">
-                                Usuarios
-                            </span>
-                        </a>
-                    </li>
+
+                    @{
+                        try
+                        {
+                            if (ViewBag.temNivel)
+                            {
+                                <li class="tooltips" data-container="body" data-placement="right" data-html="true" data-original-title="Gerenciar usuarios">
+                                    <a href="@Url.Action("GerenciarUsuarios","Usuario")">
+                                        <i class="icon-user"></i>
+                                        <span class="title">
+                                            Usuarios
+                                        </span>
+                                    </a>
+                                </li>
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            <li class="tooltips" data-container="body" data-placement="right" data-html="true" data-original-title="Gerenciar usuarios">
+                                <a href="@Url.Action("GerenciarUsuarios","Usuario")">
+                                    <i class="icon-user"></i>
+                                    <span class="title">
+                                        Usuarios
+                                    </span>
+                                </a>
+                            </li>
+
+                        }
+
+                    }
 
                     <!-- BEGIN ANGULARJS LINK -->
                     <li class="tooltips" data-container="body" data-placement="right" data-html="true" data-original-title="Ordenar serviços">

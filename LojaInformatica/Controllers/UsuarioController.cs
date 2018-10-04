@@ -73,9 +73,10 @@ namespace LojaInformatica.Controllers
         [AutorizarLogin]
         public ActionResult GerenciarUsuarios()
         {
-                IList<Usuario> usuarios = ListarUsuarios();
+            IList<Usuario> usuarios = ListarUsuarios();
             ViewBag.Usuarios = usuarios;
-            return View();
+            
+            return View(ViewBag);
 
         }
 
@@ -91,7 +92,8 @@ namespace LojaInformatica.Controllers
 
                 if (usuario != null)
                 {
-                    user = new { sucesso = true, id = usuario.Id, nome = usuario.Nome, email = usuario.Email, nivel = usuario.NivelAcesso, ativo = usuario.Ativo };
+                    user = new { sucesso = true, id = usuario.Id, nome = usuario.Nome,
+                                email = usuario.Email, nivel = usuario.NivelAcesso, ativo = usuario.Ativo };
                 }
                 return Json(usuario, JsonRequestBehavior.AllowGet);
             }
@@ -148,6 +150,8 @@ namespace LojaInformatica.Controllers
                         user = new { sucesso = false, message = "O usuário que você tenta editar não existe." };
                         return Json(user);
                     }
+
+
                     editDoUser.Nome = usuarioedit.Nome;
                     editDoUser.Email = usuarioedit.Email;
                     editDoUser.NivelAcesso = usuarioedit.NivelAcesso;

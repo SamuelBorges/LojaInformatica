@@ -5,11 +5,11 @@ $('#edit-client').click(function () {
     var nomeClient = $('#nome-editar').val();
     var sobrenomeClient = $('#sobrenome-editar').val();
     var sexoClient = $('#sexo-editar').val();
-    var pessoaClient = ('#pessoa-editar').val();
+    var pessoaClient = $('#pessoa-editar').val();
     var dados = {
         Nome: nomeClient, Sobrenome: sobrenomeClient, Sexo: sexoClient, Pessoa: pessoaClient, Id: id
     };
-
+    console.log(id);
 
     $.ajax({
 
@@ -25,12 +25,12 @@ $('#edit-client').click(function () {
                 $('#nome' + resultado.id).text(resultado.nome);
 
                 $('#sobrenome' + resultado.id).text(resultado.sobrenome);
-                if (resultado.Sexo == 0) {
+                if (resultado.sexo == 0) {
                     $('#sexo' + resultado.id).text('Masculino');
                 } else {
                     $('#sexo' + resultado.id).text('Feminino');
                 }
-                if (resultado.Pessoa == 0) {
+                if (resultado.pessoa == 0) {
                     $('#pessoa' + resultado.id).text('Física');
                 } else {
                     $('#pessoa' + resultado.id).text('Jurídica');

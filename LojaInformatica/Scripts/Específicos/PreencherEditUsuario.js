@@ -14,9 +14,15 @@
             $('#id-editar').val(resultado.Id);
             $('#nome-editar').val(resultado.Nome);
             $('#email-editar').val(resultado.Email);
-            console.log(resultado.NivelAcesso);
-
             $('#nivel-editar').val(resultado.NivelAcesso);
+            if (resultado.Ativo) {
+                $('#ativo-editar').val(0);
+            }
+            else {
+                $('#ativo-editar').val(1);
+
+            }
+
 
             
         },
