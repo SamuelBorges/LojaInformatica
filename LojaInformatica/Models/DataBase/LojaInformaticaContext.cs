@@ -20,7 +20,7 @@ namespace LojaInformatica.DAO.DataBase
 
         public DbSet<Cliente> Clientes { get; set; }
 
-        public DbSet<Endereco> Enderecos { get; set; }
+        public DbSet<Pedido> Pedidos { get; set; }
 
         public DbSet<Marca> Marcas { get; set; }
 

@@ -3,6 +3,7 @@
 
 $('.botao-editar-cliente').click(function () {
     var t = $(this).parents('.client-table');
+    //$('.client-table').css('color', '#4255b2');  pintar fundo ao clicar
     var idUser = $(t.children()[0]).text();
     console.log(idUser);
     //$.post("/Usuario/AlterarDadosUsuario", { id: id });

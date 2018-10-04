@@ -55,50 +55,52 @@
                 <tbody class="tabela-completa">
                     @foreach (var cliente in ViewBag.clientes)
                     {
-                        <tr class="client-table">
-                            <td id="id@(cliente.Id)">
-                                @cliente.Id
-                            </td>
-                            <td id="nome@(cliente.Id)">
-                                @cliente.Nome
-                            </td>
-                            <td id="sobrenome@(cliente.Id)">
-                                @cliente.Sobrenome
-                            </td>
+                    <tr class="client-table">
+                        <td id="id@(cliente.Id)">
+                            @cliente.Id
+                        </td>
+                        <td id="nome@(cliente.Id)">
+                            @cliente.Nome
+                        </td>
+                        <td id="sobrenome@(cliente.Id)">
+                            @cliente.Sobrenome
+                        </td>
 
-                            <td id="pessoa@(cliente.Id)">
-                                @if (cliente.Pessoa == 0)
-                                {
-                                    <span>Física</span>
-                                }
-                                else
-                                {
-                                    <span>Jurídica</span>
-                                }
-                            </td>
-                            <td id="sexo@(cliente.Id)">
-                                @if (cliente.Sexo == LojaInformatica.DAO.Enum.Sexo.Masculino)
-                                {
-                                    <span>Masculino</span>
-                                }
+                        <td id="pessoa@(cliente.Id)">
+                            @if (cliente.Pessoa == 0)
+                            {
+                                <span>Física</span>
+                            }
+                            else
+                            {
+                                <span>Jurídica</span>
+                            }
+                        </td>
+                        <td id="sexo@(cliente.Id)">
+                            @if (cliente.Sexo == LojaInformatica.DAO.Enum.Sexo.Masculino)
+                            {
+                                <span>Masculino</span>
+                            }
 
-                                else if (cliente.Sexo == LojaInformatica.DAO.Enum.Sexo.Feminino)
-                                {
-                                    <span>Feminino</span>
-                                }
-                                else
-                                {
-                                    <span>Indeterminado</span>
-                                }
-                            </td>
-                            <td>
-                                <div class="actions">
-                                    <a class="btn btn-default btn-sm botao-editar-cliente" id="btn-editar@(cliente.Id)">
-                                        <i class="fa fa-pencil"></i> Editar/Visualizar
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
+                            else if (cliente.Sexo == LojaInformatica.DAO.Enum.Sexo.Feminino)
+                            {
+                                <span>Feminino</span>
+                            }
+                            else
+                            {
+                                <span>Indeterminado</span>
+                            }
+                        </td>
+                        <td>
+
+                            <div class="actions">
+                                <a class="btn btn-default btn-sm botao-editar-cliente" id="btn-editar@(cliente.Id)">
+                                    <i class="fa fa-pencil"></i> Editar/Visualizar
+                                </a>
+                            </div>
+                        </td>
+
+                    </tr>
                     }
                 </tbody>
             </table>
@@ -127,7 +129,7 @@
                 <input type="text" class="form-control input-lg" placeholder="Nome" name="cliente.Nome" id="nome-cliente" @*class="cadastrar"*@>
 
                 <label>Sobrenome: </label>
-                <input type="text" class="form-control input-lg" placeholder="sobrenome" name="cliente.Sobrenome" id="endereco-cliente">
+                <input type="text" class="form-control input-lg" placeholder="sobrenome" name="cliente.Sobrenome" id="sobrenome-cliente">
 
             </div>
             <label>Pessoa:</label>

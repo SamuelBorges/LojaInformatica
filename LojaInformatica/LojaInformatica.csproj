@@ -202,6 +202,10 @@
     <Compile Include="Migrations\201810021328083_RemocaoTabelas.Designer.cs">
       <DependentUpon>201810021328083_RemocaoTabelas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810041223418_Endereco do Cliente.cs" />
+    <Compile Include="Migrations\201810041223418_Endereco do Cliente.Designer.cs">
+      <DependentUpon>201810041223418_Endereco do Cliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Migrations\201809030201437_Inicio.cs" />
     <Compile Include="Models\Migrations\201809030201437_Inicio.Designer.cs">
       <DependentUpon>201809030201437_Inicio.cs</DependentUpon>
@@ -209,13 +213,11 @@
     <Compile Include="Models\Migrations\Configuration.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\DataBase\LojaInformaticaContext.cs" />
-    <Compile Include="Models\Endereco.cs" />
     <Compile Include="Models\Enum\Acoes.cs" />
     <Compile Include="Models\Enum\NivelAcesso.cs" />
     <Compile Include="Models\Enum\Sexo.cs" />
     <Compile Include="Models\Enum\TipoPessoa.cs" />
     <Compile Include="Models\Marca.cs" />
-    <Compile Include="Models\OrdemServico.cs" />
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\Usuario.cs" />
@@ -4884,6 +4886,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810021328083_RemocaoTabelas.resx">
       <DependentUpon>201810021328083_RemocaoTabelas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810041223418_Endereco do Cliente.resx">
+      <DependentUpon>201810041223418_Endereco do Cliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Models\Migrations\201809030201437_Inicio.resx">
       <DependentUpon>201809030201437_Inicio.cs</DependentUpon>
