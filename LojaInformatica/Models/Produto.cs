@@ -11,13 +11,13 @@ namespace LojaInformatica.DAO
 
         public string Codigo { get; private set; }
 
+        public string Nome { get; set; }
+
         public string Descricao { get; set; }
 
         public int Quantidade { get; set; }
 
         public double PrecoUnitario { get; set; }
-
-        public double PrecoTotal { get; set; }
 
         public Marca Marca { get; set; }
     }

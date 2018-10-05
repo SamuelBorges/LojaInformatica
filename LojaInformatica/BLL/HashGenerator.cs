@@ -58,6 +58,28 @@ namespace LojaInformatica.BLL
             }
         }
 
+
+        public bool RegistrarProduto(Produto produto)
+        {
+
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                entity.Produtos.Add(produto);
+                entity.SaveChanges();
+                return true;
+            }
+        }
+        public bool DeletarCliente(Cliente cliente)
+        {
+
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                entity.Clientes.Remove(cliente);
+                entity.SaveChanges();
+                return true;
+            }
+        }
+
         public bool ProcurarUsuario (Usuario usuario)
         {
             using (LojaInformaticaContext entity = new LojaInformaticaContext())

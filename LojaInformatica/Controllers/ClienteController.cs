@@ -123,6 +123,35 @@ namespace LojaInformatica.Controllers
 
         }
 
+        [AutorizarLogin, HttpPost]
+        public ActionResult RemoverCliente(Cliente cliente)
+        {
+
+            object user = new { sucesso = false };
+            string validMessage = ""; //validações
+            if (validMessage == "")
+            {
+                bool cadastrado = new HashGenerator().DeletarCliente(cliente);
+                if (!cadastrado)
+                {
+                    user = new { sucesso = false, message = "Erro inesperado, tente novemente." };
+                    return Json(user);
+
+                }
+                user = new { sucesso = true, id = cliente.Id, nome = cliente.Nome, sobrenome = cliente.Sobrenome, pessoa = cliente.Pessoa, sexo = cliente.Sexo, message = validMessage };
+                return Json(user);
+
+            }
+            else
+            {
+                user = new { sucesso = false, message = validMessage };
+                return Json(user);
+            }
+
+
+
+        }
+
     }
 
 

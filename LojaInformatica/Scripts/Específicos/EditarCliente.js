@@ -35,6 +35,8 @@ $('#edit-client').click(function () {
                 } else {
                     $('#pessoa' + resultado.id).text('Jurídica');
                 }
+                $('#editarShow').hide();
+
                 alert('Login atualizado com sucesso.');
 
 

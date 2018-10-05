@@ -1,40 +1,45 @@
 ﻿/// <reference path="../typings/jquery/jquery.d.ts" />
 
-$('#cadastrar-cliente').click(function () {
-    var nomeClient = $('#nome-cliente').val();
-    var sobrenome = $('#sobrenome-cliente').val();
-    var pessoa = $('#pessoa > option:selected').val();
-    var sexo = $('#sexo > option:selected').val();
+$('#cadastrar-produto').click(function () {
+    var nomeProduct = $('#nome-produto').val();
+    var descricao = $('#descricao-produto').val();
+    var precoUnitario = $('#preco-unitario').val();
+    var quantidade = $('#quantidade-produto').val();
+    var marca = $('#marca > option:selected').val();
     var dados = {
-        Nome: nomeClient, Sobrenome: sobrenome, Pessoa: pessoa, Sexo: sexo
+        Nome: nomeProduct, Descricao: descricao, PrecoUnitario: precoUnitario, Quantidade: quantidade
     };
 
     $.ajax({
-
+        
         type: 'POST',
         dataType: 'json',
-        url: '/Cliente/CadastrarCliente',//
+        url: '/Produto/CadastrarProduto',
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(dados),
         success: function (resultado) {
             if (resultado.sucesso) {
 
                 alert('Cliente adicionado com sucesso.');
-                var sexo = '';
-                if (resultado.sexo==0) {
-                    sexo = 'Masculino';
-                } else if (resultado.sexo==1) {
-                    sexo = 'Feminino';
-                } else {
-                    sexo = 'Indeterminado';
-                }
-                var pessoa = resultado.pessoa == 0 ? 'Física' : 'Jurídica';
+                //var marca = '';
+                //if (resultado.marca == 0) {
+                //    sexo = 'Razer';
+                //} else if (resultado.sexo == 1) {
+                //    sexo = 'HyperX';
+                //} else {
+                //    sexo = 'Erro';
+                //}
+
+
+                //outro form dentro do form
                 var tr = '<tr>' +
                     '<td id="id' + resultado.id + '">' + resultado.id + '</td>' +
                     '<td id="nome' + resultado.id + '">' + resultado.nome + '</td>' +
-                    '<td id="sobrenome' + resultado.id + '">' + resultado.sobrenome + '</td>' +
-                    '<td id="pessoa' + resultado.id + '">' + pessoa + '</td>' +
-                    '<td id="sexo' + resultado.id + '">' + sexo + '</td>' +
+                    '<td id="descricao' + resultado.id + '">' + resultado.descricao + '</td>' +
+                    '<td id="quantidade' + resultado.id + '">' + resultado.quantidade + '</td>' +
+                    '<td id="precoUnitario' + resultado.id + '">' + resultado.precoUnitario + '</td>' +
+                    '<td id="marca' + resultado.id + '">' + resultado.marca + '</td>' +
+
                     '<td>' + ' <div class="actions"> ' + ' <a class="btn btn-default btn-sm botao-editar-cliente " ' +
                     'id="btn-editar' + resultado.id + '"' + ' onclick = "editarClientePorId()" > ' +
                     '<i class="fa fa-pencil"></i> Editar/Visualizar' + '</a>' + '</div >' + '</td >' +
@@ -42,11 +47,11 @@ $('#cadastrar-cliente').click(function () {
                     resultado.id + '">' + ' <i class="fa fa-pencil"></i> Remover' + '</a>' + '</div>' + '</td>' +
                     '</tr >';
 
-                        
-                            
-                                
-                        
-                    
+
+
+
+
+
 
                 $('#tabela-clientes').prepend(tr);
 

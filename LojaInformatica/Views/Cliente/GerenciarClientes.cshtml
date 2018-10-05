@@ -18,7 +18,7 @@
 
 
 }
-<div class="col-md-7 col-sm-12">
+<div class="col-md-8 col-sm-12">
     <div class="portlet grey-cascade box">
         <div class="portlet-title">
             <div class="caption">
@@ -48,7 +48,10 @@
                             Sexo
                         </th>
                         <th>
-                            Ações
+                            Editar ou Visualizar
+                        </th>
+                        <th>
+                            Remover
                         </th>
                     </tr>
                 </thead>
@@ -98,6 +101,16 @@
                                     <i class="fa fa-pencil"></i> Editar/Visualizar
                                 </a>
                             </div>
+                        </td>
+
+                        <td>
+
+                            <button type="button" class="btn red delete">
+                                <i class="fa fa-trash"></i>
+                                <span>
+                                    Delete
+                                </span>
+                            </button>
                         </td>
 
                     </tr>
@@ -177,7 +190,7 @@
 
 
 
-<form class="col-md-4 pull-right">
+<form class="col-md-4 pull-right" style="display:none;" id="editarShow">
 
     <div class="portlet box purple">
         <div class="portlet-title">

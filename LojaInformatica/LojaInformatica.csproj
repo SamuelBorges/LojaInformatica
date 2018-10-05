@@ -186,6 +186,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -205,6 +206,10 @@
     <Compile Include="Migrations\201810041223418_Endereco do Cliente.cs" />
     <Compile Include="Migrations\201810041223418_Endereco do Cliente.Designer.cs">
       <DependentUpon>201810041223418_Endereco do Cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810050329481_campos produo.cs" />
+    <Compile Include="Migrations\201810050329481_campos produo.Designer.cs">
+      <DependentUpon>201810050329481_campos produo.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Migrations\201809030201437_Inicio.cs" />
     <Compile Include="Models\Migrations\201809030201437_Inicio.Designer.cs">
@@ -4814,11 +4819,13 @@
     <Content Include="global\plugins\_uniform.scss" />
     <Content Include="global\_variables-md.scss" />
     <Content Include="global\_variables.scss" />
+    <Content Include="Scripts\Específicos\cadastrarProduto.js" />
     <Content Include="Scripts\Específicos\EditarCliente.js" />
     <Content Include="Scripts\Específicos\PreencherEditCliente.js" />
     <Content Include="Scripts\Específicos\Animacoes.js" />
     <Content Include="Scripts\Específicos\cadastrarCliente.js" />
     <Content Include="Scripts\Específicos\cadastrarUsuario.js" />
+    <Content Include="Scripts\Específicos\preencherEditProduto.js" />
     <Content Include="Scripts\Específicos\PreencherEditUsuario.js" />
     <Content Include="Scripts\Específicos\EditarUsuario.js" />
     <Content Include="Scripts\Específicos\VerMais.js" />
@@ -4860,6 +4867,7 @@
     <Content Include="Views\Login\ContarNumeroLogins.cshtml" />
     <Content Include="Views\Cliente\GerenciarClientes.cshtml" />
     <Content Include="Views\Cliente\AlterarDadosCliente.cshtml" />
+    <Content Include="Views\Marca\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4889,6 +4897,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810041223418_Endereco do Cliente.resx">
       <DependentUpon>201810041223418_Endereco do Cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810050329481_campos produo.resx">
+      <DependentUpon>201810050329481_campos produo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Models\Migrations\201809030201437_Inicio.resx">
       <DependentUpon>201809030201437_Inicio.cs</DependentUpon>
