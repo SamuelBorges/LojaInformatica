@@ -69,12 +69,13 @@ namespace LojaInformatica.BLL
                 return true;
             }
         }
-        public bool DeletarCliente(Cliente cliente)
+        public bool DeletarCliente(int id)
         {
 
             using (LojaInformaticaContext entity = new LojaInformaticaContext())
             {
-                entity.Clientes.Remove(cliente);
+                Cliente searched = entity.Clientes.FirstOrDefault(c => id == c.Id);
+                entity.Clientes.Remove(searched);
                 entity.SaveChanges();
                 return true;
             }

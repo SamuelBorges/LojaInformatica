@@ -4828,6 +4828,7 @@
     <Content Include="Scripts\Específicos\preencherEditProduto.js" />
     <Content Include="Scripts\Específicos\PreencherEditUsuario.js" />
     <Content Include="Scripts\Específicos\EditarUsuario.js" />
+    <Content Include="Scripts\Específicos\RemoverCliente.js" />
     <Content Include="Scripts\Específicos\VerMais.js" />
     <Content Include="Scripts\Específicos\VisualizarItem.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -4867,7 +4868,7 @@
     <Content Include="Views\Login\ContarNumeroLogins.cshtml" />
     <Content Include="Views\Cliente\GerenciarClientes.cshtml" />
     <Content Include="Views\Cliente\AlterarDadosCliente.cshtml" />
-    <Content Include="Views\Marca\Index.cshtml" />
+    <Content Include="Views\Produto\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -124,28 +124,28 @@ namespace LojaInformatica.Controllers
         }
 
         [AutorizarLogin, HttpPost]
-        public ActionResult RemoverCliente(Cliente cliente)
+        public ActionResult RemoverCliente(int id)
         {
 
-            object user = new { sucesso = false };
+            object client = new { sucesso = false };
             string validMessage = ""; //validações
             if (validMessage == "")
             {
-                bool cadastrado = new HashGenerator().DeletarCliente(cliente);
-                if (!cadastrado)
+                bool removido = new HashGenerator().DeletarCliente(id);
+                if (!removido)
                 {
-                    user = new { sucesso = false, message = "Erro inesperado, tente novemente." };
-                    return Json(user);
+                    client = new { sucesso = false, message = "Erro inesperado, tente novemente." };
+                    return Json(client);
 
                 }
-                user = new { sucesso = true, id = cliente.Id, nome = cliente.Nome, sobrenome = cliente.Sobrenome, pessoa = cliente.Pessoa, sexo = cliente.Sexo, message = validMessage };
-                return Json(user);
+                client = new {sucesso = true , message = validMessage };
+                return Json(client);
 
             }
             else
             {
-                user = new { sucesso = false, message = validMessage };
-                return Json(user);
+                client = new { sucesso = false, message = validMessage };
+                return Json(client);
             }
 
 
