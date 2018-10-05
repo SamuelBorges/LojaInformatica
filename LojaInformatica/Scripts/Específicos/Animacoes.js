@@ -4,6 +4,10 @@
         document.getElementById('cadastrar').style.display = 'block';
     else
         document.getElementById(cadastrarUser).style.display = 'none';
+    $('#editarShow').hide();
+    alert('chegou aqui');
+
+
 }
 function VerMais() {
     

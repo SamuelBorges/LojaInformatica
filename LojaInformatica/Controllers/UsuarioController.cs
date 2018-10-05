@@ -97,7 +97,6 @@ namespace LojaInformatica.Controllers
                 }
                 return Json(usuario, JsonRequestBehavior.AllowGet);
             }
-
         }
 
         public IList<Usuario> ListarUsuarios()

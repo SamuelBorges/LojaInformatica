@@ -50,13 +50,15 @@ namespace LojaInformatica.Controllers
                     return View("Index", ViewBag);
 
                 }
-                if (!PrimeiraVez)
+
+                //tirar o PrimeiraVedz e redirecionar pro editar
+                if (PrimeiraVez || !PrimeiraVez)
                 {
                     
                     return RedirectToAction("Index", "Home"/*, new RouteValueDictionary(usuario.Email)*/);
                 }
-               
-                return RedirectToAction("AlterarSenha", "Usuario");
+               //
+                return RedirectToAction("Index", "Home");
             }
             else
             {
