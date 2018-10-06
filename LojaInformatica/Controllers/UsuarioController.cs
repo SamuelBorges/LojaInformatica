@@ -155,6 +155,7 @@ namespace LojaInformatica.Controllers
                     editDoUser.Email = usuarioedit.Email;
                     editDoUser.NivelAcesso = usuarioedit.NivelAcesso;
                     editDoUser.Senha = usuarioedit.Senha;
+                    editDoUser.Ativo = usuarioedit.Ativo;
                    
                     entity.SaveChanges();
                     user = new { sucesso = true, id = editDoUser.Id, nome = editDoUser.Nome, email = editDoUser.Email, nivel = editDoUser.NivelAcesso, ativo = editDoUser.Ativo, message ="Usuário atualizado com sucesso." };

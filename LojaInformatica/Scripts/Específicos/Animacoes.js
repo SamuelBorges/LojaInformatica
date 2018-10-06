@@ -20,9 +20,7 @@ function VerMais() {
             if (resultado.sucesso) {
                 //all right
 
-               
-
-                var nivelAc = resultado.nivel == 0 ? 'Administrador' : 'Funcionário';
+                var nivelAc = resultado.nivel == 0 ? 'Administrador' : 'Funcionario';
                 var tr = '<tr>' +
                     '<td id="id' + resultado.id + '">' + resultado.id + '</td>' +
                     '<td id="nome' + resultado.id + '">' + resultado.nome + '</td>' +

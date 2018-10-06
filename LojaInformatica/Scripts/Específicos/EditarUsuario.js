@@ -7,8 +7,14 @@ $('#edit-user').click(function () {
     var senhaUser = $('#senha-editar').val();
     var nivelAcesso = $('#nivel-editar > option:selected').val();
     var SituacaoAtivo = $('#ativo-editar > option:selected').val();
+    var EhAtivo = false;
+    if (SituacaoAtivo==0) {
+        EhAtivo = true;
+    } else {
+        EhAtivo = false;
+    }
     var dados = {
-        Nome: nomeUser, Email: enderecoEmail, Senha: senhaUser, NivelAcesso: nivelAcesso, Ativo:SituacaoAtivo, Id: id
+        Nome: nomeUser, Email: enderecoEmail, Senha: senhaUser, NivelAcesso: nivelAcesso, Ativo:EhAtivo, Id: id
     };
     
 
@@ -27,9 +33,9 @@ $('#edit-user').click(function () {
 
                 $('#email' + resultado.id).text(resultado.email);
                 if (resultado.ativo) {
-                    $('#ativo' + resultado.id).text('Ativo');
+                    $('#estado' + resultado.id).text('Ativo');
                 } else {
-                    $('#ativo' + resultado.id).text('Inativo');
+                    $('#estado' + resultado.id).text('Inativo');
                 }
                 if (resultado.nivel==0) {
                     $('#nivelAcesso' + resultado.id).text('Administrador');
