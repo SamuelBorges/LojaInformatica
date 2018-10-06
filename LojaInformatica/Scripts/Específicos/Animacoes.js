@@ -5,7 +5,6 @@
     else
         document.getElementById(cadastrarUser).style.display = 'none';
     $('#editarShow').hide();
-    alert('chegou aqui');
 
 
 }

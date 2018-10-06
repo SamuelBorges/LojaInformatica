@@ -5,6 +5,8 @@ $('.botao-editar-cliente').click(function () {
 
 
     $('#editarShow').show();
+    $('#cadastrar').hide();
+
 
     //var display = $('.editarShow').style.display;
 
