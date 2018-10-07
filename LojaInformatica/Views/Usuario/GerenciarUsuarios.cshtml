@@ -102,50 +102,55 @@
 
 
 
-<form class="col-md-4 pull-right">
+<form class="col-md-4 pull-right ">
+    <a href="javascript:;" class="btn btn-theme-panel" onclick="ShowForm('cadastrar')">
+        <i class="fa fa-plus"></i>
+    </a>
+    <div id="cadastrar">
+        <div class="portlet box purple" style="display:block;">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-cogs"></i>
+                    <label>Cadastrar:</label>
+                </div>
 
-    <div class="portlet box purple" onclick="ShowForm('cadastrar')">
-        <div class="portlet-title">
-            <div class="caption">
-                <i class="fa fa-cogs"></i>
-                <label>Cadastrar:</label>
+            </div>
+        </div>
+        <div style="display:block;" id="cadastrar">
+            <div class="form-body">
+                <div class="form-group">
+                    <label>Nome: </label>
+                    <input type="text" class="form-control input-lg" placeholder="Nome" name="usuario.Nome" id="nome-usuario" @*class="cadastrar"*@>
+
+                    <label>Email: </label>
+                    <input type="text" class="form-control input-lg" placeholder="exemplo@endereço.com" name="usuario.Email" id="endereco-email">
+
+                    <label>Senha: </label>
+                    <input type="password" class="form-control input-lg" placeholder="**********" name="usuario.Senha" id="senha">
+                </div>
+                <div class="form-group">
+                    <label>Cargo/Nível de Acesso:</label>
+                    <select class="form-control input-lg" name="usuario.NivelAcesso" id="nivel-acesso">
+                        @foreach (LojaInformatica.DAO.Enum.NivelAcesso item in (LojaInformatica.DAO.Enum.NivelAcesso[])Enum.GetValues(typeof(LojaInformatica.DAO.Enum.NivelAcesso)))
+                        {
+
+                            int value = (int)item;
+
+                            <option value="@value" name="usuario.NivelAcesso">@Enum.GetName(item.GetType(), item)</option>
+                        }
+                    </select>
+
+                </div>
+
             </div>
 
+            <div class="form-actions right">
+
+                <button type="button" class="btn green" id="cadastrar-usuario">Cadastrar</button>
+            </div>
         </div>
     </div>
-    <div style="display:block;" id="cadastrar">
-        <div class="form-body">
-            <div class="form-group">
-                <label>Nome: </label>
-                <input type="text" class="form-control input-lg" placeholder="Nome" name="usuario.Nome" id="nome-usuario" @*class="cadastrar"*@>
 
-                <label>Email: </label>
-                <input type="text" class="form-control input-lg" placeholder="exemplo@endereço.com" name="usuario.Email" id="endereco-email">
-
-                <label>Senha: </label>
-                <input type="password" class="form-control input-lg" placeholder="**********" name="usuario.Senha" id="senha">
-            </div>
-            <div class="form-group">
-                <label>Cargo/Nível de Acesso:</label>
-                <select class="form-control input-lg" name="usuario.NivelAcesso" id="nivel-acesso">
-                    @foreach (LojaInformatica.DAO.Enum.NivelAcesso item in (LojaInformatica.DAO.Enum.NivelAcesso[])Enum.GetValues(typeof(LojaInformatica.DAO.Enum.NivelAcesso)))
-                    {
-
-                        int value = (int)item;
-
-                        <option value="@value" name="usuario.NivelAcesso">@Enum.GetName(item.GetType(), item)</option>
-                    }
-                </select>
-
-            </div>
-
-        </div>
-
-        <div class="form-actions right">
-
-            <button type="button" class="btn green" id="cadastrar-usuario">Cadastrar</button>
-        </div>
-    </div>
     @*onclick="atualizarInfo(usuario.Id)*@
     @*acrescentar isso quando for para atualizar*@
 
@@ -155,9 +160,9 @@
 
 
 
-<form class="col-md-4 pull-right">
+<form class="col-md-4 pull-right" style="display:none;" id="editarShow">
 
-    <div class="portlet box purple">
+    <div class="portlet box green">
         <div class="portlet-title">
             <div class="caption">
                 <i class="fa fa-cogs"></i>
@@ -166,7 +171,7 @@
 
         </div>
     </div>
-    <div id="editar" >
+    <div id="editar">
         <div class="form-body">
             <div class="form-group">
                 <label>Nome: </label>
@@ -197,8 +202,8 @@
                 <label>Situação:</label>
                 <select class="form-control input-lg" name="usuario.Ativo" id="ativo-editar">
 
-                        <option value="0" name="usuarioedit.Ativo">Ativo</option>
-                        <option value="1" name="usuarioedit.Ativo">Inativo</option>
+                    <option value="0" name="usuarioedit.Ativo">Ativo</option>
+                    <option value="1" name="usuarioedit.Ativo">Inativo</option>
                 </select>
 
             </div>

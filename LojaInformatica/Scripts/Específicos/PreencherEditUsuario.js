@@ -1,4 +1,7 @@
 ﻿$('.botao-editar-usuario').click(function () {
+
+    $('#editarShow').show();
+    $('#cadastrar').hide();
     var t = $(this).parents('.user-table');
     var idUser = $(t.children()[0]).text();
     console.log(idUser);

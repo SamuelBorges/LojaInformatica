@@ -4,7 +4,8 @@
 $('.botao-editar-produto').click(function () {
 
 
-    $('#editarShow').show();
+        $('#editarShow').show();
+    $('#cadastrar').hide();
 
 
     var t = $(this).parents('.product-table');
