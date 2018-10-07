@@ -1,5 +1,5 @@
 ﻿/// <reference path="../typings/jquery/jquery.d.ts" />
-$(document).on("click", '#cadastrar-cliente', function () {
+$(document).on("click", "#cadastrar-cliente", function () {
     var nomeClient = $('#nome-cliente').val();
     var sobrenome = $('#sobrenome-cliente').val();
     var pessoa = $('#pessoa > option:selected').val();

@@ -1,6 +1,5 @@
 ﻿/// <reference path="../typings/jquery/jquery.d.ts" />
-
-$('#edit-user').click(function () {
+$(document).on("click", "#edit-user", function () {
     var id = $('#id-editar').val();
     var nomeUser = $('#nome-editar').val();
     var enderecoEmail = $('#email-editar').val();

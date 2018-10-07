@@ -1,4 +1,4 @@
-﻿$('.botao-editar-usuario').click(function () {
+﻿$(document).on("click", ".botao-editar-usuario", function () {
 
     $('#editarShow').show();
     $('#cadastrar').hide();

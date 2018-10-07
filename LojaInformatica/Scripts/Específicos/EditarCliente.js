@@ -1,6 +1,5 @@
 ﻿/// <reference path="../typings/jquery/jquery.d.ts" />
-
-$('#edit-client').click(function () {
+$(document).on("click", "#edit-client", function () {
     var id = $('#id-editar').val();
     var nomeClient = $('#nome-editar').val();
     var sobrenomeClient = $('#sobrenome-editar').val();
