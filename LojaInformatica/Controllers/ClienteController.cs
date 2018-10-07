@@ -12,12 +12,15 @@ namespace LojaInformatica.Controllers
     public class ClienteController : Controller
     {
         // GET: Cliente
+        [AutorizarLogin]
         public ActionResult GerenciarClientes()
         {
             IList<Cliente> clientes = ListarClientes();
             ViewBag.Clientes = clientes;
             return View();
         }
+
+
         public IList<Cliente> ListarClientes()
         {
             using (LojaInformaticaContext entity = new LojaInformaticaContext())
@@ -25,8 +28,6 @@ namespace LojaInformatica.Controllers
                 var lista = entity.Clientes.ToList();
                 var OrderById = lista.OrderByDescending(u => u.Id).ToList();
                 var MostrarElementos = OrderById.Take(10).ToList();
-
-
 
                 return MostrarElementos;
 
@@ -150,6 +151,23 @@ namespace LojaInformatica.Controllers
 
 
 
+        }
+
+
+        public ActionResult VerMais(bool verMais)
+        {
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                object elementos = new { sucesso = false };
+                var lista = entity.Clientes.ToList();
+                var OrderById = lista.OrderByDescending(u => u.Id).ToList();
+                var mostrarElementos = OrderById.Take(10).ToList();
+
+                elementos = new { sucesso = true, elements = mostrarElementos };
+
+
+                return Json(elementos, JsonRequestBehavior.AllowGet);
+            }
         }
 
     }

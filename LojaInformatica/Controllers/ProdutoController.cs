@@ -1,5 +1,6 @@
 ﻿using LojaInformatica.BLL;
 using LojaInformatica.DAO;
+using LojaInformatica.DAO.DataBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,24 @@ namespace LojaInformatica.Controllers
         // GET: Marca
         public ActionResult Index()
         {
+            IList<Produto> produtos = ListarProdutos();
+            ViewBag.Produtos = produtos;
             return View();
         }
 
+
+        public IList<Produto> ListarProdutos()
+        {
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                var lista = entity.Produtos.ToList();
+                var OrderById = lista.OrderByDescending(u => u.Id).ToList();
+                var MostrarElementos = OrderById.Take(10).ToList();
+
+                return MostrarElementos;
+
+            }
+        }
 
         [AutorizarLogin, HttpPost]
         public ActionResult CadastrarProduto(Produto produto)

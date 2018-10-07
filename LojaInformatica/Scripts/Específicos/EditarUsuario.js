@@ -16,7 +16,6 @@ $('#edit-user').click(function () {
     var dados = {
         Nome: nomeUser, Email: enderecoEmail, Senha: senhaUser, NivelAcesso: nivelAcesso, Ativo:EhAtivo, Id: id
     };
-    
 
     $.ajax({
 

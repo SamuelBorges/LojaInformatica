@@ -1,6 +1,6 @@
 ﻿/// <reference path="../typings/jquery/jquery.d.ts" />
 
-$('#cadastrar-produto').click(function () {
+$(document).on("click",".cadastrar-produto".click,function () {
     var nomeProduct = $('#nome-produto').val();
     var descricao = $('#descricao-produto').val();
     var precoUnitario = $('#preco-unitario').val();

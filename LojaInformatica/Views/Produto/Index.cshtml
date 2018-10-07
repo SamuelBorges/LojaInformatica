@@ -3,95 +3,221 @@
     ViewBag.Title = "Index";
 }
 
-<div class="row">
-    <div class="col-md-12">
-        <!-- BEGIN VALIDATION STATES-->
-        <div class="portlet box blue">
+@{
+    if (ViewBag.Message != null)
+    {
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td class="text-center">
+                        <div class="alert alert-danger">@ViewBag.Message</div>
+                    </td>
+                </tr>
+        </table>
+    }
+
+
+}
+<div class="col-md-8 col-sm-12">
+    <div class="portlet grey-cascade box">
+        <div class="portlet-title">
+            <div class="caption">
+                Produtos:
+            </div>
+
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-responsive">
+            <table id="tabela-clientes" class="table table-hover table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Nome
+                        </th>
+                        <th>
+                            Descricao
+                        </th>
+                        <th>
+                            Quantidade
+                        </th>
+                        <th>
+                            Preço unitário
+                        </th>
+                        <th>
+                            Marca
+                        </th>
+                        <th>
+                            Ações
+                        </th>
+                        <th>
+                            Remover
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="tabela-completa">
+                    @foreach (var produto in ViewBag.produtos)
+                    {
+                    <tr class="client-table">
+                        <td id="id@(produto.Id)">
+                            @produto.Id
+                        </td>
+                        <td id="nome@(produto.Id)">
+                            @produto.Nome
+                        </td>
+                        <td id="descricao@(produto.Id)">
+                            @produto.Descricao
+                        </td>
+
+                        <td id="descricao@(produto.Id)">
+                            @produto.Quantidade
+
+                        </td>
+                        <td id="preco-unitario@(produto.PrecoUnitario)">
+                            @produto.PrecoUnitario
+                        </td>
+                        <td id="marca@(produto.Marca)">
+                            @produto.Marca
+                        </td>
+                       
+                        <td>
+
+                            <div class="actions">
+                                <a class="btn btn-default btn-sm botao-editar-produto" id="btn-editar@(produto.Id)">
+                                    <i class="fa fa-pencil"></i> Editar/Visualizar
+                                </a>
+                            </div>
+                        </td>
+
+                        <td>
+
+                            <button type="button" class="btn red delete botao-deletar-produto" id="deletar@(produto.Id)">
+                                <i class="fa fa-trash"></i>
+                                <span>
+                                    Delete
+                                </span>
+                            </button>
+                        </td>
+
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <button type="button" class="btn blue show-more" id="show-more">Ver Mais</button>
+
+</div>
+
+
+
+<form class="col-md-4 pull-right ">
+    <a href="javascript:;" class="btn btn-theme-panel" onclick="ShowForm('cadastrar')">
+        <i class="fa fa-plus"></i>
+    </a>
+    <div id="cadastrar">
+        <div class="portlet box purple" style="display:block;">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-gift"></i>Produtos
+                    <i class="fa fa-cogs"></i>
+                    <label>Cadastrar:</label>
                 </div>
-                <div class="tools">
-                    <a href="javascript:;" class="collapse" data-original-title="" title="">
-                    </a>
-                </div>
-            </div>
-            <div class="portlet-body form">
-                <!-- BEGIN FORM-->
-                <form action="#" class="form-horizontal">
-                    <div class="form-body">
-                        <h3 class="form-section">Cadastrar novo produto</h3>
-                        <div class="form-group has-warning">
-                            <label class="control-label col-md-3">Produto:</label>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" id="Produto">
 
-                            </div>
-                        </div>
-
-
-                        <div class="form-group has-warning">
-                            <label class="control-label col-md-3">Descrição:</label>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" id="Descricao">
-
-                            </div>
-                        </div>
-
-                        <div class="form-group has-warning">
-                            <label class="control-label col-md-3">Quantidade:</label>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" id="Quantidade">
-
-                            </div>
-                        </div>
-
-                        @*MARCA*@
-                        <div class="col-md-12">
-                            <!-- BEGIN VALIDATION STATES-->
-                            <div class="portlet box blue">
-                                <div class="portlet-body form" style="display: block;">
-                                    <!-- BEGIN FORM-->
-                                        <div class="form-body">
-                                            <h3 class="form-section">Cadastrar ou utilizar marca</h3>
-                                            <div class="form-group has-warning">
-                                                <label class="control-label col-md-3">Marca:</label>
-                                                <div class="col-md-4">
-                                                    <input type="text" class="form-control" id="inputWarning">
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    <!-- END FORM-->
-                                </div>
-                            </div>
-                            <!-- END VALIDATION STATES-->
-                        </div>
-
-
-
-                        <div class="form-group has-warning">
-                            <label class="control-label col-md-3">Preço unitário:</label>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" id="inputWarning">
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="form-actions">
-                        <div class="row">
-                            <div class="col-md-offset-3 col-md-9">
-                                <button type="submit" class="btn green">Submit</button>
-                                <button type="button" class="btn default">Cancel</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-                <!-- END FORM-->
             </div>
         </div>
-        <!-- END VALIDATION STATES-->
+        <div id="cadastrarGamb">
+            <div class="form-body">
+                <div class="form-group">
+                    <label>Nome: </label>
+                    <input type="text" class="form-control input-lg" placeholder="Nome" name="produto.Nome" id="nome-produto" @*class="cadastrar"*@>
+
+                    <label>Descrição: </label>
+                    <input type="text" class="form-control input-lg" placeholder="Descrição" name="produto.Descricao" id="descricao-produto">
+
+                </div>
+                <label>Quantidade: </label>
+                <input type="text" class="form-control input-lg" placeholder="Quantidade" name="produto.Quantidade" id="quantidade-produto">
+
+                <label>Preço unitário:</label>
+                <input class="form-control input-lg" name="produto.PrecoUnitario" id="preco-unitario">
+
+                <div class="form-actions right">
+
+                    <button type="button" class="btn green" id="cadastrar-produto">Cadastrar</button>
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>
+</form>
+
+<form class="col-md-4 pull-right" style="display:none;" id="editarShow">
+
+    <div class="portlet box green">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs"></i>
+                <label>Editar:</label>
+            </div>
+
+        </div>
+    </div>
+    <div id="editar">
+        <div class="form-body">
+            <div class="form-group">
+
+                <input type="text" class="form-control input-lg" placeholder="id" name="clienteedit.Id" id="id-editar" style="display:none;">
+
+                <input type="text" class="form-control input-lg" placeholder="Nome" name="clienteedit.Nome" id="nome-editar">
+
+
+                <input type="text" class="form-control input-lg" placeholder="Sobrenome" name="clienteedit.Sobrenome" id="sobrenome-editar">
+
+                <label>Pessoa: </label>
+                <select class="form-control input-lg" name="clienteedit.TipoPessoa" id="pessoa-editar">
+                    @foreach (LojaInformatica.DAO.Enum.TipoPessoa item in (LojaInformatica.DAO.Enum.TipoPessoa[])Enum.GetValues(typeof(LojaInformatica.DAO.Enum.TipoPessoa)))
+                    {
+
+                        int value = (int)item;
+
+                        <option value="@value" name="clienteedit.NivelAcesso">@Enum.GetName(item.GetType(), item)</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Sexo:</label>
+                <select class="form-control input-lg" name="clienteedit.Sexo" id="sexo-editar">
+                    @foreach (LojaInformatica.DAO.Enum.Sexo item in (LojaInformatica.DAO.Enum.Sexo[])Enum.GetValues(typeof(LojaInformatica.DAO.Enum.Sexo)))
+                    {
+
+                        int value = (int)item;
+
+                        <option value="@value" name="clienteedit.Sexo">@Enum.GetName(item.GetType(), item)</option>
+                    }
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="form-actions right">
+
+            <button type="button" class="btn green" id="edit-client">Editar</button>
+        </div>
+    </div>
+    @*onclick="atualizarInfo(cliente.Id)*@
+    @*acrescentar isso quando for para atualizar*@
+
+</form>
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/Específicos/EditarCliente.js"></script>
+<script src="~/Scripts/Específicos/cadastrarCliente.js"></script>
+<script src="~/Scripts/Específicos/Animacoes.js"></script>
+<script src="~/Scripts/Específicos/RemoverCliente.js"></script>
+<script src="~/Scripts/Específicos/PreencherEditCliente.js"></script>
+
+
 

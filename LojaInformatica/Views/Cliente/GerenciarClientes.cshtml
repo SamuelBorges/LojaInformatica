@@ -18,109 +18,110 @@
 
 
 }
-<div class="col-md-8 col-sm-12">
-    <div class="portlet grey-cascade box">
-        <div class="portlet-title">
-            <div class="caption">
-                Clientes:
+        <div class="col-md-8 col-sm-12">
+            <div class="portlet grey-cascade box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        Clientes:
+                    </div>
+
+                </div>
             </div>
+            <div class="portlet-body">
+                <div class="table-responsive">
+                    <table id="tabela-clientes" class="table table-hover table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    ID
+                                </th>
+                                <th>
+                                    Nome
+                                </th>
+                                <th>
+                                    Sobrenome
+                                </th>
+                                <th>
+                                    Pessoa
+                                </th>
+                                <th>
+                                    Sexo
+                                </th>
+                                <th>
+                                    Editar ou Visualizar
+                                </th>
+                                <th>
+                                    Remover
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="tabela-completa">
+                            @foreach (var cliente in ViewBag.clientes)
+                            {
+                                <tr class="client-table">
+                                    <td id="id@(cliente.Id)">
+                                        @cliente.Id
+                                    </td>
+                                    <td id="nome@(cliente.Id)">
+                                        @cliente.Nome
+                                    </td>
+                                    <td id="sobrenome@(cliente.Id)">
+                                        @cliente.Sobrenome
+                                    </td>
 
+                                    <td id="pessoa@(cliente.Id)">
+                                        @if (cliente.Pessoa == 0)
+                                        {
+                                            <span>Física</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Jurídica</span>
+                                        }
+                                    </td>
+                                    <td id="sexo@(cliente.Id)">
+                                        @if (cliente.Sexo == LojaInformatica.DAO.Enum.Sexo.Masculino)
+                                        {
+                                            <span>Masculino</span>
+                                        }
+
+                                        else if (cliente.Sexo == LojaInformatica.DAO.Enum.Sexo.Feminino)
+                                        {
+                                            <span>Feminino</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Indeterminado</span>
+                                        }
+                                    </td>
+                                    <td>
+
+                                        <div class="actions">
+                                            <a class="btn btn-default btn-sm botao-editar-cliente" id="btn-editar@(cliente.Id)">
+                                                <i class="fa fa-pencil"></i> Editar/Visualizar
+                                            </a>
+                                        </div>
+                                    </td>
+
+                                    <td>
+
+                                        <button type="button" class="btn red delete botao-deletar-cliente" id="deletar@(cliente.Id)">
+                                            <i class="fa fa-trash"></i>
+                                            <span>
+                                                Delete
+                                            </span>
+                                        </button>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <button type="button" class="btn blue show-more" id="show-more">Ver Mais</button>
+            
         </div>
-    </div>
-    <div class="portlet-body">
-        <div class="table-responsive">
-            <table id="tabela-clientes" class="table table-hover table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>
-                            ID
-                        </th>
-                        <th>
-                            Nome
-                        </th>
-                        <th>
-                            Sobrenome
-                        </th>
-                        <th>
-                            Pessoa
-                        </th>
-                        <th>
-                            Sexo
-                        </th>
-                        <th>
-                            Editar ou Visualizar
-                        </th>
-                        <th>
-                            Remover
-                        </th>
-                    </tr>
-                </thead>
-                <tbody class="tabela-completa">
-                    @foreach (var cliente in ViewBag.clientes)
-                    {
-                    <tr class="client-table">
-                        <td id="id@(cliente.Id)">
-                            @cliente.Id
-                        </td>
-                        <td id="nome@(cliente.Id)">
-                            @cliente.Nome
-                        </td>
-                        <td id="sobrenome@(cliente.Id)">
-                            @cliente.Sobrenome
-                        </td>
-
-                        <td id="pessoa@(cliente.Id)">
-                            @if (cliente.Pessoa == 0)
-                            {
-                                <span>Física</span>
-                            }
-                            else
-                            {
-                                <span>Jurídica</span>
-                            }
-                        </td>
-                        <td id="sexo@(cliente.Id)">
-                            @if (cliente.Sexo == LojaInformatica.DAO.Enum.Sexo.Masculino)
-                            {
-                                <span>Masculino</span>
-                            }
-
-                            else if (cliente.Sexo == LojaInformatica.DAO.Enum.Sexo.Feminino)
-                            {
-                                <span>Feminino</span>
-                            }
-                            else
-                            {
-                                <span>Indeterminado</span>
-                            }
-                        </td>
-                        <td>
-
-                            <div class="actions">
-                                <a class="btn btn-default btn-sm botao-editar-cliente" id="btn-editar@(cliente.Id)">
-                                    <i class="fa fa-pencil"></i> Editar/Visualizar
-                                </a>
-                            </div>
-                        </td>
-
-                        <td>
-
-                            <button type="button" class="btn red delete botao-deletar-cliente" id="deletar@(cliente.Id)">
-                                <i class="fa fa-trash"></i>
-                                <span>
-                                    Delete
-                                </span>
-                            </button>
-                        </td>
-
-                    </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div href="" class="ver-mais" onclick="VerMais()" id="Show">Ver mais</div>
-</div>
 
 
 

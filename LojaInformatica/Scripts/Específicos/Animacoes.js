@@ -1,4 +1,5 @@
-﻿function ShowForm(cadastrarUser) {
+﻿
+function ShowForm(cadastrarUser) {
     var display = document.getElementById(cadastrarUser).style.display;
     if (display == "none")
         document.getElementById('cadastrar').style.display = 'block';
@@ -8,36 +9,69 @@
 
 
 }
-function VerMais() {
-    
+$(document).on("click", "#show-more", function () {
+ var vermais = true;
+var dados = {
+        verMais: vermais
+    };
+
+
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/Usuario/ListarUsuarios',
+        url: '/Cliente/VerMais',
         contentType: 'application/json; charset=utf-8',
-        data: JSON.stringify(text),
         success: function (resultado) {
             if (resultado.sucesso) {
-                //all right
 
-                var nivelAc = resultado.nivel == 0 ? 'Administrador' : 'Funcionario';
-                var tr = '<tr>' +
-                    '<td id="id' + resultado.id + '">' + resultado.id + '</td>' +
-                    '<td id="nome' + resultado.id + '">' + resultado.nome + '</td>' +
-                    '<td id="email' + resultado.id + '">' + resultado.email + '</td>' +
-                    '<td id="estado' + resultado.id + '">' + ativo + '</td>' +
-                    '<td id="nivelAcesso' + resultado.id + '">' + nivelAc + '</td>' +
-                    '</tr >';
+                console.log(resultado.elements[0].Email);
+                $.each(resultado.elements, function (i, val) {
 
-                $('#tabela-usuarios').prepend(tr);
-            } else {
-                //nao foi validado corretamente
+
+                    var sexo = '';
+                    if (resultado.elements[i].Sexo == 0) {
+                        sexo = 'Masculino';
+                    } else if (resultado.sexo == 1) {
+                        sexo = 'Feminino';
+                    } else {
+                        sexo = 'Indeterminado';
+                    }
+                    var pessoa = resultado.elements[i].Pessoa == 0 ? 'Física' : 'Jurídica';
+                    var tr = '<tr>' +
+                        '<td id="id' + resultado.elements[i].Id + '">' + resultado.elements[i].Id + '</td>' +
+                        '<td id="nome' + resultado.elements[i].Id + '">' + resultado.elements[i].Nome + '</td>' +
+                        '<td id="sobrenome' + resultado.elements[i].Id + '">' + resultado.elements[i].Sobrenome + '</td>' +
+                        '<td id="pessoa' + resultado.elements[i].Id + '">' + pessoa + '</td>' +
+                        '<td id="sexo' + resultado.elements[i].Id + '">' + sexo + '</td>' +
+                        '<td>' + ' <div class="actions"> ' + ' <a class="btn btn-default btn-sm botao-editar-cliente " ' +
+                        'id="btn-editar' + resultado.elements[i].Id + '"' + ' onclick = "editarClientePorId()" > ' +
+                        '<i class="fa fa-pencil"></i> Editar/Visualizar' + '</a>' + '</div >' + '</td >' +
+                        '<td>' + '<div class="actions">' + '<button type="button" class="btn red delete botao-deletar-cliente" id="deletar' +  resultado.elements[i].Id +'">'+
+                         ' <i class="fa fa-trash"></i> <span>Delete</span>' + '</a>' + '</div>' + '</td> </button> </td>'+
+                                            
+                        '</tr >';
+
+                                            
+                                           
+                                        
+                                    
+
+//[id^='input']
+                    $('#tabela-clientes').append(tr);
+
+
+
+                });
+                
+                
+
+                //$('#tabela-usuarios').append(tr);
+            }else {
+                alert('Erro interno, tente novamente.');
             }
         },
         error: function (xml, status, error) {
 
         }
-
-
     })
-}
+});

@@ -1,6 +1,5 @@
 ﻿/// <reference path="../typings/jquery/jquery.d.ts" />
-
-$('#cadastrar-cliente').click(function () {
+$(document).on("click", '#cadastrar-cliente', function () {
     var nomeClient = $('#nome-cliente').val();
     var sobrenome = $('#sobrenome-cliente').val();
     var pessoa = $('#pessoa > option:selected').val();
@@ -29,23 +28,21 @@ $('#cadastrar-cliente').click(function () {
                     sexo = 'Indeterminado';
                 }
                 var pessoa = resultado.pessoa == 0 ? 'Física' : 'Jurídica';
-                var tr = '<tr>' +
-                    '<td id="id' + resultado.id + '">' + resultado.id + '</td>' +
+                var tr = '<tr class="client-table">' +
+                    '<td id="' + resultado.id + '">' + resultado.id + '</td>' +
                     '<td id="nome' + resultado.id + '">' + resultado.nome + '</td>' +
                     '<td id="sobrenome' + resultado.id + '">' + resultado.sobrenome + '</td>' +
                     '<td id="pessoa' + resultado.id + '">' + pessoa + '</td>' +
                     '<td id="sexo' + resultado.id + '">' + sexo + '</td>' +
-                    '<td>' + ' <div class="actions"> ' + ' <a class="btn btn-default btn-sm botao-editar-cliente " ' +
-                    'id="btn-editar' + resultado.id + '"' + ' onclick = "editarClientePorId()" > ' +
+                    '<td id="editar' +resultado.id+'>'+ ' <div class="actions"> ' + ' <a class="btn btn-default btn-sm botao-editar-cliente" id="btn-editar' + resultado.id + '">' +
                     '<i class="fa fa-pencil"></i> Editar/Visualizar' + '</a>' + '</div >' + '</td >' +
-                    '<td>' + '<div class="actions">' + '<a class="btn btn-default btn-sm botao-remover-cliente" id="btn-remover' +
-                    resultado.id + '">' + ' <i class="fa fa-pencil"></i> Remover' + '</a>' + '</div>' + '</td>' +
+                   '<td>'  + '<button type="button" class="btn red delete botao-deletar-cliente" id="deletar' +  resultado.id +'">'+
+                         ' <i class="fa fa-trash"></i> <span>Delete</span>' + '</a>'  + '</td> </button> </td>'+
                     '</tr >';
 
-                        
-                            
-                                
-                        
+                                              
+
+
                     
 
                 $('#tabela-clientes').prepend(tr);
