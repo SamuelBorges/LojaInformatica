@@ -12,7 +12,7 @@ namespace LojaInformatica.BLL
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             object usuarioLogado = filterContext.HttpContext.Session["usuarioLogado"];
-
+            
             if (usuarioLogado == null)
             {
                 filterContext.Result = new RedirectToRouteResult(

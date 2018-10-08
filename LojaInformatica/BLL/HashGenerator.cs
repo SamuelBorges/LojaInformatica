@@ -80,6 +80,17 @@ namespace LojaInformatica.BLL
                 return true;
             }
         }
+        public bool DeletarProduto(int id)
+        {
+
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                Produto searched = entity.Produtos.FirstOrDefault(c => id == c.Id);
+                entity.Produtos.Remove(searched);
+                entity.SaveChanges();
+                return true;
+            }
+        }
 
         public bool ProcurarUsuario (Usuario usuario)
         {

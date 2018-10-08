@@ -1,12 +1,9 @@
 ﻿/// <reference path="../typings/jquery/jquery.d.ts" />
 
+$(document).on("click", ".botao-editar-produto", function () {
 
-$('.botao-editar-produto').click(function () {
-
-
-        $('#editarShow').show();
+    $('#editarShow').show();
     $('#cadastrar').hide();
-
 
     var t = $(this).parents('.product-table');
 
@@ -25,9 +22,9 @@ $('.botao-editar-produto').click(function () {
             $('#id-editar').val(resultado.id);
             $('#nome-editar').val(resultado.nome);
             $('#descricao-editar').val(resultado.descricao);
-            $('#precoUnitario-editar').val(resultado.precoUnitario);
-            $('#marca-editar').val(resultado.marca);
-           
+            $('#quantidade-editar').val(resultado.quantidade);
+            $('#valor-editar').val(resultado.precoUnitario);
+
         },
         error: function (xml, status, error) {
             alert('Erro inesperado, tente novamente.');
@@ -35,3 +32,5 @@ $('.botao-editar-produto').click(function () {
         }
     })
 });
+
+

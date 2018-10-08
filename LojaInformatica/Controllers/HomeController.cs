@@ -14,6 +14,7 @@ namespace LojaInformatica.Controllers
         public ActionResult Index(/*Usuario usuario*/)
         {
 
+
             //bool EhAdministrador = new HashGenerator().ProcurarUsuario(usuario);
             //ViewBag.temNivel = EhAdministrador;
             return View(ViewBag);

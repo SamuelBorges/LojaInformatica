@@ -1,7 +1,6 @@
 ﻿/// <reference path="typings/jquery/jquery.d.ts" />
 
-
-$('ver-mais').click(function () {
+$(document).on("click", "#sshow-more", function () {
     
     $.getJSON("/Home/MostrarMais", function (data) {
             employees = data;

@@ -34,7 +34,7 @@ $(document).on("click", "#cadastrar-cliente", function () {
                     '<td id="sobrenome' + resultado.id + '">' + resultado.sobrenome + '</td>' +
                     '<td id="pessoa' + resultado.id + '">' + pessoa + '</td>' +
                     '<td id="sexo' + resultado.id + '">' + sexo + '</td>' +
-                    '<td id="editar' +resultado.id+'>'+ ' <div class="actions"> ' + ' <a class="btn btn-default btn-sm botao-editar-cliente" id="btn-editar' + resultado.id + '">' +
+                    '<td id="editar' +resultado.id+'">'+ ' <div class="actions"> ' + ' <a class="btn btn-default btn-sm botao-editar-cliente" id="btn-editar' + resultado.id + '">' +
                     '<i class="fa fa-pencil"></i> Editar/Visualizar' + '</a>' + '</div >' + '</td >' +
                    '<td>'  + '<button type="button" class="btn red delete botao-deletar-cliente" id="deletar' +  resultado.id +'">'+
                          ' <i class="fa fa-trash"></i> <span>Delete</span>' + '</a>'  + '</td> </button> </td>'+

@@ -41,8 +41,13 @@ namespace LojaInformatica.Controllers
                     return Json(user);
 
                 }
-                user = new { sucesso = true, id = usuario.Id, nome = usuario.Nome, email = usuario.Email, nivel = usuario.NivelAcesso, ativo = usuario.Ativo, message = validMessage };
+                using (LojaInformaticaContext entity = new LojaInformaticaContext())
+                {
+                    var userDB = entity.Usuarios.FirstOrDefault(p => p.Email == usuario.Email);
+                    user = new { sucesso = true, id = userDB.Id, nome = usuario.Nome, email = usuario.Email, nivel = usuario.NivelAcesso, ativo = usuario.Ativo, message = validMessage };
                 return Json(user);
+                }
+
 
             }
             else
@@ -61,7 +66,7 @@ namespace LojaInformatica.Controllers
             {
                 var lista = entity.Usuarios.ToList();
                 var OrderById = lista.OrderByDescending(u => u.Id).ToList();
-                var MostrarElementos = OrderById.Take(10).ToList();
+                var MostrarElementos = OrderById.Skip(10).Take(10).ToList();
                 
                 return Json(MostrarElementos, JsonRequestBehavior.AllowGet);
             }

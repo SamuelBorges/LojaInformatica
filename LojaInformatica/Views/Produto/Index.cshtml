@@ -29,7 +29,7 @@
     </div>
     <div class="portlet-body">
         <div class="table-responsive">
-            <table id="tabela-clientes" class="table table-hover table-bordered table-striped">
+            <table id="tabela-produtos" class="table table-hover table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>
@@ -61,7 +61,7 @@
                 <tbody class="tabela-completa">
                     @foreach (var produto in ViewBag.produtos)
                     {
-                    <tr class="client-table">
+                    <tr class="product-table">
                         <td id="id@(produto.Id)">
                             @produto.Id
                         </td>
@@ -72,11 +72,11 @@
                             @produto.Descricao
                         </td>
 
-                        <td id="descricao@(produto.Id)">
+                        <td id="quantidade@(produto.Id)">
                             @produto.Quantidade
 
                         </td>
-                        <td id="preco-unitario@(produto.PrecoUnitario)">
+                        <td id="preco-unitario@(produto.Id)">
                             @produto.PrecoUnitario
                         </td>
                         <td id="marca@(produto.Marca)">
@@ -102,7 +102,7 @@
                             </button>
                         </td>
 
-                    </tr>
+                    </tr>   
                     }
                 </tbody>
             </table>
@@ -125,7 +125,6 @@
                     <i class="fa fa-cogs"></i>
                     <label>Cadastrar:</label>
                 </div>
-
             </div>
         </div>
         <div id="cadastrarGamb">
@@ -169,35 +168,19 @@
         <div class="form-body">
             <div class="form-group">
 
-                <input type="text" class="form-control input-lg" placeholder="id" name="clienteedit.Id" id="id-editar" style="display:none;">
+                <input type="text" class="form-control input-lg" placeholder="id" name="produtoedit.Id" id="id-editar" style="display:none;">
+                
+                <label>Produto:</label>
+                <input type="text" class="form-control input-lg" placeholder="Nome" name="produtoedit.Nome" id="nome-editar">
 
-                <input type="text" class="form-control input-lg" placeholder="Nome" name="clienteedit.Nome" id="nome-editar">
+                <label>Descrição:</label>
+                <input type="text" class="form-control input-lg" placeholder="Descricao" name="produtoedit.Descricao" id="descricao-editar">
 
+                <label>Quantidade:</label>
+                <input type="text" class="form-control input-lg" placeholder="Quantidade" name="produtoedit.Quantidade" id="quantidade-editar">
 
-                <input type="text" class="form-control input-lg" placeholder="Sobrenome" name="clienteedit.Sobrenome" id="sobrenome-editar">
-
-                <label>Pessoa: </label>
-                <select class="form-control input-lg" name="clienteedit.TipoPessoa" id="pessoa-editar">
-                    @foreach (LojaInformatica.DAO.Enum.TipoPessoa item in (LojaInformatica.DAO.Enum.TipoPessoa[])Enum.GetValues(typeof(LojaInformatica.DAO.Enum.TipoPessoa)))
-                    {
-
-                        int value = (int)item;
-
-                        <option value="@value" name="clienteedit.NivelAcesso">@Enum.GetName(item.GetType(), item)</option>
-                    }
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Sexo:</label>
-                <select class="form-control input-lg" name="clienteedit.Sexo" id="sexo-editar">
-                    @foreach (LojaInformatica.DAO.Enum.Sexo item in (LojaInformatica.DAO.Enum.Sexo[])Enum.GetValues(typeof(LojaInformatica.DAO.Enum.Sexo)))
-                    {
-
-                        int value = (int)item;
-
-                        <option value="@value" name="clienteedit.Sexo">@Enum.GetName(item.GetType(), item)</option>
-                    }
-                </select>
+                <label>Preço (R$):</label>
+                <input type="text" class="form-control input-lg" placeholder="Valor" name="produtoedit.Valor" id="valor-editar">
 
             </div>
 
@@ -205,7 +188,7 @@
 
         <div class="form-actions right">
 
-            <button type="button" class="btn green" id="edit-client">Editar</button>
+            <button type="button" class="btn green" id="edit-product">Editar</button>
         </div>
     </div>
     @*onclick="atualizarInfo(cliente.Id)*@
@@ -213,11 +196,11 @@
 
 </form>
 <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
-<script src="~/Scripts/Específicos/EditarCliente.js"></script>
-<script src="~/Scripts/Específicos/cadastrarCliente.js"></script>
+<script src="~/Scripts/Específicos/EditarProduto.js"></script>
+<script src="~/Scripts/Específicos/cadastrarProduto.js"></script>
 <script src="~/Scripts/Específicos/Animacoes.js"></script>
-<script src="~/Scripts/Específicos/RemoverCliente.js"></script>
-<script src="~/Scripts/Específicos/PreencherEditCliente.js"></script>
+<script src="~/Scripts/Específicos/RemoverProduto.js"></script>
+<script src="~/Scripts/Específicos/preencherEditProduto.js"></script>
 
 
 

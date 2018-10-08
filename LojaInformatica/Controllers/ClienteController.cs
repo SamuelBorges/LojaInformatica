@@ -154,14 +154,14 @@ namespace LojaInformatica.Controllers
         }
 
 
-        public ActionResult VerMais(bool verMais)
+        public ActionResult VerMais()
         {
             using (LojaInformaticaContext entity = new LojaInformaticaContext())
             {
                 object elementos = new { sucesso = false };
                 var lista = entity.Clientes.ToList();
                 var OrderById = lista.OrderByDescending(u => u.Id).ToList();
-                var mostrarElementos = OrderById.Take(10).ToList();
+                var mostrarElementos = OrderById.Skip(10).Take(10).ToList();
 
                 elementos = new { sucesso = true, elements = mostrarElementos };
 

@@ -22,7 +22,7 @@ $(document).on("click","#cadastrar-usuario", function () {
                 var ativo = resultado.ativo === true ? 'Ativo' : 'Inativo';
 
                 var nivelAc = resultado.nivel == 0 ? 'Administrador' : 'Funcionário';
-                var tr = '<tr>' +
+                var tr = '<tr class="user-table">' +
                     '<td id="id-editar' + resultado.id + '">' + resultado.id + '</td>' +
                     '<td id="nome-editar' + resultado.id + '">' + resultado.nome + '</td>' +
                     '<td id="email-editar' + resultado.id + '">' + resultado.email + '</td>' +

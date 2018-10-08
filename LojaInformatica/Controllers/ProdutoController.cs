@@ -61,5 +61,107 @@ namespace LojaInformatica.Controllers
 
 
         }
+
+
+        [AutorizarLogin, HttpPost]
+        public ActionResult AlterarDadosProduto(int id)
+        {
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                object product = new { sucesso = false };
+
+
+                var produto = entity.Produtos.FirstOrDefault(p => p.Id == id);
+
+                if (produto != null)
+                {
+                    product = new
+                    {
+                        sucesso = true,
+                        id = produto.Id,
+                        nome = produto.Nome,
+                        descricao = produto.Descricao,
+                        quantidade = produto.Quantidade,
+                        precoUnitario = produto.PrecoUnitario
+                    };
+                }
+                return Json(product, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
+
+        public ActionResult AtualizarProduto(Produto produtoEdit, int Id)
+        {
+
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                object user = new { sucesso = false };
+                string validMessage = "";
+
+                if (validMessage == "")
+                {
+                    Produto editDoProduct = new Produto();
+                    try
+                    {
+                        editDoProduct = entity.Produtos.Find(Id);
+
+                    }
+                    catch (Exception)
+                    {
+                        user = new { sucesso = false, message = "O produto que você tenta editar não existe." };
+                        return Json(user);
+                    }
+
+
+                    editDoProduct.Nome = produtoEdit.Nome;
+                    editDoProduct.Descricao = produtoEdit.Descricao;
+                    editDoProduct.Quantidade = produtoEdit.Quantidade;
+                    editDoProduct.PrecoUnitario = produtoEdit.PrecoUnitario;
+
+                    entity.SaveChanges();
+                    user = new { sucesso = true, id = editDoProduct.Id, nome = editDoProduct.Nome, descricao = editDoProduct.Descricao, quantidade = editDoProduct.Quantidade, precoUnitario = editDoProduct.PrecoUnitario, message = "Produto atualizado com sucesso." };
+                    return Json(user);
+
+                }
+                user = new { sucesso = false, message = validMessage };
+                return Json(user);
+
+            }
+
+        }
+
+
+
+
+        [AutorizarLogin, HttpPost]
+        public ActionResult RemoverProduto(int id)
+        {
+
+            object product= new { sucesso = false };
+            string validMessage = ""; //validações
+            if (validMessage == "")
+            {
+                bool removido = new HashGenerator().DeletarProduto(id);
+                if (!removido)
+                {
+                    product = new { sucesso = false, message = "Erro inesperado, tente novamente." };
+                    return Json(product);
+
+                }
+                product = new { sucesso = true, message = validMessage };
+                return Json(product);
+
+            }
+            else
+            {
+                product = new { sucesso = false, message = validMessage };
+                return Json(product);
+            }
+
+
+
+        }
     }
 }

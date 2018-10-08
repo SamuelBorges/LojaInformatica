@@ -186,6 +186,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OrdemServicoController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
@@ -4821,6 +4822,7 @@
     <Content Include="global\_variables.scss" />
     <Content Include="Scripts\Específicos\cadastrarProduto.js" />
     <Content Include="Scripts\Específicos\EditarCliente.js" />
+    <Content Include="Scripts\Específicos\EditarProduto.js" />
     <Content Include="Scripts\Específicos\PreencherEditCliente.js" />
     <Content Include="Scripts\Específicos\Animacoes.js" />
     <Content Include="Scripts\Específicos\cadastrarCliente.js" />
@@ -4829,6 +4831,7 @@
     <Content Include="Scripts\Específicos\PreencherEditUsuario.js" />
     <Content Include="Scripts\Específicos\EditarUsuario.js" />
     <Content Include="Scripts\Específicos\RemoverCliente.js" />
+    <Content Include="Scripts\Específicos\RemoverProduto.js" />
     <Content Include="Scripts\Específicos\VerMais.js" />
     <Content Include="Scripts\Específicos\VisualizarItem.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -4869,6 +4872,7 @@
     <Content Include="Views\Cliente\GerenciarClientes.cshtml" />
     <Content Include="Views\Cliente\AlterarDadosCliente.cshtml" />
     <Content Include="Views\Produto\Index.cshtml" />
+    <Content Include="Views\OrdemServico\OrdemServico.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -6,14 +6,6 @@ $('.botao-editar-cliente').click(function () {
 
     $('#editarShow').show();
     $('#cadastrar').hide();
-
-
-    //var display = $('.editarShow').style.display;
-
-    //if (display == "none") {
-    //    $('#editarShow').toggle();
-
-    //}
     
     var t = $(this).parents('.client-table');
     //$('.client-table').css('color', '#4255b2');  pintar fundo ao clicar
