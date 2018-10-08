@@ -12,6 +12,7 @@ namespace LojaInformatica.Controllers
     public class ProdutoController : Controller
     {
         // GET: Marca
+        
         public ActionResult Index()
         {
             IList<Produto> produtos = ListarProdutos();
@@ -41,7 +42,7 @@ namespace LojaInformatica.Controllers
             string validMessage = ""; //validações
             if (validMessage == "")
             {
-                bool cadastrado = new HashGenerator().RegistrarProduto(produto);
+                bool cadastrado = new ProdutoBLL().RegistrarProduto(produto);
                 if (!cadastrado)
                 {
                     product = new { sucesso = false, message = "Erro inesperado, tente novemente." };
@@ -91,7 +92,7 @@ namespace LojaInformatica.Controllers
 
 
 
-
+        [AutorizarLogin, HttpPost]
         public ActionResult AtualizarProduto(Produto produtoEdit, int Id)
         {
 
@@ -140,10 +141,10 @@ namespace LojaInformatica.Controllers
         {
 
             object product= new { sucesso = false };
-            string validMessage = ""; //validações
+            string validMessage = "";
             if (validMessage == "")
             {
-                bool removido = new HashGenerator().DeletarProduto(id);
+                bool removido = new ProdutoBLL().DeletarProduto(id);
                 if (!removido)
                 {
                     product = new { sucesso = false, message = "Erro inesperado, tente novamente." };

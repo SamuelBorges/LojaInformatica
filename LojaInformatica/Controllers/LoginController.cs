@@ -41,8 +41,8 @@ namespace LojaInformatica.Controllers
                 Session["usuarioLogado"] = usuario;
 
                 bool novoAcesso = new HashGenerator().RegistrarAcesso(usuario);
-                bool PrimeiraVez = new HashGenerator().EhPrimeiroAcesso(usuario);
-                bool EhAtivo = new HashGenerator().EhAtivo(usuario);
+                bool PrimeiraVez = new LoginBLL().EhPrimeiroAcesso(usuario);
+                bool EhAtivo = new LoginBLL().EhAtivo(usuario);
                 
                 if (!EhAtivo)
                 {

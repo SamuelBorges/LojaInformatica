@@ -9,6 +9,7 @@ function ShowForm(cadastrarUser) {
 
 
 }
+
 $(document).on("click", "#show-more", function () {
  var vermais = true;
 var dados = {
@@ -73,6 +74,7 @@ var dados = {
         }
     })
 });
+
 
 
 $(document).on("click", "#current-user", function () {

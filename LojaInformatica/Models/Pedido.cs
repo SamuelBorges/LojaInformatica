@@ -11,11 +11,11 @@ namespace LojaInformatica.DAO
 
         public DateTime DataDoPedido { get; set; }
 
-        public Cliente Cliente { get; set; }
+        public int Cliente { get; set; }
 
-        public Produto Produto { get; set; }
+        public int Produto { get; set; }
 
-        public Usuario Usuario { get; set; }
+        public int Usuario { get; set; }
 
         public double ValorTotal { get; set; }
 

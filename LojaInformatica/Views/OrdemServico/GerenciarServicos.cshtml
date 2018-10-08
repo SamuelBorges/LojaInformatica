@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "GerenciarServicos";
 }
 
 @{
@@ -22,9 +22,8 @@
     <div class="portlet grey-cascade box">
         <div class="portlet-title">
             <div class="caption">
-                Produtos:
+                Serviços:
             </div>
-
         </div>
     </div>
     <div class="portlet-body">
@@ -36,80 +35,70 @@
                             ID
                         </th>
                         <th>
-                            Nome
+                            Data
                         </th>
                         <th>
-                            Descricao
+                            Produto
                         </th>
                         <th>
-                            Quantidade
+                            Cliente
+                        </th>
+
+                        <th>
+                            Valor total
                         </th>
                         <th>
-                            Preço unitário
+                            Observação
                         </th>
                         <th>
-                            Marca
-                        </th>
-                        <th>
-                            Ações
-                        </th>
-                        <th>
-                            Remover
+                            Cancelar
                         </th>
                     </tr>
                 </thead>
                 <tbody class="tabela-completa">
-                    @foreach (var produto in ViewBag.produtos)
+                    @foreach (var servico in ViewBag.servicos)
                     {
-                    <tr class="product-table">
-                        <td id="id@(produto.Id)">
-                            @produto.Id
-                        </td>
-                        <td id="nome@(produto.Id)">
-                            @produto.Nome
-                        </td>
-                        <td id="descricao@(produto.Id)">
-                            @produto.Descricao
-                        </td>
+                        <tr class="product-table">
+                            <td id="id@(servico.Id)">
+                                @servico.Id
+                            </td>
+                            <td id="data@(servico.Id)">
+                                @servico.DataDoPedido
+                            </td>
+                            <td id="produto@(servico.Id)">
+                                @servico.Produto
+                            </td>
 
-                        <td id="quantidade@(produto.Id)">
-                            @produto.Quantidade
+                            <td id="cliente@(servico.Id)">
+                                @servico.Cliente
 
-                        </td>
-                        <td id="preco-unitario@(produto.Id)">
-                            @produto.PrecoUnitario
-                        </td>
-                        <td id="marca@(produto.Id)">
-                            @produto.Marca
-                        </td>
-                       
-                        <td>
+                            </td>
+                            <td id="valor@(servico.Id)">
+                                @servico.ValorTotal
+                            </td>
+                            <td id="observacao@(servico.Id)">
+                                @servico.Observacao
+                            </td>
 
-                            <div class="actions">
-                                <a class="btn btn-default btn-sm botao-editar-produto" id="btn-editar@(produto.Id)">
-                                    <i class="fa fa-pencil"></i> Editar/Visualizar
-                                </a>
-                            </div>
-                        </td>
 
-                        <td>
+                            <td>
+                                <button type="button" class="btn red delete botao-deletar-produto" id="deletar@(servico.Id)">
+                                    <i class="fa fa-trash"></i>
+                                    <span>
+                                        Cancelar
+                                    </span>
+                                </button>
 
-                            <button type="button" class="btn red delete botao-deletar-produto" id="deletar@(produto.Id)">
-                                <i class="fa fa-trash"></i>
-                                <span>
-                                    Delete
-                                </span>
-                            </button>
-                        </td>
+                            </td>
+                            
 
-                    </tr>   
+                        </tr>
                     }
                 </tbody>
             </table>
         </div>
     </div>
     <button type="button" class="btn blue show-more" id="show-more">Ver Mais</button>
-
 </div>
 
 
@@ -129,25 +118,48 @@
         </div>
         <div id="cadastrarGamb">
             <div class="form-body">
-                <div class="form-group">
-                    <label>Nome: </label>
-                    <input type="text" class="form-control input-lg" placeholder="Nome" name="produto.Nome" id="nome-produto" @*class="cadastrar"*@>
 
-                    <label>Descrição: </label>
-                    <input type="text" class="form-control input-lg" placeholder="Descrição" name="produto.Descricao" id="descricao-produto">
+                <br />
+                <label>Produto:</label></b>
+                <select class=" select2me " data-placeholder="Select..." tabindex="-1" title="" id="nome-produto">
 
-                </div>
-                <label>Quantidade: </label>
-                <input type="text" class="form-control input-lg" placeholder="Quantidade" name="produto.Quantidade" id="quantidade-produto">
+                    @foreach (var produto in ViewBag.produtos)
+                    {
+                        <option value="@produto.Id">@produto.Nome</option>
 
-                <label>Preço unitário:</label>
-                <input class="form-control input-lg" name="produto.PrecoUnitario" id="preco-unitario">
-
-                <div class="form-actions right">
-
-                    <button type="button" class="btn green" id="cadastrar-produto">Cadastrar</button>
-                </div>
+                    }
+                </select>
             </div>
+
+
+            <br />
+            <br />
+            <label>Cliente:</label></b>
+            <select class=" select2me " data-placeholder="Select..." tabindex="-1" title="" id="cliente-selecionado">
+
+                @foreach (var cliente in ViewBag.clientes)
+                {
+                    <option value="@cliente.Id">@cliente.Nome @cliente.Sobrenome</option>
+
+                }
+            </select>
+            <br />
+            <br />
+
+            <label>Quantidade:</label>
+            <input class="form-control input-lg" name="produto.Quantidade" id="quantidade" type="number" min="1">
+
+            <label>Preço total:</label>
+            <input class="form-control input-lg" name="produto.PrecoTotal" id="total" disabled="">
+
+            <label>Observacao:</label>
+            <input class="form-control input-lg" name="produto.Observacao" id="observacao">
+
+            <div class="form-actions right">
+
+                <button type="button" class="btn green" id="cadastrar-servico">Cadastrar</button>
+            </div>
+        </div>
 
         </div>
     </div>
@@ -169,7 +181,7 @@
             <div class="form-group">
 
                 <input type="text" class="form-control input-lg" placeholder="id" name="produtoedit.Id" id="id-editar" style="display:none;">
-                
+
                 <label>Produto:</label>
                 <input type="text" class="form-control input-lg" placeholder="Nome" name="produtoedit.Nome" id="nome-editar">
 
@@ -196,11 +208,11 @@
 
 </form>
 <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
-<script src="~/Scripts/Específicos/EditarProduto.js"></script>
-<script src="~/Scripts/Específicos/cadastrarProduto.js"></script>
+<script src="~/Scripts/Específicos/EditarServico.js"></script>
+<script src="~/Scripts/Específicos/cadastrarServico.js"></script>
 <script src="~/Scripts/Específicos/Animacoes.js"></script>
-<script src="~/Scripts/Específicos/RemoverProduto.js"></script>
-<script src="~/Scripts/Específicos/preencherEditProduto.js"></script>
+<script src="~/Scripts/Específicos/RemoverServico.js"></script>
+<script src="~/Scripts/Específicos/PreencherEditServico.js"></script>
 
 
 

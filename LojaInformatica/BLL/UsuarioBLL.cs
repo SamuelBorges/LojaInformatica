@@ -54,6 +54,42 @@ namespace LojaInformatica.BLL
             return "";
             
         }
+        public bool RegistrarUsuario(Usuario usuario)
+        {
+
+            usuario.Hash = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
+            usuario.Salt = BCrypt.Net.BCrypt.GenerateSalt();
+            usuario.Ativo = true;
+
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                entity.Usuarios.Add(usuario);
+                entity.SaveChanges();
+                return true;
+            }
+        }
+
+        public bool ProcurarUsuario(Usuario usuario)
+        {
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                Usuario searchedEmail = entity.Usuarios.FirstOrDefault(u => u.Email == usuario.Email);
+                try
+                {
+                    if (searchedEmail.NivelAcesso == LojaInformatica.DAO.Enum.NivelAcesso.Administrador)
+                    {
+                        return true;
+                    }
+                    return false;
+
+                }
+                catch (Exception)
+                {
+
+                    return false;
+                }
+            }
+        }
 
     }
 }

@@ -34,7 +34,7 @@ namespace LojaInformatica.Controllers
 
             if (validMessage == "")
             {
-                bool cadastrado = new HashGenerator().RegistrarUsuario(usuario);
+                bool cadastrado = new UsuarioBLL().RegistrarUsuario(usuario);
                 if (!cadastrado)
                 {
                     user = new { sucesso = false, message = "Erro inesperado, tente novemente." };

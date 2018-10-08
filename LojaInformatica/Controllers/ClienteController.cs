@@ -43,7 +43,7 @@ namespace LojaInformatica.Controllers
             string validMessage = ""; //validações
             if (validMessage == "")
             {
-                bool cadastrado = new HashGenerator().RegistrarCliente(cliente);
+                bool cadastrado = new ClienteBLL().RegistrarCliente(cliente);
                 if (!cadastrado)
                 {
                     user = new { sucesso = false, message = "Erro inesperado, tente novemente." };
@@ -132,7 +132,7 @@ namespace LojaInformatica.Controllers
             string validMessage = ""; //validações
             if (validMessage == "")
             {
-                bool removido = new HashGenerator().DeletarCliente(id);
+                bool removido = new ClienteBLL().DeletarCliente(id);
                 if (!removido)
                 {
                     client = new { sucesso = false, message = "Erro inesperado, tente novemente." };
