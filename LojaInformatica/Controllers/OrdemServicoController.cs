@@ -84,37 +84,53 @@ namespace LojaInformatica.Controllers
                         user = new { sucesso = false, message = "Não foi possível localizar o cliente selecionado." };
                         return Json(user);
                     }
-                    if (searchedProduto.Quantidade<Quantidade)
+                    if (searchedProduto.Quantidade < Quantidade)
                     {
-                        user = new { sucesso = false, message = "Estoque excedido, você ainda possui "+searchedProduto.Quantidade+" produtos disponíveis" };
+                        user = new { sucesso = false, message = "Estoque excedido, você ainda possui " + searchedProduto.Quantidade + " produtos disponíveis" };
                         return Json(user);
                     }
                     searchedProduto.Quantidade -= Quantidade;
+                    entity.SaveChanges();
                     pedido.Cliente = searchedClient.Id;
                     pedido.Produto = searchedProduto.Id;
-                    pedido.ValorTotal = searchedProduto.PrecoUnitario* Quantidade;
-                }
-                
+                    pedido.ValorTotal = searchedProduto.PrecoUnitario * Quantidade;
+
                     bool cadastrado = new PedidoBLL().RegistrarPedido(pedido);
-                if (!cadastrado)
-                {
-                    user = new { sucesso = false, message = "Erro inesperado, tente novemente." };
+                    if (!cadastrado)
+                    {
+                        user = new { sucesso = false, message = "Erro inesperado, tente novemente." };
+                        return Json(user);
+
+                    }
+                    user = new { sucesso = true };
                     return Json(user);
 
-                }
-                //user = new { sucesso = true, id = cliente.Id, nome = cliente.Nome, sobrenome = cliente.Sobrenome, pessoa = cliente.Pessoa, sexo = cliente.Sexo, message = validMessage };
-                return Json(user);
 
+                }
             }
             else
             {
-                user = new { sucesso = false, message = validMessage };
+                user =  new { sucesso = false };
                 return Json(user);
-            }
-
-
+                    }
 
         }
 
+        public bool DeletarPedido(int id)
+        {
+
+            using (LojaInformaticaContext entity = new LojaInformaticaContext())
+            {
+                Pedido searched = entity.Pedidos.FirstOrDefault(c => id == c.Id);
+                entity.Pedidos.Remove(searched);
+                entity.SaveChanges();
+                return true;
+            }
+        }
+
+
+
     }
+   
+
 }

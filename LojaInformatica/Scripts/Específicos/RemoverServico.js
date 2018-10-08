@@ -1,11 +1,10 @@
 ﻿/// <reference path="../typings/jquery/jquery.d.ts" />
 
 
-$(document).on("click", ".botao-deletar-cliente",function () {
-    var t = $(this).parents('.client-table');
-    var clienteNome = $(t.children()[1]).text().trim();
-    var clienteSobrenome = $(t.children()[2]).text().trim();
-    var remove = confirm('Você tem certeza que deseja remover ' + clienteNome + ' ' + clienteSobrenome+' do sistema?');
+$(document).on("click", ".botao-deletar-servico", function () {
+    var t = $(this).parents('.product-table');
+    var produtoNome = $(t.children()[2]).text().trim();
+    var remove = confirm('Você tem certeza que deseja remover o produto do sistema?');
     
     if (remove == true) {
         t.remove();
@@ -17,20 +16,21 @@ $(document).on("click", ".botao-deletar-cliente",function () {
 
             type: 'POST',
             dataType: 'json',
-            url: '/Cliente/RemoverCliente',
+            url: '/OrdemServico/DeletarPedido',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(dados),
             success: function (resultado) {
 
                 var t = $(this).parents('.client-table');
                 t.remove();
-                alert(clienteNome + ' ' + clienteSobrenome+' removido com sucesso.');
+                alert(' Produto removido com sucesso.');
                 $('#editarShow').hide();
-
+                location.reload();
 
             },
             error: function (xml, status, error) {
-                alert('Erro inesperado, tente novamente.');
+                alert("Fora de estoque.");
+
 
             }
         })

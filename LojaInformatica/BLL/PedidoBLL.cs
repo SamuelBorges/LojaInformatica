@@ -19,5 +19,7 @@ namespace LojaInformatica.BLL
                 return true;
             }
         }
+
+
     }
 }
